@@ -1,0 +1,181 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6472419223036889754
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7155426888658596018}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7155426888658596018
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6472419223036889754}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6858739688396385842}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6858739688396385840
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6858739688396385842}
+  - component: {fileID: 8827649234328995824}
+  m_Layer: 0
+  m_Name: Test
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6858739688396385842
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6858739688396385840}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7155426888658596018}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8827649234328995824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6858739688396385840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0704c7e138c04e38ae02284aea905c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  args:
+  - name: test1Prop
+    value:
+      valueType: 2
+      objValue: {fileID: 7155426888658596018}
+      primitiveValue: 
+      listValue: []
+  - name: test2Prop
+    value:
+      valueType: 2
+      objValue: {fileID: 6858739688396385842}
+      primitiveValue: 
+      listValue: []
+  - name: test3Prop
+    value:
+      valueType: 4
+      objValue: {fileID: 0}
+      primitiveValue: 
+      listValue:
+      - valueType: 2
+        objValue: {fileID: 6472419223036889754}
+        primitiveValue: 
+        listValue: []
+      - valueType: 2
+        objValue: {fileID: 6472419223036889754}
+        primitiveValue: 
+        listValue: []
+  - name: test4Prop
+    value:
+      valueType: 101
+      objValue: {fileID: 0}
+      primitiveValue: false
+      listValue:
+      - valueType: 1
+        objValue: {fileID: 6472419223036889754}
+        primitiveValue: 
+        listValue: []
+      - valueType: 1
+        objValue: {fileID: 6472419223036889754}
+        primitiveValue: 
+        listValue: []
+  - name: test5Prop
+    value:
+      valueType: 102
+      objValue: {fileID: 0}
+      primitiveValue: 0,0,0
+      listValue:
+      - valueType: 1
+        objValue: {fileID: 6472419223036889754}
+        primitiveValue: 
+        listValue: []
+      - valueType: 1
+        objValue: {fileID: 6472419223036889754}
+        primitiveValue: 
+        listValue: []
+  - name: test6Prop
+    value:
+      valueType: 4
+      objValue: {fileID: 0}
+      primitiveValue: 0,0,0
+      listValue:
+      - valueType: 102
+        objValue: {fileID: 0}
+        primitiveValue: 0,0,0
+        listValue: []
+      - valueType: 102
+        objValue: {fileID: 0}
+        primitiveValue: 0,0,0
+        listValue: []
+      - valueType: 102
+        objValue: {fileID: 0}
+        primitiveValue: 0,0,0
+        listValue: []
+      - valueType: 102
+        objValue: {fileID: 0}
+        primitiveValue: 0,0,0
+        listValue: []
+      - valueType: 102
+        objValue: {fileID: 0}
+        primitiveValue: 0,0,0
+        listValue: []
+      - valueType: 102
+        objValue: {fileID: 0}
+        primitiveValue: 0,0,0
+        listValue: []
+      - valueType: 102
+        objValue: {fileID: 0}
+        primitiveValue: 0,0,0
+        listValue: []
+      - valueType: 102
+        objValue: {fileID: 0}
+        primitiveValue: 0,0,0
+        listValue: []
+      - valueType: 102
+        objValue: {fileID: 0}
+        primitiveValue: 0,0,0
+        listValue: []
+      - valueType: 102
+        objValue: {fileID: 0}
+        primitiveValue: 0,0,0
+        listValue: []
+  tsModulePath: test-component
+  hookNames: []

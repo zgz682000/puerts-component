@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+      "target": "esnext",
+      "module": "CommonJS",
+      "sourceMap": true,
+      "noImplicitAny": true,
+      "typeRoots": [
+        "../Assets/Puerts/Typing",
+        "../Assets/Puerts/Generated/Typing",
+        "node_modules/@types"
+      ],
+      "moduleResolution": "node",
+      "experimentalDecorators": true,
+      "outDir": "../Assets/Resources"
+    }
+  }
+  
