@@ -164,7 +164,7 @@ MonoBehaviour:
   - name: test7Prop
     value:
       valueTypeId: 2
-      objValue: {fileID: 0}
+      objValue: {fileID: 27508865865630972}
       primitiveValue: 
       listValue: []
   tsModulePath: test-component
