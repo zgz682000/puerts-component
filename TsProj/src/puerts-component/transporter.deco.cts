@@ -1,9 +1,25 @@
 import { Puerts, System } from "csharp";
+import { $typeof } from "puerts";
 
 let transporterObjs: {[key: number]: any} = {};
 
 export function getTransporterObj<T>(transporter: Puerts.Component.TsTransporter): T {
     return transporterObjs[transporter.GetHashCode()];
+}
+
+function ConvertValue(value: any): any{
+    if (value && value.Transporter){
+        return getTransporterObj(value.Transporter);
+    }else if (value && value.Count && value.get_Item){
+        var jsArrayValue = [];
+        for(let i = 0; i < value.Count; i++){
+            let ele = value.get_Item(i);
+            let convertedEle = ConvertValue(ele);
+            jsArrayValue.push(convertedEle);
+        }
+        return jsArrayValue;
+    }
+    return value;
 }
 
 export function Transporter(){
@@ -25,7 +41,7 @@ export function Transporter(){
                 }else{
                     key = property.Item1
                 }
-                o[key] = value;
+                o[key] = ConvertValue(value);
             }
             if (o.__hooks){
                 Object.keys(o.__hooks).forEach(e=>{

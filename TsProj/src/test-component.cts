@@ -25,6 +25,14 @@ export default class TestComponent extends Component {
     test6Prop: UnityEngine.Vector3[][];
 
     Start(){
-        console.log("TestComponent Start: " + this.gameObject.name);
+        console.log("TestComponent Start");
+        console.log(this.gameObject);
+        console.log(this.transform);
+        console.log(this.test1Prop);
+        console.log(this.test2Prop);
+        console.log(this.test3Prop);
+        console.log(this.test4Prop);
+        console.log(this.test5Prop);
+        console.log(this.test6Prop);
     }
 }

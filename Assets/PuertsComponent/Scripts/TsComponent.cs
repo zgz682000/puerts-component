@@ -69,6 +69,11 @@ namespace Puerts.Component {
             }
             else if (value.valueTypeId == (int)PropertyValueType.LIST){
                 return value.listValue.ConvertAll(e=>ConvertValue(e));
+            }else if (value.valueTypeId != (int)PropertyValueType.NONE){
+                var serializer = PrimitivePropertySerializerCollector.PropertySerializers.Find(e=>e.ValueTypeId == value.valueTypeId);
+                if (serializer != null){
+                    return serializer.InternalStringToValue(value.primitiveValue);
+                }
             }
             return null;
         }

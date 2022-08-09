@@ -7,7 +7,7 @@ export interface PropertyOptions {
 }
 
 export function ListProperty(type: typeof System.Object, dimension: number = 1, options?: PropertyOptions){
-    return UnityEngine.Application.isPlaying ? 
+    return !UnityEngine.Application.isEditor ? 
     (target: any, propertyKey: string)=>{
         let name = options && options.name ? options.name : propertyKey;
         if (!target["__properties"]){
@@ -27,13 +27,14 @@ export function ListProperty(type: typeof System.Object, dimension: number = 1, 
         }
         target["__properties"][name] = {
             type: $typeof(type),
-            options: options
+            options: options,
+            key: propertyKey
         }
     }
 }
 
 export function Property(type: typeof System.Object, options?: PropertyOptions){
-    return UnityEngine.Application.isPlaying ? 
+    return !UnityEngine.Application.isEditor ? 
     (target: any, propertyKey: string)=>{
         let name = options && options.name ? options.name : propertyKey;
         if (!target["__properties"]){
@@ -50,7 +51,8 @@ export function Property(type: typeof System.Object, options?: PropertyOptions){
         }
         target["__properties"][name] = {
             type: $typeof(type),
-            options: options
+            options: options,
+            key: propertyKey
         }
     }
 }

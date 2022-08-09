@@ -22,7 +22,6 @@ namespace Puerts.Component {
     
         void OnEnable()
         {
-            CollectAllSerializer();
             ReloadJsEnv();
             _ins = target as TsComponent;
             _tsModulePathProp = serializedObject.FindProperty("tsModulePath");
@@ -42,8 +41,7 @@ namespace Puerts.Component {
 
             EditorGUILayout.BeginVertical();
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField("Ts Module Path");
-            _tsModulePathProp.stringValue = EditorGUILayout.TextField(_tsModulePathProp.stringValue);
+            _tsModulePathProp.stringValue = EditorGUILayout.TextField(new GUIContent("Ts Module Path"), _tsModulePathProp.stringValue);
             EditorGUILayout.EndHorizontal();
             GUILayout.Space(10f);
             if (properties != null){
@@ -105,7 +103,7 @@ namespace Puerts.Component {
                 return RenderObjectProp(name, objValueProp, type, indent);
             }
             else {
-                var serializer = PropertySerializers.Find(e=>e.Type == type);
+                var serializer = PrimitivePropertySerializerCollector.PropertySerializers.Find(e=>e.Type == type);
                 if (serializer != null){
                     valueTypeProp.intValue = serializer.ValueTypeId;
                     var primitiveValueProp = prop.FindPropertyRelative("primitiveValue");
@@ -126,15 +124,15 @@ namespace Puerts.Component {
             object originValue;
             try
             {
-                originValue = serializer.InteralStringToValue(prop.stringValue);
+                originValue = serializer.InternalStringToValue(prop.stringValue);
             }
             catch (System.Exception)
             {
                 originValue = type.IsValueType ? Activator.CreateInstance(type) : null;
             }
-            var newValue = serializer.InteralRenderEditorGUIField(name, originValue);
+            var newValue = serializer.InternalRenderEditorGUIField(name, originValue);
             if (newValue != originValue){
-                prop.stringValue = serializer.InteralValueToString(newValue);
+                prop.stringValue = serializer.InternalValueToString(newValue);
             }
             EditorGUILayout.EndHorizontal();
             return rect;

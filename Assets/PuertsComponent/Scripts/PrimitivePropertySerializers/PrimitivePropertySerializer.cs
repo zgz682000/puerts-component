@@ -13,10 +13,10 @@ namespace Puerts.Component {
         int ValueTypeId {
             get;
         }
-        string InteralValueToString(object value);
-        object InteralStringToValue(string str);
+        string InternalValueToString(object value);
+        object InternalStringToValue(string str);
 #if UNITY_EDITOR
-        object InteralRenderEditorGUIField(string propName, object propValue);
+        object InternalRenderEditorGUIField(string propName, object propValue);
 #endif
     } 
     public abstract class PrimitivePropertySerializer<T> : IPrimitivePropertySerializer {
@@ -35,17 +35,17 @@ namespace Puerts.Component {
         public abstract T StringToValue(string str);
         public abstract T RenderEditorGUIField(string propName, T propValue);
 
-        public string InteralValueToString(object value)
+        public string InternalValueToString(object value)
         {
             return ValueToString((T)value);
         }
 
-        public object InteralStringToValue(string str)
+        public object InternalStringToValue(string str)
         {
             return (object)StringToValue(str);
         }
 #if UNITY_EDITOR
-        public object InteralRenderEditorGUIField(string propName, object propValue)
+        public object InternalRenderEditorGUIField(string propName, object propValue)
         {
             return RenderEditorGUIField(propName, (T)propValue);
         }
