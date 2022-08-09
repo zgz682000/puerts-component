@@ -9,29 +9,9 @@ namespace Puerts.Component {
     
     
 
-    public class TsComponent : MonoBehaviour, ITsTransporterHolder {
+    public class TsComponent : MonoBehaviour, ITsTransporterHolder, ITsPropertyHolder {
 
-        public enum PropertyValueType {
-            NONE = 1,
-            OBJECT,
-            STRING,
-            LIST
-        }
-
-        [Serializable]
-        public class PropertyValue {
-            public int valueTypeId;
-            public UnityEngine.Object objValue;
-            public string primitiveValue;
-            public List<PropertyValue> listValue;
-        }
-
-        [Serializable]
-        public class Property
-        {
-            public string name;
-            public PropertyValue value;
-        }
+        
 
         public List<Property> properties;
 
@@ -43,7 +23,7 @@ namespace Puerts.Component {
 
         public List<string> hookNames;
 
-        protected virtual List<Tuple<string, object>> InternalArgs {
+        protected virtual List<Tuple<string, object>> InternalProperties {
             get {
                 return new List<Tuple<string, object>>(){
                     new Tuple<string, object>("_gameObject", this.gameObject),
@@ -52,40 +32,19 @@ namespace Puerts.Component {
             }
         }
 
+        public List<Property> Properties => properties;
+
         public void Init(string pTsModulePath){
             tsModulePath = pTsModulePath;
             Init();
-        }
-
-        private object ConvertValue(PropertyValue value){
-            if (value.valueTypeId == (int)PropertyValueType.OBJECT) {
-                if (value.objValue is ITsTransporterHolder){
-                    (value.objValue as ITsTransporterHolder).Init();
-                }
-                return value.objValue;
-            }
-            else if (value.valueTypeId == (int)PropertyValueType.STRING){
-                return value.primitiveValue;
-            }
-            else if (value.valueTypeId == (int)PropertyValueType.LIST){
-                return value.listValue.ConvertAll(e=>ConvertValue(e));
-            }else if (value.valueTypeId != (int)PropertyValueType.NONE){
-                var serializer = PrimitivePropertySerializerCollector.PropertySerializers.Find(e=>e.ValueTypeId == value.valueTypeId);
-                if (serializer != null){
-                    return serializer.InternalStringToValue(value.primitiveValue);
-                }
-            }
-            return null;
         }
 
         public void Init() {
             if (_transporter != null){
                 return;
             }
-            var convertedProperties = properties.ConvertAll(e=>{
-                return new Tuple<string, object>(e.name, ConvertValue(e.value));;
-            });
-            convertedProperties.AddRange(InternalArgs);
+            var convertedProperties = this.ConvertPropertiesValue();
+            convertedProperties.AddRange(InternalProperties);
             _transporter = new TsTransporter(tsModulePath, convertedProperties);
         }
 

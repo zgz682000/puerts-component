@@ -23,8 +23,6 @@ namespace Puerts.Component {
             return value ? "true" : "false";
         }
 
-        public override bool ShouldRenderPrefix => true;
-
         public override int ValueTypeId => 101;
     }
 }

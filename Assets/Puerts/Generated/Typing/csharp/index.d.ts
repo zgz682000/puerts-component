@@ -308,6 +308,231 @@ declare module 'csharp' {
                 public static op_Inequality ($x: UnityEngine.Object, $y: UnityEngine.Object) : boolean
                 public constructor ()
             }
+            /** Representation of RGBA colors. */
+            class Color extends System.ValueType implements System.IEquatable$1<UnityEngine.Color>, System.IFormattable
+            {
+                protected [__keep_incompatibility]: never;
+                /** Red component of the color. */
+                public r : number/** Green component of the color. */
+                public g : number/** Blue component of the color. */
+                public b : number/** Alpha component of the color (0 is transparent, 1 is opaque). */
+                public a : number/** Solid red. RGBA is (1, 0, 0, 1). */
+                public static get red(): UnityEngine.Color;
+                /** Solid green. RGBA is (0, 1, 0, 1). */
+                public static get green(): UnityEngine.Color;
+                /** Solid blue. RGBA is (0, 0, 1, 1). */
+                public static get blue(): UnityEngine.Color;
+                /** Solid white. RGBA is (1, 1, 1, 1). */
+                public static get white(): UnityEngine.Color;
+                /** Solid black. RGBA is (0, 0, 0, 1). */
+                public static get black(): UnityEngine.Color;
+                /** Yellow. RGBA is (1, 0.92, 0.016, 1), but the color is nice to look at! */
+                public static get yellow(): UnityEngine.Color;
+                /** Cyan. RGBA is (0, 1, 1, 1). */
+                public static get cyan(): UnityEngine.Color;
+                /** Magenta. RGBA is (1, 0, 1, 1). */
+                public static get magenta(): UnityEngine.Color;
+                /** Gray. RGBA is (0.5, 0.5, 0.5, 1). */
+                public static get gray(): UnityEngine.Color;
+                /** English spelling for gray. RGBA is the same (0.5, 0.5, 0.5, 1). */
+                public static get grey(): UnityEngine.Color;
+                /** Completely transparent. RGBA is (0, 0, 0, 0). */
+                public static get clear(): UnityEngine.Color;
+                /** The grayscale value of the color. (Read Only) */
+                public get grayscale(): number;
+                /** A linear value of an sRGB color. */
+                public get linear(): UnityEngine.Color;
+                /** A version of the color that has had the gamma curve applied. */
+                public get gamma(): UnityEngine.Color;
+                /** Returns the maximum color component value: Max(r,g,b). */
+                public get maxColorComponent(): number;
+                public ToString () : string
+                /** Returns a formatted string of this color. * @param format A numeric format string.
+                * @param formatProvider An object that specifies culture-specific formatting.
+                */
+                public ToString ($format: string) : string
+                /** Returns a formatted string of this color. * @param format A numeric format string.
+                * @param formatProvider An object that specifies culture-specific formatting.
+                */
+                public ToString ($format: string, $formatProvider: System.IFormatProvider) : string
+                public Equals ($other: any) : boolean
+                public Equals ($other: UnityEngine.Color) : boolean
+                public static op_Addition ($a: UnityEngine.Color, $b: UnityEngine.Color) : UnityEngine.Color
+                public static op_Subtraction ($a: UnityEngine.Color, $b: UnityEngine.Color) : UnityEngine.Color
+                public static op_Multiply ($a: UnityEngine.Color, $b: UnityEngine.Color) : UnityEngine.Color
+                public static op_Multiply ($a: UnityEngine.Color, $b: number) : UnityEngine.Color
+                public static op_Multiply ($b: number, $a: UnityEngine.Color) : UnityEngine.Color
+                public static op_Division ($a: UnityEngine.Color, $b: number) : UnityEngine.Color
+                public static op_Equality ($lhs: UnityEngine.Color, $rhs: UnityEngine.Color) : boolean
+                public static op_Inequality ($lhs: UnityEngine.Color, $rhs: UnityEngine.Color) : boolean
+                /** Linearly interpolates between colors a and b by t. * @param a Color a.
+                * @param b Color b.
+                * @param t Float for combining a and b.
+                */
+                public static Lerp ($a: UnityEngine.Color, $b: UnityEngine.Color, $t: number) : UnityEngine.Color
+                /** Linearly interpolates between colors a and b by t. */
+                public static LerpUnclamped ($a: UnityEngine.Color, $b: UnityEngine.Color, $t: number) : UnityEngine.Color
+                public static op_Implicit ($c: UnityEngine.Color) : UnityEngine.Vector4
+                public static op_Implicit ($v: UnityEngine.Vector4) : UnityEngine.Color
+                public get_Item ($index: number) : number
+                public set_Item ($index: number, $value: number) : void
+                /** Calculates the hue, saturation and value of an RGB input color. * @param rgbColor An input color.
+                * @param H Output variable for hue.
+                * @param S Output variable for saturation.
+                * @param V Output variable for value.
+                */
+                public static RGBToHSV ($rgbColor: UnityEngine.Color, $H: $Ref<number>, $S: $Ref<number>, $V: $Ref<number>) : void
+                /** Creates an RGB colour from HSV input.
+                * @param H Hue [0..1].
+                * @param S Saturation [0..1].
+                * @param V Brightness value [0..1].
+                * @param hdr Output HDR colours. If true, the returned colour will not be clamped to [0..1].
+                * @returns An opaque colour with HSV matching the input. 
+                */
+                public static HSVToRGB ($H: number, $S: number, $V: number) : UnityEngine.Color
+                /** Creates an RGB colour from HSV input.
+                * @param H Hue [0..1].
+                * @param S Saturation [0..1].
+                * @param V Brightness value [0..1].
+                * @param hdr Output HDR colours. If true, the returned colour will not be clamped to [0..1].
+                * @returns An opaque colour with HSV matching the input. 
+                */
+                public static HSVToRGB ($H: number, $S: number, $V: number, $hdr: boolean) : UnityEngine.Color
+                public constructor ($r: number, $g: number, $b: number, $a: number)
+                public constructor ($r: number, $g: number, $b: number)
+                public Equals ($obj: any) : boolean
+                public static Equals ($objA: any, $objB: any) : boolean
+                public constructor ()
+            }
+            /** Representation of 2D vectors and points. */
+            class Vector2 extends System.ValueType implements System.IEquatable$1<UnityEngine.Vector2>, System.IFormattable
+            {
+                protected [__keep_incompatibility]: never;
+                /** X component of the vector. */
+                public x : number/** Y component of the vector. */
+                public y : number
+                public static kEpsilon : number
+                public static kEpsilonNormalSqrt : number/** Returns this vector with a magnitude of 1 (Read Only). */
+                public get normalized(): UnityEngine.Vector2;
+                /** Returns the length of this vector (Read Only). */
+                public get magnitude(): number;
+                /** Returns the squared length of this vector (Read Only). */
+                public get sqrMagnitude(): number;
+                /** Shorthand for writing Vector2(0, 0). */
+                public static get zero(): UnityEngine.Vector2;
+                /** Shorthand for writing Vector2(1, 1). */
+                public static get one(): UnityEngine.Vector2;
+                /** Shorthand for writing Vector2(0, 1). */
+                public static get up(): UnityEngine.Vector2;
+                /** Shorthand for writing Vector2(0, -1). */
+                public static get down(): UnityEngine.Vector2;
+                /** Shorthand for writing Vector2(-1, 0). */
+                public static get left(): UnityEngine.Vector2;
+                /** Shorthand for writing Vector2(1, 0). */
+                public static get right(): UnityEngine.Vector2;
+                /** Shorthand for writing Vector2(float.PositiveInfinity, float.PositiveInfinity). */
+                public static get positiveInfinity(): UnityEngine.Vector2;
+                /** Shorthand for writing Vector2(float.NegativeInfinity, float.NegativeInfinity). */
+                public static get negativeInfinity(): UnityEngine.Vector2;
+                public get_Item ($index: number) : number
+                public set_Item ($index: number, $value: number) : void
+                /** Set x and y components of an existing Vector2. */
+                public Set ($newX: number, $newY: number) : void
+                /** Linearly interpolates between vectors a and b by t. */
+                public static Lerp ($a: UnityEngine.Vector2, $b: UnityEngine.Vector2, $t: number) : UnityEngine.Vector2
+                /** Linearly interpolates between vectors a and b by t. */
+                public static LerpUnclamped ($a: UnityEngine.Vector2, $b: UnityEngine.Vector2, $t: number) : UnityEngine.Vector2
+                /** Moves a point current towards target. */
+                public static MoveTowards ($current: UnityEngine.Vector2, $target: UnityEngine.Vector2, $maxDistanceDelta: number) : UnityEngine.Vector2
+                /** Multiplies two vectors component-wise. */
+                public static Scale ($a: UnityEngine.Vector2, $b: UnityEngine.Vector2) : UnityEngine.Vector2
+                /** Multiplies every component of this vector by the same component of scale. */
+                public Scale ($scale: UnityEngine.Vector2) : void
+                public Normalize () : void
+                public ToString () : string
+                /** Returns a formatted string for this vector. * @param format A numeric format string.
+                * @param formatProvider An object that specifies culture-specific formatting.
+                */
+                public ToString ($format: string) : string
+                /** Returns a formatted string for this vector. * @param format A numeric format string.
+                * @param formatProvider An object that specifies culture-specific formatting.
+                */
+                public ToString ($format: string, $formatProvider: System.IFormatProvider) : string
+                /** Returns true if the given vector is exactly equal to this vector. */
+                public Equals ($other: any) : boolean
+                public Equals ($other: UnityEngine.Vector2) : boolean
+                /** Reflects a vector off the vector defined by a normal. */
+                public static Reflect ($inDirection: UnityEngine.Vector2, $inNormal: UnityEngine.Vector2) : UnityEngine.Vector2
+                /** Returns the 2D vector perpendicular to this 2D vector. The result is always rotated 90-degrees in a counter-clockwise direction for a 2D coordinate system where the positive Y axis goes up.
+                * @param inDirection The input direction.
+                * @returns The perpendicular direction. 
+                */
+                public static Perpendicular ($inDirection: UnityEngine.Vector2) : UnityEngine.Vector2
+                /** Dot Product of two vectors. */
+                public static Dot ($lhs: UnityEngine.Vector2, $rhs: UnityEngine.Vector2) : number
+                /** Gets the unsigned angle in degrees between from and to.
+                * @param from The vector from which the angular difference is measured.
+                * @param to The vector to which the angular difference is measured.
+                * @returns The unsigned angle in degrees between the two vectors. 
+                */
+                public static Angle ($from: UnityEngine.Vector2, $to: UnityEngine.Vector2) : number
+                /** Gets the signed angle in degrees between from and to.
+                * @param from The vector from which the angular difference is measured.
+                * @param to The vector to which the angular difference is measured.
+                * @returns The signed angle in degrees between the two vectors. 
+                */
+                public static SignedAngle ($from: UnityEngine.Vector2, $to: UnityEngine.Vector2) : number
+                /** Returns the distance between a and b. */
+                public static Distance ($a: UnityEngine.Vector2, $b: UnityEngine.Vector2) : number
+                /** Returns a copy of vector with its magnitude clamped to maxLength. */
+                public static ClampMagnitude ($vector: UnityEngine.Vector2, $maxLength: number) : UnityEngine.Vector2
+                public static SqrMagnitude ($a: UnityEngine.Vector2) : number
+                public SqrMagnitude () : number
+                /** Returns a vector that is made from the smallest components of two vectors. */
+                public static Min ($lhs: UnityEngine.Vector2, $rhs: UnityEngine.Vector2) : UnityEngine.Vector2
+                /** Returns a vector that is made from the largest components of two vectors. */
+                public static Max ($lhs: UnityEngine.Vector2, $rhs: UnityEngine.Vector2) : UnityEngine.Vector2
+                /** Gradually changes a vector towards a desired goal over time. * @param current The current position.
+                * @param target The position we are trying to reach.
+                * @param currentVelocity The current velocity, this value is modified by the function every time you call it.
+                * @param smoothTime Approximately the time it will take to reach the target. A smaller value will reach the target faster.
+                * @param maxSpeed Optionally allows you to clamp the maximum speed.
+                * @param deltaTime The time since the last call to this function. By default Time.deltaTime.
+                */
+                public static SmoothDamp ($current: UnityEngine.Vector2, $target: UnityEngine.Vector2, $currentVelocity: $Ref<UnityEngine.Vector2>, $smoothTime: number, $maxSpeed: number) : UnityEngine.Vector2
+                /** Gradually changes a vector towards a desired goal over time. * @param current The current position.
+                * @param target The position we are trying to reach.
+                * @param currentVelocity The current velocity, this value is modified by the function every time you call it.
+                * @param smoothTime Approximately the time it will take to reach the target. A smaller value will reach the target faster.
+                * @param maxSpeed Optionally allows you to clamp the maximum speed.
+                * @param deltaTime The time since the last call to this function. By default Time.deltaTime.
+                */
+                public static SmoothDamp ($current: UnityEngine.Vector2, $target: UnityEngine.Vector2, $currentVelocity: $Ref<UnityEngine.Vector2>, $smoothTime: number) : UnityEngine.Vector2
+                /** Gradually changes a vector towards a desired goal over time. * @param current The current position.
+                * @param target The position we are trying to reach.
+                * @param currentVelocity The current velocity, this value is modified by the function every time you call it.
+                * @param smoothTime Approximately the time it will take to reach the target. A smaller value will reach the target faster.
+                * @param maxSpeed Optionally allows you to clamp the maximum speed.
+                * @param deltaTime The time since the last call to this function. By default Time.deltaTime.
+                */
+                public static SmoothDamp ($current: UnityEngine.Vector2, $target: UnityEngine.Vector2, $currentVelocity: $Ref<UnityEngine.Vector2>, $smoothTime: number, $maxSpeed: number, $deltaTime: number) : UnityEngine.Vector2
+                public static op_Addition ($a: UnityEngine.Vector2, $b: UnityEngine.Vector2) : UnityEngine.Vector2
+                public static op_Subtraction ($a: UnityEngine.Vector2, $b: UnityEngine.Vector2) : UnityEngine.Vector2
+                public static op_Multiply ($a: UnityEngine.Vector2, $b: UnityEngine.Vector2) : UnityEngine.Vector2
+                public static op_Division ($a: UnityEngine.Vector2, $b: UnityEngine.Vector2) : UnityEngine.Vector2
+                public static op_UnaryNegation ($a: UnityEngine.Vector2) : UnityEngine.Vector2
+                public static op_Multiply ($a: UnityEngine.Vector2, $d: number) : UnityEngine.Vector2
+                public static op_Multiply ($d: number, $a: UnityEngine.Vector2) : UnityEngine.Vector2
+                public static op_Division ($a: UnityEngine.Vector2, $d: number) : UnityEngine.Vector2
+                public static op_Equality ($lhs: UnityEngine.Vector2, $rhs: UnityEngine.Vector2) : boolean
+                public static op_Inequality ($lhs: UnityEngine.Vector2, $rhs: UnityEngine.Vector2) : boolean
+                public static op_Implicit ($v: UnityEngine.Vector3) : UnityEngine.Vector2
+                public static op_Implicit ($v: UnityEngine.Vector2) : UnityEngine.Vector3
+                public constructor ($x: number, $y: number)
+                public Equals ($obj: any) : boolean
+                public static Equals ($objA: any, $objB: any) : boolean
+                public constructor ()
+            }
             /** Representation of 3D vectors and points. */
             class Vector3 extends System.ValueType implements System.IEquatable$1<UnityEngine.Vector3>, System.IFormattable
             {
@@ -814,102 +1039,6 @@ declare module 'csharp' {
             {
                 protected [__keep_incompatibility]: never;
             }
-            /** Representation of RGBA colors. */
-            class Color extends System.ValueType implements System.IEquatable$1<UnityEngine.Color>, System.IFormattable
-            {
-                protected [__keep_incompatibility]: never;
-                /** Red component of the color. */
-                public r : number/** Green component of the color. */
-                public g : number/** Blue component of the color. */
-                public b : number/** Alpha component of the color (0 is transparent, 1 is opaque). */
-                public a : number/** Solid red. RGBA is (1, 0, 0, 1). */
-                public static get red(): UnityEngine.Color;
-                /** Solid green. RGBA is (0, 1, 0, 1). */
-                public static get green(): UnityEngine.Color;
-                /** Solid blue. RGBA is (0, 0, 1, 1). */
-                public static get blue(): UnityEngine.Color;
-                /** Solid white. RGBA is (1, 1, 1, 1). */
-                public static get white(): UnityEngine.Color;
-                /** Solid black. RGBA is (0, 0, 0, 1). */
-                public static get black(): UnityEngine.Color;
-                /** Yellow. RGBA is (1, 0.92, 0.016, 1), but the color is nice to look at! */
-                public static get yellow(): UnityEngine.Color;
-                /** Cyan. RGBA is (0, 1, 1, 1). */
-                public static get cyan(): UnityEngine.Color;
-                /** Magenta. RGBA is (1, 0, 1, 1). */
-                public static get magenta(): UnityEngine.Color;
-                /** Gray. RGBA is (0.5, 0.5, 0.5, 1). */
-                public static get gray(): UnityEngine.Color;
-                /** English spelling for gray. RGBA is the same (0.5, 0.5, 0.5, 1). */
-                public static get grey(): UnityEngine.Color;
-                /** Completely transparent. RGBA is (0, 0, 0, 0). */
-                public static get clear(): UnityEngine.Color;
-                /** The grayscale value of the color. (Read Only) */
-                public get grayscale(): number;
-                /** A linear value of an sRGB color. */
-                public get linear(): UnityEngine.Color;
-                /** A version of the color that has had the gamma curve applied. */
-                public get gamma(): UnityEngine.Color;
-                /** Returns the maximum color component value: Max(r,g,b). */
-                public get maxColorComponent(): number;
-                public ToString () : string
-                /** Returns a formatted string of this color. * @param format A numeric format string.
-                * @param formatProvider An object that specifies culture-specific formatting.
-                */
-                public ToString ($format: string) : string
-                /** Returns a formatted string of this color. * @param format A numeric format string.
-                * @param formatProvider An object that specifies culture-specific formatting.
-                */
-                public ToString ($format: string, $formatProvider: System.IFormatProvider) : string
-                public Equals ($other: any) : boolean
-                public Equals ($other: UnityEngine.Color) : boolean
-                public static op_Addition ($a: UnityEngine.Color, $b: UnityEngine.Color) : UnityEngine.Color
-                public static op_Subtraction ($a: UnityEngine.Color, $b: UnityEngine.Color) : UnityEngine.Color
-                public static op_Multiply ($a: UnityEngine.Color, $b: UnityEngine.Color) : UnityEngine.Color
-                public static op_Multiply ($a: UnityEngine.Color, $b: number) : UnityEngine.Color
-                public static op_Multiply ($b: number, $a: UnityEngine.Color) : UnityEngine.Color
-                public static op_Division ($a: UnityEngine.Color, $b: number) : UnityEngine.Color
-                public static op_Equality ($lhs: UnityEngine.Color, $rhs: UnityEngine.Color) : boolean
-                public static op_Inequality ($lhs: UnityEngine.Color, $rhs: UnityEngine.Color) : boolean
-                /** Linearly interpolates between colors a and b by t. * @param a Color a.
-                * @param b Color b.
-                * @param t Float for combining a and b.
-                */
-                public static Lerp ($a: UnityEngine.Color, $b: UnityEngine.Color, $t: number) : UnityEngine.Color
-                /** Linearly interpolates between colors a and b by t. */
-                public static LerpUnclamped ($a: UnityEngine.Color, $b: UnityEngine.Color, $t: number) : UnityEngine.Color
-                public static op_Implicit ($c: UnityEngine.Color) : UnityEngine.Vector4
-                public static op_Implicit ($v: UnityEngine.Vector4) : UnityEngine.Color
-                public get_Item ($index: number) : number
-                public set_Item ($index: number, $value: number) : void
-                /** Calculates the hue, saturation and value of an RGB input color. * @param rgbColor An input color.
-                * @param H Output variable for hue.
-                * @param S Output variable for saturation.
-                * @param V Output variable for value.
-                */
-                public static RGBToHSV ($rgbColor: UnityEngine.Color, $H: $Ref<number>, $S: $Ref<number>, $V: $Ref<number>) : void
-                /** Creates an RGB colour from HSV input.
-                * @param H Hue [0..1].
-                * @param S Saturation [0..1].
-                * @param V Brightness value [0..1].
-                * @param hdr Output HDR colours. If true, the returned colour will not be clamped to [0..1].
-                * @returns An opaque colour with HSV matching the input. 
-                */
-                public static HSVToRGB ($H: number, $S: number, $V: number) : UnityEngine.Color
-                /** Creates an RGB colour from HSV input.
-                * @param H Hue [0..1].
-                * @param S Saturation [0..1].
-                * @param V Brightness value [0..1].
-                * @param hdr Output HDR colours. If true, the returned colour will not be clamped to [0..1].
-                * @returns An opaque colour with HSV matching the input. 
-                */
-                public static HSVToRGB ($H: number, $S: number, $V: number, $hdr: boolean) : UnityEngine.Color
-                public constructor ($r: number, $g: number, $b: number, $a: number)
-                public constructor ($r: number, $g: number, $b: number)
-                public Equals ($obj: any) : boolean
-                public static Equals ($objA: any, $objB: any) : boolean
-                public constructor ()
-            }
             /** Values for Camera.clearFlags, determining what to clear when rendering a Camera. */
             enum CameraClearFlags
             { Skybox = 1, Color = 2, SolidColor = 2, Depth = 3, Nothing = 4 }
@@ -1276,135 +1405,6 @@ declare module 'csharp' {
                 * @returns True, if a stack was found for the given texture property, false if not. 
                 */
                 public FindTextureStack ($propertyIndex: number, $stackName: $Ref<string>, $layerIndex: $Ref<number>) : boolean
-            }
-            /** Representation of 2D vectors and points. */
-            class Vector2 extends System.ValueType implements System.IEquatable$1<UnityEngine.Vector2>, System.IFormattable
-            {
-                protected [__keep_incompatibility]: never;
-                /** X component of the vector. */
-                public x : number/** Y component of the vector. */
-                public y : number
-                public static kEpsilon : number
-                public static kEpsilonNormalSqrt : number/** Returns this vector with a magnitude of 1 (Read Only). */
-                public get normalized(): UnityEngine.Vector2;
-                /** Returns the length of this vector (Read Only). */
-                public get magnitude(): number;
-                /** Returns the squared length of this vector (Read Only). */
-                public get sqrMagnitude(): number;
-                /** Shorthand for writing Vector2(0, 0). */
-                public static get zero(): UnityEngine.Vector2;
-                /** Shorthand for writing Vector2(1, 1). */
-                public static get one(): UnityEngine.Vector2;
-                /** Shorthand for writing Vector2(0, 1). */
-                public static get up(): UnityEngine.Vector2;
-                /** Shorthand for writing Vector2(0, -1). */
-                public static get down(): UnityEngine.Vector2;
-                /** Shorthand for writing Vector2(-1, 0). */
-                public static get left(): UnityEngine.Vector2;
-                /** Shorthand for writing Vector2(1, 0). */
-                public static get right(): UnityEngine.Vector2;
-                /** Shorthand for writing Vector2(float.PositiveInfinity, float.PositiveInfinity). */
-                public static get positiveInfinity(): UnityEngine.Vector2;
-                /** Shorthand for writing Vector2(float.NegativeInfinity, float.NegativeInfinity). */
-                public static get negativeInfinity(): UnityEngine.Vector2;
-                public get_Item ($index: number) : number
-                public set_Item ($index: number, $value: number) : void
-                /** Set x and y components of an existing Vector2. */
-                public Set ($newX: number, $newY: number) : void
-                /** Linearly interpolates between vectors a and b by t. */
-                public static Lerp ($a: UnityEngine.Vector2, $b: UnityEngine.Vector2, $t: number) : UnityEngine.Vector2
-                /** Linearly interpolates between vectors a and b by t. */
-                public static LerpUnclamped ($a: UnityEngine.Vector2, $b: UnityEngine.Vector2, $t: number) : UnityEngine.Vector2
-                /** Moves a point current towards target. */
-                public static MoveTowards ($current: UnityEngine.Vector2, $target: UnityEngine.Vector2, $maxDistanceDelta: number) : UnityEngine.Vector2
-                /** Multiplies two vectors component-wise. */
-                public static Scale ($a: UnityEngine.Vector2, $b: UnityEngine.Vector2) : UnityEngine.Vector2
-                /** Multiplies every component of this vector by the same component of scale. */
-                public Scale ($scale: UnityEngine.Vector2) : void
-                public Normalize () : void
-                public ToString () : string
-                /** Returns a formatted string for this vector. * @param format A numeric format string.
-                * @param formatProvider An object that specifies culture-specific formatting.
-                */
-                public ToString ($format: string) : string
-                /** Returns a formatted string for this vector. * @param format A numeric format string.
-                * @param formatProvider An object that specifies culture-specific formatting.
-                */
-                public ToString ($format: string, $formatProvider: System.IFormatProvider) : string
-                /** Returns true if the given vector is exactly equal to this vector. */
-                public Equals ($other: any) : boolean
-                public Equals ($other: UnityEngine.Vector2) : boolean
-                /** Reflects a vector off the vector defined by a normal. */
-                public static Reflect ($inDirection: UnityEngine.Vector2, $inNormal: UnityEngine.Vector2) : UnityEngine.Vector2
-                /** Returns the 2D vector perpendicular to this 2D vector. The result is always rotated 90-degrees in a counter-clockwise direction for a 2D coordinate system where the positive Y axis goes up.
-                * @param inDirection The input direction.
-                * @returns The perpendicular direction. 
-                */
-                public static Perpendicular ($inDirection: UnityEngine.Vector2) : UnityEngine.Vector2
-                /** Dot Product of two vectors. */
-                public static Dot ($lhs: UnityEngine.Vector2, $rhs: UnityEngine.Vector2) : number
-                /** Gets the unsigned angle in degrees between from and to.
-                * @param from The vector from which the angular difference is measured.
-                * @param to The vector to which the angular difference is measured.
-                * @returns The unsigned angle in degrees between the two vectors. 
-                */
-                public static Angle ($from: UnityEngine.Vector2, $to: UnityEngine.Vector2) : number
-                /** Gets the signed angle in degrees between from and to.
-                * @param from The vector from which the angular difference is measured.
-                * @param to The vector to which the angular difference is measured.
-                * @returns The signed angle in degrees between the two vectors. 
-                */
-                public static SignedAngle ($from: UnityEngine.Vector2, $to: UnityEngine.Vector2) : number
-                /** Returns the distance between a and b. */
-                public static Distance ($a: UnityEngine.Vector2, $b: UnityEngine.Vector2) : number
-                /** Returns a copy of vector with its magnitude clamped to maxLength. */
-                public static ClampMagnitude ($vector: UnityEngine.Vector2, $maxLength: number) : UnityEngine.Vector2
-                public static SqrMagnitude ($a: UnityEngine.Vector2) : number
-                public SqrMagnitude () : number
-                /** Returns a vector that is made from the smallest components of two vectors. */
-                public static Min ($lhs: UnityEngine.Vector2, $rhs: UnityEngine.Vector2) : UnityEngine.Vector2
-                /** Returns a vector that is made from the largest components of two vectors. */
-                public static Max ($lhs: UnityEngine.Vector2, $rhs: UnityEngine.Vector2) : UnityEngine.Vector2
-                /** Gradually changes a vector towards a desired goal over time. * @param current The current position.
-                * @param target The position we are trying to reach.
-                * @param currentVelocity The current velocity, this value is modified by the function every time you call it.
-                * @param smoothTime Approximately the time it will take to reach the target. A smaller value will reach the target faster.
-                * @param maxSpeed Optionally allows you to clamp the maximum speed.
-                * @param deltaTime The time since the last call to this function. By default Time.deltaTime.
-                */
-                public static SmoothDamp ($current: UnityEngine.Vector2, $target: UnityEngine.Vector2, $currentVelocity: $Ref<UnityEngine.Vector2>, $smoothTime: number, $maxSpeed: number) : UnityEngine.Vector2
-                /** Gradually changes a vector towards a desired goal over time. * @param current The current position.
-                * @param target The position we are trying to reach.
-                * @param currentVelocity The current velocity, this value is modified by the function every time you call it.
-                * @param smoothTime Approximately the time it will take to reach the target. A smaller value will reach the target faster.
-                * @param maxSpeed Optionally allows you to clamp the maximum speed.
-                * @param deltaTime The time since the last call to this function. By default Time.deltaTime.
-                */
-                public static SmoothDamp ($current: UnityEngine.Vector2, $target: UnityEngine.Vector2, $currentVelocity: $Ref<UnityEngine.Vector2>, $smoothTime: number) : UnityEngine.Vector2
-                /** Gradually changes a vector towards a desired goal over time. * @param current The current position.
-                * @param target The position we are trying to reach.
-                * @param currentVelocity The current velocity, this value is modified by the function every time you call it.
-                * @param smoothTime Approximately the time it will take to reach the target. A smaller value will reach the target faster.
-                * @param maxSpeed Optionally allows you to clamp the maximum speed.
-                * @param deltaTime The time since the last call to this function. By default Time.deltaTime.
-                */
-                public static SmoothDamp ($current: UnityEngine.Vector2, $target: UnityEngine.Vector2, $currentVelocity: $Ref<UnityEngine.Vector2>, $smoothTime: number, $maxSpeed: number, $deltaTime: number) : UnityEngine.Vector2
-                public static op_Addition ($a: UnityEngine.Vector2, $b: UnityEngine.Vector2) : UnityEngine.Vector2
-                public static op_Subtraction ($a: UnityEngine.Vector2, $b: UnityEngine.Vector2) : UnityEngine.Vector2
-                public static op_Multiply ($a: UnityEngine.Vector2, $b: UnityEngine.Vector2) : UnityEngine.Vector2
-                public static op_Division ($a: UnityEngine.Vector2, $b: UnityEngine.Vector2) : UnityEngine.Vector2
-                public static op_UnaryNegation ($a: UnityEngine.Vector2) : UnityEngine.Vector2
-                public static op_Multiply ($a: UnityEngine.Vector2, $d: number) : UnityEngine.Vector2
-                public static op_Multiply ($d: number, $a: UnityEngine.Vector2) : UnityEngine.Vector2
-                public static op_Division ($a: UnityEngine.Vector2, $d: number) : UnityEngine.Vector2
-                public static op_Equality ($lhs: UnityEngine.Vector2, $rhs: UnityEngine.Vector2) : boolean
-                public static op_Inequality ($lhs: UnityEngine.Vector2, $rhs: UnityEngine.Vector2) : boolean
-                public static op_Implicit ($v: UnityEngine.Vector3) : UnityEngine.Vector2
-                public static op_Implicit ($v: UnityEngine.Vector2) : UnityEngine.Vector3
-                public constructor ($x: number, $y: number)
-                public Equals ($obj: any) : boolean
-                public static Equals ($objA: any, $objB: any) : boolean
-                public constructor ()
             }
             /** A 2D Rectangle defined by X and Y position, width and height. */
             class Rect extends System.ValueType implements System.IEquatable$1<UnityEngine.Rect>, System.IFormattable
@@ -5727,7 +5727,7 @@ declare module 'csharp' {
                 public static ReferenceEquals ($objA: any, $objB: any) : boolean
                 public constructor ()
             }
-            class Boolean extends System.ValueType implements System.IEquatable$1<boolean>, System.IComparable, System.IComparable$1<boolean>, System.IConvertible
+            class Int32 extends System.ValueType implements System.IEquatable$1<number>, System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<number>, System.IConvertible
             {
                 protected [__keep_incompatibility]: never;
             }
@@ -5736,6 +5736,12 @@ declare module 'csharp' {
                 protected [__keep_incompatibility]: never;
             }
             interface IEquatable$1<T>
+            {
+            }
+            interface IFormattable
+            {
+            }
+            interface ISpanFormattable
             {
             }
             interface IComparable
@@ -5758,17 +5764,23 @@ declare module 'csharp' {
             {
                 protected [__keep_incompatibility]: never;
             }
-            class Int32 extends System.ValueType implements System.IEquatable$1<number>, System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<number>, System.IConvertible
+            class Type extends System.Reflection.MemberInfo implements System.Reflection.ICustomAttributeProvider, System.Reflection.IReflect, System.Runtime.InteropServices._MemberInfo, System.Runtime.InteropServices._Type
             {
                 protected [__keep_incompatibility]: never;
             }
-            interface IFormattable
+            class Boolean extends System.ValueType implements System.IEquatable$1<boolean>, System.IComparable, System.IComparable$1<boolean>, System.IConvertible
             {
+                protected [__keep_incompatibility]: never;
             }
-            interface ISpanFormattable
+            class Double extends System.ValueType implements System.IEquatable$1<number>, System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<number>, System.IConvertible
             {
+                protected [__keep_incompatibility]: never;
             }
-            class Type extends System.Reflection.MemberInfo implements System.Reflection.ICustomAttributeProvider, System.Reflection.IReflect, System.Runtime.InteropServices._MemberInfo, System.Runtime.InteropServices._Type
+            class Single extends System.ValueType implements System.IEquatable$1<number>, System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<number>, System.IConvertible
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            class Int64 extends System.ValueType implements System.IEquatable$1<bigint>, System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<bigint>, System.IConvertible
             {
                 protected [__keep_incompatibility]: never;
             }
@@ -5819,9 +5831,6 @@ declare module 'csharp' {
             interface ITupleInternal extends System.Runtime.CompilerServices.ITuple
             {
             }
-            interface IDisposable
-            {
-            }
             class Enum extends System.ValueType implements System.IFormattable, System.IComparable, System.IConvertible
             {
                 protected [__keep_incompatibility]: never;
@@ -5839,13 +5848,12 @@ declare module 'csharp' {
             {
                 protected [__keep_incompatibility]: never;
             }
-            class Single extends System.ValueType implements System.IEquatable$1<number>, System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<number>, System.IConvertible
-            {
-                protected [__keep_incompatibility]: never;
-            }
             class UInt64 extends System.ValueType implements System.IEquatable$1<bigint>, System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<bigint>, System.IConvertible
             {
                 protected [__keep_incompatibility]: never;
+            }
+            interface IDisposable
+            {
             }
             interface IFormatProvider
             {
@@ -5925,10 +5933,6 @@ declare module 'csharp' {
                 public static Copy ($sourceArray: System.Array, $sourceIndex: number, $destinationArray: System.Array, $destinationIndex: number, $length: number) : void
                 public static ConstrainedCopy ($sourceArray: System.Array, $sourceIndex: number, $destinationArray: System.Array, $destinationIndex: number, $length: number) : void
                 public Initialize () : void
-            }
-            class Int64 extends System.ValueType implements System.IEquatable$1<bigint>, System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<bigint>, System.IConvertible
-            {
-                protected [__keep_incompatibility]: never;
             }
             class DateTime extends System.ValueType implements System.IEquatable$1<Date>, System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<Date>, System.IConvertible, System.Runtime.Serialization.ISerializable
             {
@@ -6034,10 +6038,6 @@ declare module 'csharp' {
             {
                 protected [__keep_incompatibility]: never;
             }
-            class Double extends System.ValueType implements System.IEquatable$1<number>, System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<number>, System.IConvertible
-            {
-                protected [__keep_incompatibility]: never;
-            }
             enum DateTimeKind
             { Unspecified = 0, Utc = 1, Local = 2 }
             enum DayOfWeek
@@ -6102,51 +6102,136 @@ declare module 'csharp' {
             }
         }
         namespace Puerts.Component {
+            class PropertyValue extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public valueTypeId : number
+                public objValue : UnityEngine.Object
+                public primitiveValue : string
+                public listValue : System.Collections.Generic.List$1<Puerts.Component.PropertyValue>
+                public constructor ()
+            }
+            class Property extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public name : string
+                public value : Puerts.Component.PropertyValue
+                public constructor ()
+            }
+            class PropertyOptions extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public name : string
+                public type : System.Type
+                public constructor ()
+            }
             class BoolPropertySerializer extends Puerts.Component.PrimitivePropertySerializer$1<boolean> implements Puerts.Component.IPrimitivePropertySerializer
             {
                 protected [__keep_incompatibility]: never;
-                public get ShouldRenderPrefix(): boolean;
                 public get ValueTypeId(): number;
                 public get Type(): System.Type;
                 public constructor ()
-                public InteralValueToString ($value: any) : string
-                public InteralStringToValue ($str: string) : any
-                public InteralRenderEditorGUIField ($propName: string, $propValue: any) : any
+                public InternalValueToString ($value: any) : string
+                public InternalStringToValue ($str: string) : any
+                public InternalRenderEditorGUIField ($propName: string, $propValue: any) : any
             }
             class PrimitivePropertySerializer$1<T> extends System.Object implements Puerts.Component.IPrimitivePropertySerializer
             {
                 protected [__keep_incompatibility]: never;
                 public get Type(): System.Type;
-                public get ShouldRenderPrefix(): boolean;
                 public get ValueTypeId(): number;
-                public InteralValueToString ($value: any) : string
-                public InteralStringToValue ($str: string) : any
-                public InteralRenderEditorGUIField ($propName: string, $propValue: any) : any
+                public InternalValueToString ($value: any) : string
+                public InternalStringToValue ($str: string) : any
+                public InternalRenderEditorGUIField ($propName: string, $propValue: any) : any
             }
             interface IPrimitivePropertySerializer
             {
                 Type : System.Type
-                ShouldRenderPrefix : boolean
                 ValueTypeId : number
-                InteralValueToString ($value: any) : string
-                InteralStringToValue ($str: string) : any
-                InteralRenderEditorGUIField ($propName: string, $propValue: any) : any
+                InternalValueToString ($value: any) : string
+                InternalStringToValue ($str: string) : any
+                InternalRenderEditorGUIField ($propName: string, $propValue: any) : any
+            }
+            class ColorPropertySerializer extends Puerts.Component.PrimitivePropertySerializer$1<UnityEngine.Color> implements Puerts.Component.IPrimitivePropertySerializer
+            {
+                protected [__keep_incompatibility]: never;
+                public get ValueTypeId(): number;
+                public get Type(): System.Type;
+                public constructor ()
+                public InternalValueToString ($value: any) : string
+                public InternalStringToValue ($str: string) : any
+                public InternalRenderEditorGUIField ($propName: string, $propValue: any) : any
+            }
+            class DoublePropertySerializer extends Puerts.Component.PrimitivePropertySerializer$1<number> implements Puerts.Component.IPrimitivePropertySerializer
+            {
+                protected [__keep_incompatibility]: never;
+                public get ValueTypeId(): number;
+                public get Type(): System.Type;
+                public constructor ()
+                public InternalValueToString ($value: any) : string
+                public InternalStringToValue ($str: string) : any
+                public InternalRenderEditorGUIField ($propName: string, $propValue: any) : any
+            }
+            class FloatPropertySerializer extends Puerts.Component.PrimitivePropertySerializer$1<number> implements Puerts.Component.IPrimitivePropertySerializer
+            {
+                protected [__keep_incompatibility]: never;
+                public get ValueTypeId(): number;
+                public get Type(): System.Type;
+                public constructor ()
+                public InternalValueToString ($value: any) : string
+                public InternalStringToValue ($str: string) : any
+                public InternalRenderEditorGUIField ($propName: string, $propValue: any) : any
+            }
+            class IntPropertySerializer extends Puerts.Component.PrimitivePropertySerializer$1<number> implements Puerts.Component.IPrimitivePropertySerializer
+            {
+                protected [__keep_incompatibility]: never;
+                public get ValueTypeId(): number;
+                public get Type(): System.Type;
+                public constructor ()
+                public InternalValueToString ($value: any) : string
+                public InternalStringToValue ($str: string) : any
+                public InternalRenderEditorGUIField ($propName: string, $propValue: any) : any
+            }
+            class LongPropertySerializer extends Puerts.Component.PrimitivePropertySerializer$1<bigint> implements Puerts.Component.IPrimitivePropertySerializer
+            {
+                protected [__keep_incompatibility]: never;
+                public get ValueTypeId(): number;
+                public get Type(): System.Type;
+                public constructor ()
+                public InternalValueToString ($value: any) : string
+                public InternalStringToValue ($str: string) : any
+                public InternalRenderEditorGUIField ($propName: string, $propValue: any) : any
+            }
+            class PrimitivePropertySerializerCollector extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static get PropertySerializers(): System.Collections.Generic.List$1<Puerts.Component.IPrimitivePropertySerializer>;
+                public constructor ()
+            }
+            class Vector2PropertySerializer extends Puerts.Component.PrimitivePropertySerializer$1<UnityEngine.Vector2> implements Puerts.Component.IPrimitivePropertySerializer
+            {
+                protected [__keep_incompatibility]: never;
+                public get ValueTypeId(): number;
+                public get Type(): System.Type;
+                public constructor ()
+                public InternalValueToString ($value: any) : string
+                public InternalStringToValue ($str: string) : any
+                public InternalRenderEditorGUIField ($propName: string, $propValue: any) : any
             }
             class Vector3PropertySerializer extends Puerts.Component.PrimitivePropertySerializer$1<UnityEngine.Vector3> implements Puerts.Component.IPrimitivePropertySerializer
             {
                 protected [__keep_incompatibility]: never;
                 public get ValueTypeId(): number;
-                public get ShouldRenderPrefix(): boolean;
                 public get Type(): System.Type;
                 public constructor ()
-                public InteralValueToString ($value: any) : string
-                public InteralStringToValue ($str: string) : any
-                public InteralRenderEditorGUIField ($propName: string, $propValue: any) : any
+                public InternalValueToString ($value: any) : string
+                public InternalStringToValue ($str: string) : any
+                public InternalRenderEditorGUIField ($propName: string, $propValue: any) : any
             }
             class TsComponent extends UnityEngine.MonoBehaviour implements Puerts.Component.ITsTransporterHolder
             {
                 protected [__keep_incompatibility]: never;
-                public properties : System.Collections.Generic.List$1<Puerts.Component.TsComponent.Property>
+                public properties : System.Collections.Generic.List$1<Puerts.Component.Property>
                 public tsModulePath : string
                 public hookNames : System.Collections.Generic.List$1<string>
                 public get Transporter(): Puerts.Component.TsTransporter;
@@ -6400,26 +6485,6 @@ declare module 'csharp' {
             {
             }
         }
-        namespace Puerts.Component.TsComponent {
-            class Property extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public name : string
-                public value : Puerts.Component.TsComponent.PropertyValue
-                public constructor ()
-            }
-            enum PropertyValueType
-            { NONE = 1, OBJECT = 2, STRING = 3, LIST = 4 }
-            class PropertyValue extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public valueTypeId : number
-                public objValue : UnityEngine.Object
-                public primitiveValue : string
-                public listValue : System.Collections.Generic.List$1<Puerts.Component.TsComponent.PropertyValue>
-                public constructor ()
-            }
-        }
         namespace Puerts.Component.TsTransporter {
             interface Hook
             { 
@@ -6449,260 +6514,9 @@ declare module 'csharp' {
             {
             }
         }
-        namespace PuertsStaticWrap {
-            class AutoStaticCodeRegister extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static Register ($jsEnv: Puerts.JsEnv) : void
-            }
-            class Puerts_Component_TsComponent_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-            }
-            class Puerts_Component_TsTransporter_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-            }
-            class System_Array_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-            }
-            class System_Collections_Generic_Dictionary_2_System_String_System_String__Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-            }
-            class System_Collections_Generic_List_1_System_String__Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-            }
-            class System_Delegate_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-            }
-            class System_Object_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-            }
-            class UnityEngine_AnimatorStateInfo_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-            }
-            class UnityEngine_Animator_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-            }
-            class UnityEngine_Application_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-            }
-            class UnityEngine_Behaviour_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-            }
-            class UnityEngine_BoxCollider_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-            }
-            class UnityEngine_Canvas_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-            }
-            class UnityEngine_Collider_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-            }
-            class UnityEngine_Component_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-            }
-            class UnityEngine_Debug_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-            }
-            class UnityEngine_EventSystems_UIBehaviour_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-            }
-            class UnityEngine_Events_UnityEvent_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-            }
-            class UnityEngine_GameObject_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-            }
-            class UnityEngine_MonoBehaviour_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-            }
-            class UnityEngine_Networking_DownloadHandlerBuffer_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-            }
-            class UnityEngine_Networking_DownloadHandlerTexture_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-            }
-            class UnityEngine_Networking_DownloadHandler_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-            }
-            class UnityEngine_Networking_UnityWebRequestAsyncOperation_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-            }
-            class UnityEngine_Networking_UnityWebRequestTexture_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-            }
-            class UnityEngine_Networking_UnityWebRequest_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-            }
-            class UnityEngine_Networking_UploadHandlerRaw_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-            }
-            class UnityEngine_Object_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-            }
-            class UnityEngine_ParticleSystem_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-            }
-            class UnityEngine_PlayerPrefs_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-            }
-            class UnityEngine_Quaternion_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-                public static InitBlittableCopy ($jsEnv: Puerts.JsEnv) : void
-            }
-            class UnityEngine_RectTransform_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-            }
-            class UnityEngine_Resources_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-            }
-            class UnityEngine_SpriteRenderer_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-            }
-            class UnityEngine_Time_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-            }
-            class UnityEngine_Transform_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-            }
-            class UnityEngine_UI_Button_ButtonClickedEvent_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-            }
-            class UnityEngine_UI_Button_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-            }
-            class UnityEngine_UI_Image_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-            }
-            class UnityEngine_UI_InputField_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-            }
-            class UnityEngine_UI_Selectable_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-            }
-            class UnityEngine_UI_Text_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-            }
-            class UnityEngine_UI_Toggle_ToggleEvent_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-            }
-            class UnityEngine_UI_Toggle_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-            }
-            class UnityEngine_Vector2_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-                public static InitBlittableCopy ($jsEnv: Puerts.JsEnv) : void
-            }
-            class UnityEngine_Vector3_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-                public static InitBlittableCopy ($jsEnv: Puerts.JsEnv) : void
-            }
-            class UnityEngine_WWWForm_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-            }
-        }
-        namespace Puerts {
-            class JsEnv extends System.Object implements System.IDisposable
-            {
-                protected [__keep_incompatibility]: never;
-            }
-            class TypeRegisterInfo extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-            }
+        namespace Puerts.Component.TsComponent {
+            enum PropertyValueType
+            { NONE = 1, OBJECT = 2, STRING = 3, LIST = 4 }
         }
         namespace UnityEngine.Camera {
             interface CameraCallback

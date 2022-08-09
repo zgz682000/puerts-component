@@ -52,6 +52,10 @@ namespace Puerts.Component {
             types.ForEach(e=>{
                 var instance = (IPrimitivePropertySerializer)Activator.CreateInstance(e);
                 if (instance != null){
+                    var duplicateTypeIdSerializer = _propertySerializers.Find(e=>e.ValueTypeId == instance.ValueTypeId);
+                    if (duplicateTypeIdSerializer != null){
+                        throw new Exception("duplicate valueTypeId between " + duplicateTypeIdSerializer.GetType().Name + " and " + e.Name);
+                    }
                     _propertySerializers.Add(instance);
                 }
             });

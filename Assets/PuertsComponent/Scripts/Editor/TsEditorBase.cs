@@ -29,23 +29,19 @@ namespace Puerts.Component {
             EditorJsEnv.Dispose();
             _editorJsEnvIdx = -1;
         }
-        public class Property {
-            public string name;
-            public Type type;
-        }
 
-        protected static List<Property> PickProperties(string tsModulePath){
+        protected static List<PropertyOptions> PickProperties(string tsModulePath){
             try
             {
                 var propertiesPickFunc = EditorJsEnv.ExecuteModule<Func<string, Dictionary<string, Tuple<Type, string>>>>("puerts-component/properties-pick", "default");
                 var propertiesDict = propertiesPickFunc(tsModulePath);
-                var ret = new List<Property>();
+                var ret = new List<PropertyOptions>();
                 foreach(var pair in propertiesDict){
-                    Property property;
+                    PropertyOptions property;
                     if (pair.Value.Item2 != null){
-                        property = JsonUtility.FromJson<Property>(pair.Value.Item2);
+                        property = JsonUtility.FromJson<PropertyOptions>(pair.Value.Item2);
                     }else{
-                        property = new Property();
+                        property = new PropertyOptions();
                         property.name = pair.Key;
                     }
                     property.type = pair.Value.Item1;

@@ -1,11 +1,7 @@
-using System.Text;
-
 using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using System.Reflection;
-using System.Linq;
 
 namespace Puerts.Component {
 
@@ -18,7 +14,7 @@ namespace Puerts.Component {
         private SerializedProperty _propertiesProp;
         private SerializedProperty _tsModulePathProp;
 
-        private List<Property> properties;
+        private List<PropertyOptions> properties;
     
         void OnEnable()
         {
@@ -26,11 +22,19 @@ namespace Puerts.Component {
             _ins = target as TsComponent;
             _tsModulePathProp = serializedObject.FindProperty("tsModulePath");
             _propertiesProp = serializedObject.FindProperty("properties");
+            _propIndexByName.Clear();
+            for(var j = 0; j < _propertiesProp.arraySize; j++){
+                var propertyProp = _propertiesProp.GetArrayElementAtIndex(j);
+                var propertyNameProp = propertyProp.FindPropertyRelative("name");
+                _propIndexByName.Add(propertyNameProp.stringValue, propertyProp);
+            }
             if (!string.IsNullOrEmpty(_ins.tsModulePath)){
                 properties = PickProperties(_ins.tsModulePath);
             }
         }
 
+        private Dictionary<string, SerializedProperty> _propIndexByName = new Dictionary<string, SerializedProperty>();
+        private PropertyOptions _currentProperty;
         public override void OnInspectorGUI(){
             
             if (_propertiesProp == null || _tsModulePathProp == null || _ins == null){
@@ -47,31 +51,27 @@ namespace Puerts.Component {
             if (properties != null){
                 var i = 0;
                 properties.ForEach(e=>{
-                    
                     var needClear = false;
-                    if (i >= _propertiesProp.arraySize){
+                    SerializedProperty propertyProp;
+                    if (_propIndexByName.ContainsKey(e.name)){
+                        propertyProp = _propIndexByName[e.name];
+                    }else{
                         _propertiesProp.InsertArrayElementAtIndex(i);
+                        propertyProp = _propertiesProp.GetArrayElementAtIndex(i);
+                        var propertyNameProp = propertyProp.FindPropertyRelative("name");
+                        propertyNameProp.stringValue = e.name;
                         needClear = true;
                     }
-                    var propertyProp = _propertiesProp.GetArrayElementAtIndex(i);
-                    var propertyNameProp = propertyProp.FindPropertyRelative("name");
-                    if (propertyNameProp.stringValue != e.name){
-
-                        needClear = true;
-                    }
-                    propertyNameProp.stringValue = e.name;
                     var propertyValueProp = propertyProp.FindPropertyRelative("value");
                     if (needClear){
                         propertyValueProp.FindPropertyRelative("objValue").objectReferenceValue = null;
                         propertyValueProp.FindPropertyRelative("primitiveValue").stringValue = null;
                         propertyValueProp.FindPropertyRelative("listValue").ClearArray();
                     }
+                    _currentProperty = e;
                     RenderProp(e.name, propertyValueProp, e.type, 0);
                     i++;
                 });
-                for(;i < _propertiesProp.arraySize; i++){
-                    _propertiesProp.DeleteArrayElementAtIndex(i);
-                }
             }
 
             if (GUILayout.Button("Reload")){
@@ -88,22 +88,33 @@ namespace Puerts.Component {
         private Rect RenderProp(string name, SerializedProperty prop, Type type, int indent){
             var valueTypeProp = prop.FindPropertyRelative("valueTypeId");
             if (type.IsGenericType && type.GetGenericTypeDefinition().Equals(typeof(List<>))){
-                valueTypeProp.enumValueFlag = (int)TsComponent.PropertyValueType.LIST;
+                valueTypeProp.enumValueFlag = (int)PropertyValueType.LIST;
                 var listValueProp = prop.FindPropertyRelative("listValue");
                 return RenderArrayProp(name, listValueProp, type.GetGenericArguments()[0], indent);
             }
             else if (type == typeof(System.String)){
-                valueTypeProp.intValue = (int)TsComponent.PropertyValueType.STRING;
+                valueTypeProp.intValue = (int)PropertyValueType.STRING;
                 var primitiveValueProp = prop.FindPropertyRelative("primitiveValue");
                 return RenderStringProp(name, primitiveValueProp, indent);
             }
             else if (typeof(UnityEngine.Object).IsAssignableFrom(type)){
-                valueTypeProp.intValue = (int)TsComponent.PropertyValueType.OBJECT;
+                valueTypeProp.intValue = (int)PropertyValueType.OBJECT;
                 var objValueProp = prop.FindPropertyRelative("objValue");
                 return RenderObjectProp(name, objValueProp, type, indent);
             }
             else {
-                var serializer = PrimitivePropertySerializerCollector.PropertySerializers.Find(e=>e.Type == type);
+                IPrimitivePropertySerializer serializer = null;
+                var serializers = PrimitivePropertySerializerCollector.PropertySerializers.FindAll(e=>e.Type == type);
+                if (serializers.Count > 1){
+                    var filteredSerializer = serializers.Find(e=>e.InternalOptionsFilter(_currentProperty));
+                    if (filteredSerializer == null){
+                        serializer = serializers[0];
+                    }else {
+                        serializer = filteredSerializer;
+                    }
+                }else if (serializers.Count == 1) {
+                    serializer = serializers[0];
+                }
                 if (serializer != null){
                     valueTypeProp.intValue = serializer.ValueTypeId;
                     var primitiveValueProp = prop.FindPropertyRelative("primitiveValue");

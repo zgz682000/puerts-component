@@ -121,7 +121,7 @@ namespace PuertsStaticWrap
             {
                 var obj = Puerts.Utils.GetSelf((int)data, self) as Puerts.Component.TsComponent;
                 var argHelper = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
-                obj.properties = argHelper.Get<System.Collections.Generic.List<Puerts.Component.TsComponent.Property>>(false);
+                obj.properties = argHelper.Get<System.Collections.Generic.List<Puerts.Component.Property>>(false);
                 
             }
             catch (Exception e)

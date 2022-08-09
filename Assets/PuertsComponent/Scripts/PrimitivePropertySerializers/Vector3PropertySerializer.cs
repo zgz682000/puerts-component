@@ -7,8 +7,6 @@ namespace Puerts.Component {
     public class Vector3PropertySerializer : PrimitivePropertySerializer<Vector3>
     {
         public override int ValueTypeId => 102;
-
-        public override bool ShouldRenderPrefix => false;
 #if UNITY_EDITOR
         public override Vector3 RenderEditorGUIField(string propName, Vector3 propValue)
         {
