@@ -5819,6 +5819,9 @@ declare module 'csharp' {
             interface ITupleInternal extends System.Runtime.CompilerServices.ITuple
             {
             }
+            interface IDisposable
+            {
+            }
             class Enum extends System.ValueType implements System.IFormattable, System.IComparable, System.IConvertible
             {
                 protected [__keep_incompatibility]: never;
@@ -5843,9 +5846,6 @@ declare module 'csharp' {
             class UInt64 extends System.ValueType implements System.IEquatable$1<bigint>, System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<bigint>, System.IConvertible
             {
                 protected [__keep_incompatibility]: never;
-            }
-            interface IDisposable
-            {
             }
             interface IFormatProvider
             {
@@ -6166,7 +6166,7 @@ declare module 'csharp' {
                 public InvokeHook ($hookName: string, ...args: any[]) : void
                 public ContainsHook ($hookName: string) : boolean
                 public Clear () : void
-                public constructor ($tsModulePath: string, $args: System.Collections.Generic.List$1<System.Tuple$2<string, any>>, $hookNames: System.Collections.Generic.List$1<string>, $jsEnvIdx?: number)
+                public constructor ($tsModulePath: string, $args: System.Collections.Generic.List$1<System.Tuple$2<string, any>>, $jsEnvIdx?: number)
                 public constructor ()
             }
         }
@@ -6408,12 +6408,12 @@ declare module 'csharp' {
                 public value : Puerts.Component.TsComponent.PropertyValue
                 public constructor ()
             }
-            enum ArgValueType
+            enum PropertyValueType
             { NONE = 1, OBJECT = 2, STRING = 3, LIST = 4 }
             class PropertyValue extends System.Object
             {
                 protected [__keep_incompatibility]: never;
-                public valueType : number
+                public valueTypeId : number
                 public objValue : UnityEngine.Object
                 public primitiveValue : string
                 public listValue : System.Collections.Generic.List$1<Puerts.Component.TsComponent.PropertyValue>
@@ -6447,6 +6447,261 @@ declare module 'csharp' {
         namespace System.Runtime.CompilerServices {
             interface ITuple
             {
+            }
+        }
+        namespace PuertsStaticWrap {
+            class AutoStaticCodeRegister extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static Register ($jsEnv: Puerts.JsEnv) : void
+            }
+            class Puerts_Component_TsComponent_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class Puerts_Component_TsTransporter_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class System_Array_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class System_Collections_Generic_Dictionary_2_System_String_System_String__Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class System_Collections_Generic_List_1_System_String__Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class System_Delegate_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class System_Object_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_AnimatorStateInfo_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_Animator_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_Application_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_Behaviour_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_BoxCollider_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_Canvas_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_Collider_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_Component_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_Debug_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_EventSystems_UIBehaviour_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_Events_UnityEvent_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_GameObject_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_MonoBehaviour_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_Networking_DownloadHandlerBuffer_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_Networking_DownloadHandlerTexture_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_Networking_DownloadHandler_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_Networking_UnityWebRequestAsyncOperation_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_Networking_UnityWebRequestTexture_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_Networking_UnityWebRequest_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_Networking_UploadHandlerRaw_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_Object_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_ParticleSystem_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_PlayerPrefs_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_Quaternion_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+                public static InitBlittableCopy ($jsEnv: Puerts.JsEnv) : void
+            }
+            class UnityEngine_RectTransform_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_Resources_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_SpriteRenderer_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_Time_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_Transform_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_UI_Button_ButtonClickedEvent_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_UI_Button_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_UI_Image_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_UI_InputField_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_UI_Selectable_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_UI_Text_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_UI_Toggle_ToggleEvent_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_UI_Toggle_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_Vector2_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+                public static InitBlittableCopy ($jsEnv: Puerts.JsEnv) : void
+            }
+            class UnityEngine_Vector3_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+                public static InitBlittableCopy ($jsEnv: Puerts.JsEnv) : void
+            }
+            class UnityEngine_WWWForm_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+        }
+        namespace Puerts {
+            class JsEnv extends System.Object implements System.IDisposable
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            class TypeRegisterInfo extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
             }
         }
         namespace UnityEngine.Camera {

@@ -2,6 +2,7 @@ using System;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
+using UnityEngine;
 
 namespace Puerts.Component {
     public class BoolPropertySerializer : PrimitivePropertySerializer<Boolean>
@@ -9,7 +10,7 @@ namespace Puerts.Component {
 #if UNITY_EDITOR
         public override bool RenderEditorGUIField(string propName, bool propValue)
         {
-            return EditorGUILayout.Toggle(propValue);
+            return EditorGUILayout.Toggle(new GUIContent(propName), propValue);
         }
 #endif
         public override bool StringToValue(string str)

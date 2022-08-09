@@ -117,17 +117,12 @@ namespace Puerts.Component {
         }
 
         private void RenderIndent(int indent){
-            for(var i = 0; i < indent; i++){
-                EditorGUILayout.Space();
-            }
+            EditorGUI.indentLevel = indent;
         }
 
         private Rect RenderPrimitiveProp(IPrimitivePropertySerializer serializer, string name, SerializedProperty prop, Type type, int indent){
             var rect = EditorGUILayout.BeginHorizontal();
             RenderIndent(indent); 
-            if (serializer.ShouldRenderPrefix) {
-                EditorGUILayout.PrefixLabel(name);
-            }
             object originValue;
             try
             {
@@ -150,15 +145,11 @@ namespace Puerts.Component {
             RenderIndent(indent);
             prop.isExpanded = EditorGUILayout.Foldout(prop.isExpanded, name);
             if (prop.isExpanded){
-                EditorGUILayout.BeginHorizontal();
                 RenderIndent(indent + 1);
-                EditorGUILayout.PrefixLabel("Length");
-                var newSize = EditorGUILayout.DelayedIntField(prop.arraySize);
+                var newSize = EditorGUILayout.DelayedIntField(new GUIContent ("Length"), prop.arraySize);
                 if (newSize != prop.arraySize){
                     prop.arraySize = newSize;
                 }
-
-                EditorGUILayout.EndHorizontal();
                 for(int i = 0; i < prop.arraySize; i++){
                     var elementProp = prop.GetArrayElementAtIndex(i);
                     var rect1 = RenderProp("Element " + i, elementProp, subType, indent + 1);
@@ -184,8 +175,7 @@ namespace Puerts.Component {
         private Rect RenderStringProp(string name, SerializedProperty prop, int indent){
             var rect = EditorGUILayout.BeginHorizontal();
             RenderIndent(indent);
-            EditorGUILayout.PrefixLabel(name);
-            var newStr = EditorGUILayout.TextField(prop.stringValue);
+            var newStr = EditorGUILayout.TextField(new GUIContent(name), prop.stringValue);
             if (newStr != prop.stringValue){
                 prop.stringValue = newStr;
             }
@@ -196,8 +186,7 @@ namespace Puerts.Component {
         private Rect RenderObjectProp(string name, SerializedProperty prop, Type type, int indent){
             var rect = EditorGUILayout.BeginHorizontal();
             RenderIndent(indent);
-            EditorGUILayout.PrefixLabel(name);
-            var newObj = EditorGUILayout.ObjectField(prop.objectReferenceValue, type, true);
+            var newObj = EditorGUILayout.ObjectField(new GUIContent(name), prop.objectReferenceValue, type, true);
             if (newObj != prop.objectReferenceValue){
                 prop.objectReferenceValue = newObj;
             }

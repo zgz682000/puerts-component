@@ -121,13 +121,25 @@ MonoBehaviour:
       objValue: {fileID: 0}
       primitiveValue: 
       listValue:
-      - valueTypeId: 102
+      - valueTypeId: 4
         objValue: {fileID: 0}
         primitiveValue: 0,0,0
-        listValue: []
-      - valueTypeId: 102
+        listValue:
+        - valueTypeId: 102
+          objValue: {fileID: 0}
+          primitiveValue: 0,0,0
+          listValue: []
+        - valueTypeId: 102
+          objValue: {fileID: 0}
+          primitiveValue: 0,0,0
+          listValue: []
+      - valueTypeId: 4
         objValue: {fileID: 0}
         primitiveValue: 0,0,0
-        listValue: []
+        listValue:
+        - valueTypeId: 102
+          objValue: {fileID: 0}
+          primitiveValue: 0,0,0
+          listValue: []
   tsModulePath: test-component
   hookNames: []

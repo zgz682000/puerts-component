@@ -17,14 +17,14 @@ namespace Puerts.Component {
 
     public class TsTransporter
     {
-        private delegate void TransporterInit(string moduleName, TsTransporter transporter, List<Tuple<string, object>> args, List<string> hookNames);
+        private delegate void TransporterInit(string moduleName, TsTransporter transporter, List<Tuple<string, object>> args);
         private delegate void TransporterClear(string moduleName, TsTransporter transporter);
         public delegate object Hook(params object[] args);
         private string _tsModulePath;
         private int _jsEnvIdx = -1;
         private Dictionary<string, Hook> _hooks = new Dictionary<string, Hook>();
         
-        public TsTransporter(string tsModulePath, List<Tuple<string, object>> args, List<string> hookNames, int jsEnvIdx = 0){
+        public TsTransporter(string tsModulePath, List<Tuple<string, object>> args, int jsEnvIdx = 0){
             if (string.IsNullOrEmpty(tsModulePath)){
                 throw new Exception("Transporter tsModulePath is empty");
             }
@@ -38,7 +38,7 @@ namespace Puerts.Component {
             _jsEnvIdx = jsEnvIdx;
             _tsModulePath = tsModulePath;
             var hookHandlerInit = jsEnv.ExecuteModule<TransporterInit>("puerts-component/transporter-init", "default");
-            hookHandlerInit(_tsModulePath, this, args, hookNames);
+            hookHandlerInit(_tsModulePath, this, args);
         }
 
         public void RegisterHook(string hookName, Hook hook){
@@ -52,6 +52,7 @@ namespace Puerts.Component {
                 return default(T);
             }
             if (!_hooks.ContainsKey(hookName)){
+                Debug.LogWarning("hookName not exist: " + hookName);
                 return default(T);
             }
             return (T)_hooks[hookName](args);
@@ -64,6 +65,7 @@ namespace Puerts.Component {
                 return;
             }
             if (!_hooks.ContainsKey(hookName)){
+                Debug.LogWarning("hookName not exist: " + hookName);
                 return;
             }
             _hooks[hookName](args);

@@ -6,11 +6,17 @@ export interface PropertyOptions {
     name: string;
 }
 
-function runtimeEmpty (){}
-
-export function ListProperty(type: typeof System.Object, options?: PropertyOptions, dimension: number = 1){
+export function ListProperty(type: typeof System.Object, dimension: number = 1, options?: PropertyOptions){
     return UnityEngine.Application.isPlaying ? 
-    runtimeEmpty
+    (target: any, propertyKey: string)=>{
+        let name = options && options.name ? options.name : propertyKey;
+        if (!target["__properties"]){
+            target["__properties"] = {};
+        }
+        target["__properties"][name] = {
+            key: propertyKey
+        };
+    }
     :(target: any, propertyKey: string)=>{
         let name = options && options.name ? options.name : propertyKey;
         if (!target["__properties"]){
@@ -28,7 +34,15 @@ export function ListProperty(type: typeof System.Object, options?: PropertyOptio
 
 export function Property(type: typeof System.Object, options?: PropertyOptions){
     return UnityEngine.Application.isPlaying ? 
-    runtimeEmpty
+    (target: any, propertyKey: string)=>{
+        let name = options && options.name ? options.name : propertyKey;
+        if (!target["__properties"]){
+            target["__properties"] = {};
+        }
+        target["__properties"][name] = {
+            propertyKey
+        };
+    }
     :(target: any, propertyKey: string)=>{
         let name = options && options.name ? options.name : propertyKey;
         if (!target["__properties"]){

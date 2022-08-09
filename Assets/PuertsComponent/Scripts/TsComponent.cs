@@ -46,20 +46,8 @@ namespace Puerts.Component {
         protected virtual List<Tuple<string, object>> InternalArgs {
             get {
                 return new List<Tuple<string, object>>(){
-                    new Tuple<string, object>("gameObject", this.gameObject),
-                    new Tuple<string, object>("transform", this.transform)
-                };
-            }
-        }
-
-        protected virtual List<string> InternalHookNames {
-            get {
-                return new List<string>(){
-                    "OnEnable",
-                    "OnDisable",
-                    "Awake",
-                    "Start",
-                    "OnDestroy"
+                    new Tuple<string, object>("_gameObject", this.gameObject),
+                    new Tuple<string, object>("_transform", this.transform)
                 };
             }
         }
@@ -93,8 +81,7 @@ namespace Puerts.Component {
                 return new Tuple<string, object>(e.name, ConvertValue(e.value));;
             });
             convertedProperties.AddRange(InternalArgs);
-            var tsHookNames = hookNames.Concat(InternalHookNames).ToList();
-            _transporter = new TsTransporter(tsModulePath, convertedProperties, tsHookNames);
+            _transporter = new TsTransporter(tsModulePath, convertedProperties);
         }
 
         private void Awake() {

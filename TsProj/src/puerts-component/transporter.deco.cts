@@ -11,31 +11,38 @@ export function Transporter(){
         (ctor as any).__transporter_clear = (transporter: Puerts.Component.TsTransporter) =>{
             delete transporterObjs[transporter.GetHashCode()];
         }
-        (ctor as any).__transporter_init = (transporter: Puerts.Component.TsTransporter, args: System.Collections.Generic.List$1<System.Tuple$2<string, any>>, hookNames: System.Collections.Generic.List$1<string>)=>{
+        (ctor as any).__transporter_init = (transporter: Puerts.Component.TsTransporter, properties: System.Collections.Generic.List$1<System.Tuple$2<string, any>>)=>{
             let o = new ctor();
-            let argNames: {[key: string]: string} = (o as any).__tsArgNames
-            for(let i = 0; i < args.Count; i++){
-                let arg = args.get_Item(i);
-                let value = arg.Item2;
-                if (argNames && argNames[arg.Item1]){
-                    (o as any)[argNames[arg.Item1]] = value;
+            let propertiesOptions: {[key: string]: {
+                key: string
+            }} = (o as any).__properties
+            for(let i = 0; i < properties.Count; i++){
+                let property = properties.get_Item(i);
+                let value = property.Item2;
+                let key: string;
+                if (propertiesOptions && propertiesOptions[property.Item1]){
+                    key = propertiesOptions[property.Item1].key;
                 }else{
-                    (o as any)[arg.Item1] = value;
+                    key = property.Item1
                 }
+                o[key] = value;
             }
-            for(let i = 0; i < hookNames.Count; i++){
-                let e = hookNames.get_Item(i);
-                transporter.RegisterHook(e, (args: System.Array$1<any>) => {
-                    let argsJsArr = [];
-                    for(let i = 0; i < args.Length; i++){
-                        argsJsArr.push(args.get_Item(i));
-                    }
-                    if (!o[e]){
-                        throw new Error("member not exist: " + e)
-                    }
-                    return (o[e] as (...args: any[])=>any).apply(o, argsJsArr);
+            if (o.__hooks){
+                Object.keys(o.__hooks).forEach(e=>{
+                    transporter.RegisterHook(e, (args: System.Array$1<any>) => {
+                        let argsJsArr = [];
+                        for(let i = 0; i < args.Length; i++){
+                            argsJsArr.push(args.get_Item(i));
+                        }
+                        let key: string = o.__hooks[e].key;
+                        if (!o[key]){
+                            throw new Error("member not exist: " + e)
+                        }
+                        return (o[key] as (...args: any[])=>any).apply(o, argsJsArr);
+                    });
                 });
             }
+            
             transporterObjs[transporter.GetHashCode()] = o;
         }
     }
