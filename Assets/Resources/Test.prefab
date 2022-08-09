@@ -76,104 +76,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0704c7e138c04e38ae02284aea905c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  args:
+  properties:
   - name: test1Prop
     value:
-      valueType: 2
-      objValue: {fileID: 7155426888658596018}
+      valueTypeId: 2
+      objValue: {fileID: 0}
       primitiveValue: 
       listValue: []
   - name: test2Prop
     value:
-      valueType: 2
-      objValue: {fileID: 6858739688396385842}
+      valueTypeId: 2
+      objValue: {fileID: 0}
       primitiveValue: 
       listValue: []
   - name: test3Prop
     value:
-      valueType: 4
+      valueTypeId: 4
       objValue: {fileID: 0}
       primitiveValue: 
       listValue:
-      - valueType: 2
-        objValue: {fileID: 6472419223036889754}
+      - valueTypeId: 2
+        objValue: {fileID: 0}
         primitiveValue: 
         listValue: []
-      - valueType: 2
-        objValue: {fileID: 6472419223036889754}
+      - valueTypeId: 2
+        objValue: {fileID: 0}
         primitiveValue: 
         listValue: []
   - name: test4Prop
     value:
-      valueType: 101
+      valueTypeId: 101
       objValue: {fileID: 0}
       primitiveValue: false
-      listValue:
-      - valueType: 1
-        objValue: {fileID: 6472419223036889754}
-        primitiveValue: 
-        listValue: []
-      - valueType: 1
-        objValue: {fileID: 6472419223036889754}
-        primitiveValue: 
-        listValue: []
+      listValue: []
   - name: test5Prop
     value:
-      valueType: 102
+      valueTypeId: 102
       objValue: {fileID: 0}
       primitiveValue: 0,0,0
-      listValue:
-      - valueType: 1
-        objValue: {fileID: 6472419223036889754}
-        primitiveValue: 
-        listValue: []
-      - valueType: 1
-        objValue: {fileID: 6472419223036889754}
-        primitiveValue: 
-        listValue: []
+      listValue: []
   - name: test6Prop
     value:
-      valueType: 4
+      valueTypeId: 4
       objValue: {fileID: 0}
-      primitiveValue: 0,0,0
+      primitiveValue: 
       listValue:
-      - valueType: 102
+      - valueTypeId: 102
         objValue: {fileID: 0}
         primitiveValue: 0,0,0
         listValue: []
-      - valueType: 102
-        objValue: {fileID: 0}
-        primitiveValue: 0,0,0
-        listValue: []
-      - valueType: 102
-        objValue: {fileID: 0}
-        primitiveValue: 0,0,0
-        listValue: []
-      - valueType: 102
-        objValue: {fileID: 0}
-        primitiveValue: 0,0,0
-        listValue: []
-      - valueType: 102
-        objValue: {fileID: 0}
-        primitiveValue: 0,0,0
-        listValue: []
-      - valueType: 102
-        objValue: {fileID: 0}
-        primitiveValue: 0,0,0
-        listValue: []
-      - valueType: 102
-        objValue: {fileID: 0}
-        primitiveValue: 0,0,0
-        listValue: []
-      - valueType: 102
-        objValue: {fileID: 0}
-        primitiveValue: 0,0,0
-        listValue: []
-      - valueType: 102
-        objValue: {fileID: 0}
-        primitiveValue: 0,0,0
-        listValue: []
-      - valueType: 102
+      - valueTypeId: 102
         objValue: {fileID: 0}
         primitiveValue: 0,0,0
         listValue: []

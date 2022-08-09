@@ -8,11 +8,11 @@ namespace Puerts.Component {
     {
         public override int ValueTypeId => 102;
 
-        public override bool ShouldRenderPrefix => false;
+        public override bool ShouldRenderPrefix => true;
 #if UNITY_EDITOR
         public override Vector3 RenderEditorGUIField(string propName, Vector3 propValue)
         {
-            return EditorGUILayout.Vector3Field(propName, propValue);
+            return EditorGUILayout.Vector3Field("", propValue);
         }
 #endif
         public override Vector3 StringToValue(string str)

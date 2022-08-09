@@ -100,12 +100,12 @@ namespace PuertsStaticWrap
         }
             
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_args(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        private static void G_properties(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
                 var obj = Puerts.Utils.GetSelf((int)data, self) as Puerts.Component.TsComponent;
-                var result = obj.args;
+                var result = obj.properties;
                 Puerts.ResultHelper.Set((int)data, isolate, info, result);
             }
             catch (Exception e)
@@ -115,13 +115,13 @@ namespace PuertsStaticWrap
         }
             
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_args(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        private static void S_properties(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
                 var obj = Puerts.Utils.GetSelf((int)data, self) as Puerts.Component.TsComponent;
                 var argHelper = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
-                obj.args = argHelper.Get<System.Collections.Generic.List<Puerts.Component.TsComponent.Arg>>(false);
+                obj.properties = argHelper.Get<System.Collections.Generic.List<Puerts.Component.TsComponent.Property>>(false);
                 
             }
             catch (Exception e)
@@ -207,7 +207,7 @@ namespace PuertsStaticWrap
                     
                     {"Transporter", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_Transporter, Setter = null} },
 
-                    {"args", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_args, Setter = S_args} },
+                    {"properties", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_properties, Setter = S_properties} },
 
                     {"tsModulePath", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_tsModulePath, Setter = S_tsModulePath} },
 

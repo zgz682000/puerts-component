@@ -11,7 +11,7 @@ namespace Puerts.Component {
 
     public class TsComponent : MonoBehaviour, ITsTransporterHolder {
 
-        public enum ArgValueType {
+        public enum PropertyValueType {
             NONE = 1,
             OBJECT,
             STRING,
@@ -19,21 +19,21 @@ namespace Puerts.Component {
         }
 
         [Serializable]
-        public class ArgValue {
-            public int valueType;
+        public class PropertyValue {
+            public int valueTypeId;
             public UnityEngine.Object objValue;
             public string primitiveValue;
-            public List<ArgValue> listValue = null;
+            public List<PropertyValue> listValue;
         }
 
         [Serializable]
-        public class Arg
+        public class Property
         {
             public string name;
-            public ArgValue value;
+            public PropertyValue value;
         }
 
-        public List<Arg> args;
+        public List<Property> properties;
 
         public string tsModulePath;
 
@@ -69,17 +69,17 @@ namespace Puerts.Component {
             Init();
         }
 
-        private object ConvertValue(ArgValue value){
-            if (value.valueType == (int)ArgValueType.OBJECT) {
+        private object ConvertValue(PropertyValue value){
+            if (value.valueTypeId == (int)PropertyValueType.OBJECT) {
                 if (value.objValue is ITsTransporterHolder){
                     (value.objValue as ITsTransporterHolder).Init();
                 }
                 return value.objValue;
             }
-            else if (value.valueType == (int)ArgValueType.STRING){
+            else if (value.valueTypeId == (int)PropertyValueType.STRING){
                 return value.primitiveValue;
             }
-            else if (value.valueType == (int)ArgValueType.LIST){
+            else if (value.valueTypeId == (int)PropertyValueType.LIST){
                 return value.listValue.ConvertAll(e=>ConvertValue(e));
             }
             return null;
@@ -89,11 +89,12 @@ namespace Puerts.Component {
             if (_transporter != null){
                 return;
             }
-            var tsArgs = args.ConvertAll(e=>{
+            var convertedProperties = properties.ConvertAll(e=>{
                 return new Tuple<string, object>(e.name, ConvertValue(e.value));;
             });
+            convertedProperties.AddRange(InternalArgs);
             var tsHookNames = hookNames.Concat(InternalHookNames).ToList();
-            _transporter = new TsTransporter(tsModulePath, InternalArgs, tsHookNames);
+            _transporter = new TsTransporter(tsModulePath, convertedProperties, tsHookNames);
         }
 
         private void Awake() {

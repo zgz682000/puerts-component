@@ -12,103 +12,29 @@ namespace Puerts.Component {
     
 
     [CustomEditor(typeof(TsComponent), true)]
-    public class TsComponentEditor: UnityEditor.Editor
+    public class TsComponentEditor: TsEditorBase
     {
-
-        private static List<Type> GetTypeNames(System.Type typeBase, string assemblyName)
-        {
-            List<Type> resTypes = new List<Type>();
-            Assembly assembly = null;
-            try
-            {
-                assembly = Assembly.Load(assemblyName);
-            }
-            catch
-            {
-                return null;
-            }
-
-            if (assembly == null)
-            {
-                return null;
-            }
-
-            System.Type[] types = assembly.GetTypes();
-            foreach (System.Type type in types)
-            {
-                if (type.IsClass && !type.IsAbstract && typeBase.IsAssignableFrom(type))
-                {
-                    resTypes.Add(type);
-                }
-            }
-
-            return resTypes;
-        }
-
-        private TsComponent ins;
-        private SerializedProperty argsProp;
-        private SerializedProperty tsModulePathProp;
-        private List<IPrimitivePropertySerializer> propertySerializers = new List<IPrimitivePropertySerializer>();
-
-        public class Property {
-            public string name;
-            public Type type;
-        }
-        
-        private List<Property> PickProperties(string tsModulePath){
-            try
-            {
-                var propertiesPickFunc = EditorJsEnv.JsEnv.ExecuteModule<Func<string, Dictionary<string, Tuple<Type, string>>>>("puerts-component/properties-pick", "default");
-                var propertiesDict = propertiesPickFunc(tsModulePath);
-                var ret = new List<Property>();
-                foreach(var pair in propertiesDict){
-                    Property property;
-                    if (pair.Value.Item2 != null){
-                        property = JsonUtility.FromJson<Property>(pair.Value.Item2);
-                    }else{
-                        property = new Property();
-                        property.name = pair.Key;
-                    }
-                    property.type = pair.Value.Item1;
-                    ret.Add(property);
-                }
-                return ret;
-            }
-            catch (Exception e){
-                Debug.LogException(e);
-                return null;
-            }
-        }
+        private TsComponent _ins;
+        private SerializedProperty _propertiesProp;
+        private SerializedProperty _tsModulePathProp;
 
         private List<Property> properties;
-
-        private void CollectAllSerializer(){
-            propertySerializers.Clear();
-            var types = GetTypeNames(typeof(IPrimitivePropertySerializer), "Assembly-CSharp");
-            var assembly = Assembly.Load("Assembly-CSharp");
-            types.ForEach(e=>{
-                var instance = (IPrimitivePropertySerializer)Activator.CreateInstance(e);
-                if (instance != null){
-                    propertySerializers.Add(instance);
-                }
-            });
-        }
     
         void OnEnable()
         {
             CollectAllSerializer();
-            EditorJsEnv.ReloadJsEnv();
-            ins = target as TsComponent;
-            tsModulePathProp = serializedObject.FindProperty("tsModulePath");
-            argsProp = serializedObject.FindProperty("args");
-            if (!string.IsNullOrEmpty(ins.tsModulePath)){
-                properties = PickProperties(ins.tsModulePath);
+            ReloadJsEnv();
+            _ins = target as TsComponent;
+            _tsModulePathProp = serializedObject.FindProperty("tsModulePath");
+            _propertiesProp = serializedObject.FindProperty("properties");
+            if (!string.IsNullOrEmpty(_ins.tsModulePath)){
+                properties = PickProperties(_ins.tsModulePath);
             }
         }
 
         public override void OnInspectorGUI(){
             
-            if (argsProp == null || tsModulePathProp == null || ins == null){
+            if (_propertiesProp == null || _tsModulePathProp == null || _ins == null){
                 return;
             }
 
@@ -117,7 +43,7 @@ namespace Puerts.Component {
             EditorGUILayout.BeginVertical();
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.LabelField("Ts Module Path");
-            tsModulePathProp.stringValue = EditorGUILayout.TextField(tsModulePathProp.stringValue);
+            _tsModulePathProp.stringValue = EditorGUILayout.TextField(_tsModulePathProp.stringValue);
             EditorGUILayout.EndHorizontal();
             GUILayout.Space(10f);
             if (properties != null){
@@ -125,28 +51,28 @@ namespace Puerts.Component {
                 properties.ForEach(e=>{
                     
                     var needClear = false;
-                    if (i >= argsProp.arraySize){
-                        argsProp.InsertArrayElementAtIndex(i);
+                    if (i >= _propertiesProp.arraySize){
+                        _propertiesProp.InsertArrayElementAtIndex(i);
                         needClear = true;
                     }
-                    var argProp = argsProp.GetArrayElementAtIndex(i);
-                    var argNameProp = argProp.FindPropertyRelative("name");
-                    if (argNameProp.stringValue != e.name){
+                    var propertyProp = _propertiesProp.GetArrayElementAtIndex(i);
+                    var propertyNameProp = propertyProp.FindPropertyRelative("name");
+                    if (propertyNameProp.stringValue != e.name){
 
                         needClear = true;
                     }
-                    argNameProp.stringValue = e.name;
-                    var argValueProp = argProp.FindPropertyRelative("value");
+                    propertyNameProp.stringValue = e.name;
+                    var propertyValueProp = propertyProp.FindPropertyRelative("value");
                     if (needClear){
-                        argValueProp.FindPropertyRelative("objValue").objectReferenceValue = null;
-                        argValueProp.FindPropertyRelative("primitiveValue").stringValue = null;
-                        argValueProp.FindPropertyRelative("listValue").ClearArray();
+                        propertyValueProp.FindPropertyRelative("objValue").objectReferenceValue = null;
+                        propertyValueProp.FindPropertyRelative("primitiveValue").stringValue = null;
+                        propertyValueProp.FindPropertyRelative("listValue").ClearArray();
                     }
-                    RenderProp(e.name, argValueProp, e.type, 0);
+                    RenderProp(e.name, propertyValueProp, e.type, 0);
                     i++;
                 });
-                for(;i < argsProp.arraySize; i++){
-                    argsProp.DeleteArrayElementAtIndex(i);
+                for(;i < _propertiesProp.arraySize; i++){
+                    _propertiesProp.DeleteArrayElementAtIndex(i);
                 }
             }
 
@@ -162,26 +88,26 @@ namespace Puerts.Component {
         private string toDeleteElementPath;
 
         private Rect RenderProp(string name, SerializedProperty prop, Type type, int indent){
-            var valueTypeProp = prop.FindPropertyRelative("valueType");
+            var valueTypeProp = prop.FindPropertyRelative("valueTypeId");
             if (type.IsGenericType && type.GetGenericTypeDefinition().Equals(typeof(List<>))){
-                valueTypeProp.enumValueFlag = (int)TsComponent.ArgValueType.LIST;
+                valueTypeProp.enumValueFlag = (int)TsComponent.PropertyValueType.LIST;
                 var listValueProp = prop.FindPropertyRelative("listValue");
                 return RenderArrayProp(name, listValueProp, type.GetGenericArguments()[0], indent);
             }
             else if (type == typeof(System.String)){
-                valueTypeProp.intValue = (int)TsComponent.ArgValueType.STRING;
+                valueTypeProp.intValue = (int)TsComponent.PropertyValueType.STRING;
                 var primitiveValueProp = prop.FindPropertyRelative("primitiveValue");
                 return RenderStringProp(name, primitiveValueProp, indent);
             }
             else if (typeof(UnityEngine.Object).IsAssignableFrom(type)){
-                valueTypeProp.intValue = (int)TsComponent.ArgValueType.OBJECT;
+                valueTypeProp.intValue = (int)TsComponent.PropertyValueType.OBJECT;
                 var objValueProp = prop.FindPropertyRelative("objValue");
                 return RenderObjectProp(name, objValueProp, type, indent);
             }
             else {
-                var serializer = propertySerializers.Find(e=>e.Type == type);
+                var serializer = PropertySerializers.Find(e=>e.Type == type);
                 if (serializer != null){
-                    valueTypeProp.intValue = (int)serializer.ValueTypeId;
+                    valueTypeProp.intValue = serializer.ValueTypeId;
                     var primitiveValueProp = prop.FindPropertyRelative("primitiveValue");
                     return RenderPrimitiveProp(serializer, name, primitiveValueProp, type, indent);
                 }else{
