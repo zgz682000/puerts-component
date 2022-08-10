@@ -10,4 +10,7 @@ export default class TestComponent2 extends Component {
     @Property(System.Int32)
     testNumber: number;
 
+    @Property(System.String, {password: true})
+    testPassword: string;
+
 }

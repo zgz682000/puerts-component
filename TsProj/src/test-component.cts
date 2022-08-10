@@ -34,5 +34,6 @@ export default class TestComponent extends Component {
         console.log(this.test3Prop);
         console.log(this.test6Prop);
         console.log(this.test7Prop.testNumber);
+        console.log(this.test7Prop.testPassword);
     }
 }

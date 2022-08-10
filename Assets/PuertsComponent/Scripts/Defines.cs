@@ -20,15 +20,9 @@ namespace Puerts.Component {
         public PropertyValue value;
     }
 
-    public class PropertyOptions {
-        public string name;
-        public Type type;
-    }
-
     public enum PropertyValueType {
         NONE = 1,
-        OBJECT,
-        STRING,
-        LIST
+        OBJECT = 2,
+        LIST = 4
     }
 }

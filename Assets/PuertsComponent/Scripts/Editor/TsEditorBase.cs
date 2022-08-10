@@ -1,11 +1,8 @@
-using System.Text;
 
 using System;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using System.Reflection;
-using System.Linq;
+using LitJson;
 
 namespace Puerts.Component {
 
@@ -30,18 +27,30 @@ namespace Puerts.Component {
             _editorJsEnvIdx = -1;
         }
 
-        protected static List<PropertyOptions> PickProperties(string tsModulePath){
+
+        protected class Property {
+            public string name;
+            public Type type;
+            public Dictionary<string, object> options;
+        }
+
+        protected static List<Property> PickProperties(string tsModulePath){
             try
             {
                 var propertiesPickFunc = EditorJsEnv.ExecuteModule<Func<string, Dictionary<string, Tuple<Type, string>>>>("puerts-component/properties-pick", "default");
                 var propertiesDict = propertiesPickFunc(tsModulePath);
-                var ret = new List<PropertyOptions>();
+                var ret = new List<Property>();
                 foreach(var pair in propertiesDict){
-                    PropertyOptions property;
+                    Property property = new Property();
                     if (pair.Value.Item2 != null){
-                        property = JsonUtility.FromJson<PropertyOptions>(pair.Value.Item2);
+                        property.options = JsonMapper.ToObject<Dictionary<string, object>>(pair.Value.Item2);
+                        if (property.options.ContainsKey("name")){
+                            property.name = (string)property.options["name"];
+                            property.options.Remove("name");
+                        }else{
+                            property.name = pair.Key;
+                        }
                     }else{
-                        property = new PropertyOptions();
                         property.name = pair.Key;
                     }
                     property.type = pair.Value.Item1;

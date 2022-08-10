@@ -3,7 +3,8 @@ import { $generic, $typeof } from "puerts";
 
 
 export interface PropertyOptions {
-    name: string;
+    name?: string;
+    [key: string]: any;
 }
 
 export function ListProperty(type: typeof System.Object, dimension: number = 1, options?: PropertyOptions){

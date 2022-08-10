@@ -18,9 +18,6 @@ namespace Puerts.Component {
                 }
                 return value.objValue;
             }
-            else if (value.valueTypeId == (int)PropertyValueType.STRING){
-                return value.primitiveValue;
-            }
             else if (value.valueTypeId == (int)PropertyValueType.LIST){
                 return value.listValue.ConvertAll(e=>ConvertValue(e));
             }else if (value.valueTypeId != (int)PropertyValueType.NONE){

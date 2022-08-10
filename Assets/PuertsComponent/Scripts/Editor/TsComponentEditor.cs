@@ -14,7 +14,7 @@ namespace Puerts.Component {
         private SerializedProperty _propertiesProp;
         private SerializedProperty _tsModulePathProp;
 
-        private List<PropertyOptions> properties;
+        private List<Property> properties;
     
         void OnEnable()
         {
@@ -26,6 +26,9 @@ namespace Puerts.Component {
             for(var j = 0; j < _propertiesProp.arraySize; j++){
                 var propertyProp = _propertiesProp.GetArrayElementAtIndex(j);
                 var propertyNameProp = propertyProp.FindPropertyRelative("name");
+                if (_propIndexByName.ContainsKey(propertyNameProp.stringValue)){
+                    _propIndexByName.Remove(propertyNameProp.stringValue);
+                }
                 _propIndexByName.Add(propertyNameProp.stringValue, propertyProp);
             }
             if (!string.IsNullOrEmpty(_ins.tsModulePath)){
@@ -34,7 +37,6 @@ namespace Puerts.Component {
         }
 
         private Dictionary<string, SerializedProperty> _propIndexByName = new Dictionary<string, SerializedProperty>();
-        private PropertyOptions _currentProperty;
         public override void OnInspectorGUI(){
             
             if (_propertiesProp == null || _tsModulePathProp == null || _ins == null){
@@ -68,8 +70,7 @@ namespace Puerts.Component {
                         propertyValueProp.FindPropertyRelative("primitiveValue").stringValue = null;
                         propertyValueProp.FindPropertyRelative("listValue").ClearArray();
                     }
-                    _currentProperty = e;
-                    RenderProp(e.name, propertyValueProp, e.type, 0);
+                    RenderProp(e.name, propertyValueProp, e.type, 0, e);
                     i++;
                 });
             }
@@ -85,17 +86,12 @@ namespace Puerts.Component {
 
         private string toDeleteElementPath;
 
-        private Rect RenderProp(string name, SerializedProperty prop, Type type, int indent){
+        private Rect RenderProp(string name, SerializedProperty prop, Type type, int indent, Property property){
             var valueTypeProp = prop.FindPropertyRelative("valueTypeId");
             if (type.IsGenericType && type.GetGenericTypeDefinition().Equals(typeof(List<>))){
                 valueTypeProp.enumValueFlag = (int)PropertyValueType.LIST;
                 var listValueProp = prop.FindPropertyRelative("listValue");
                 return RenderArrayProp(name, listValueProp, type.GetGenericArguments()[0], indent);
-            }
-            else if (type == typeof(System.String)){
-                valueTypeProp.intValue = (int)PropertyValueType.STRING;
-                var primitiveValueProp = prop.FindPropertyRelative("primitiveValue");
-                return RenderStringProp(name, primitiveValueProp, indent);
             }
             else if (typeof(UnityEngine.Object).IsAssignableFrom(type)){
                 valueTypeProp.intValue = (int)PropertyValueType.OBJECT;
@@ -105,14 +101,14 @@ namespace Puerts.Component {
             else {
                 IPrimitivePropertySerializer serializer = null;
                 var serializers = PrimitivePropertySerializerCollector.PropertySerializers.FindAll(e=>e.Type == type);
-                if (serializers.Count > 1){
-                    var filteredSerializer = serializers.Find(e=>e.InternalOptionsFilter(_currentProperty));
+                if (property != null && property.options != null && serializers.Count > 1){
+                    var filteredSerializer = serializers.Find(e=>e.OptionsFilter(property.options));
                     if (filteredSerializer == null){
                         serializer = serializers[0];
                     }else {
                         serializer = filteredSerializer;
                     }
-                }else if (serializers.Count == 1) {
+                }else if (serializers.Count != 0) {
                     serializer = serializers[0];
                 }
                 if (serializer != null){
@@ -161,7 +157,7 @@ namespace Puerts.Component {
                 }
                 for(int i = 0; i < prop.arraySize; i++){
                     var elementProp = prop.GetArrayElementAtIndex(i);
-                    var rect1 = RenderProp("Element " + i, elementProp, subType, indent + 1);
+                    var rect1 = RenderProp("Element " + i, elementProp, subType, indent + 1, null);
                     if (Event.current.type == EventType.ContextClick && rect1.Contains(Event.current.mousePosition)){
                         var menu = new GenericMenu ();
                         menu.AddItem (new GUIContent ("Delete Element"), false, (userData)=>{
