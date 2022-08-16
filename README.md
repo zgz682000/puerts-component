@@ -26,8 +26,8 @@
 * 如何运行Demo
     * `git clone` 本项目
     * macOS `cd` 到 `Assets/Puerts/Editor/Plugins/macOS` 文件夹下，运行 `sudo xattr -r -d com.apple.quarantine puerts.bundle`
-    * 在Unity工程中打开 `Assets/Demo/TestPrefab.prefab` 即可在TsComponent组件的Inspector面板中看到 `TsProjDemo/src/test-component.cts` 文件中定义的属性在呈现的效果
-    * 打开 `Assets/Demo/TestAsset.asset` 即可在TsAsset组件的Inspector面板中看到 `TsProjDemo/src/test-assett.cts` 文件中定义的属性在呈现的效果
+    * 在Unity工程中打开 `Assets/Demo/TestPrefab.prefab` 即可在TsComponent组件的Inspector面板中看到 `TsProjDemo/src/test-component.cts` 文件中定义的属性呈现的效果
+    * 打开 `Assets/Demo/TestAsset.asset` 即可在TsAsset组件的Inspector面板中看到 `TsProjDemo/src/test-assett.cts` 文件中定义的属性呈现的效果
     * 打开 `Assets/Demo/SampleScene.unity` 并行，如果Console面板中能打印出 `index running` 和 `TestComponent Start` 说明运行成功
 
 * 如何将插件集成到自己项目中
