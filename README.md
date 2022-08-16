@@ -25,12 +25,10 @@
 
 * 如何运行Demo
     * `git clone` 本项目
-    * `cd` 到 `TsProjDemo` 文件夹下
-    * 运行 `npm install` 安装编译ts代码所需的依赖
-    * 运行 `npm run build-depends` 将source-map依赖库用webpack打包成单个js文件，生成到unity工程下
-    * 运行 `npm run build` 或 `npm run dev` 将src里的ts代码生成到unity工程下(dev命令会持续监听ts代码的变化)
-    * 在Unity工程中打开 `Assets/Demo/SampleScene.unity` 并行
-    * 如果Console面板中能打印出 `index running` 和 `TestComponent Start` 说明运行成功
+    * macOS `cd` 到 `Assets/Puerts/Editor/Plugins/macOS` 文件夹下，运行 `sudo xattr -r -d com.apple.quarantine puerts.bundle`
+    * 在Unity工程中打开 `Assets/Demo/TestPrefab.prefab` 即可在TsComponent组件的Inspector面板中看到 `TsProjDemo/src/test-component.cts` 文件中定义的属性在呈现的效果
+    * 打开 `Assets/Demo/TestAsset.asset` 即可在TsAsset组件的Inspector面板中看到 `TsProjDemo/src/test-assett.cts` 文件中定义的属性在呈现的效果
+    * 打开 `Assets/Demo/SampleScene.unity` 并行，如果Console面板中能打印出 `index running` 和 `TestComponent Start` 说明运行成功
 
 * 如何将插件集成到自己项目中
     * 首先确保项目中已经集成了[puerts框架](https://github.com/Tencent/puerts)
