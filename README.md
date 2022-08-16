@@ -6,46 +6,8 @@
 
 * 效果展示
     
-    先看一下如何在ts代码中定义组件属性
-    ```
-    //test-component.cts
-
-    @Transporter()
-    export default class TestComponent extends Component {
-
-    @Property(UnityEngine.Transform)
-    test1Prop: UnityEngine.Transform;
-
-    /**
-     * 定义一个数组属性
-     */
-    @ListProperty(UnityEngine.GameObject)
-    test3Prop: UnityEngine.GameObject[]
-
-    @Property(System.Boolean)
-    test4Prop: boolean;
-
-    @Property(UnityEngine.Vector3)
-    test5Prop: UnityEngine.Vector3;
-    
-    /**
-     * 定义一个二维数组属性
-     */
-    @ListProperty(UnityEngine.Vector3, 2)
-    test6Prop: UnityEngine.Vector3[][];
-
-    /**
-     * 定义一个其他ts组件类型的属性
-     */
-    @Property(Puerts.Component.TsComponent)
-    test7Prop: TestComponent2;
-
-    /**
-     * 定义一个ts资源类型的属性
-     */
-    @Property(Puerts.Component.TsAsset)
-    test8Prop: TestAsset;
-    ```
+    先看一下如何在ts代码中定义组件属性：
+    ![效果展示-代码](./img/效果展示-代码.jpg)
 
     这段代码对应的inspector面板上的显示效果如下：
     ![效果展示-面板](./img/效果展示-面板.jpg)
