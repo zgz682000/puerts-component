@@ -1,4 +1,4 @@
-import { UnityEngine } from "csharp";
+import { DemoEntry, UnityEngine } from "csharp";
 import { $typeof } from "puerts";
 
 if (UnityEngine.Application.isEditor){
@@ -11,5 +11,7 @@ if (UnityEngine.Application.isEditor){
 
 console.log("index running");
 
-let testPrefab = UnityEngine.Resources.Load("Test", $typeof(UnityEngine.GameObject));
+let demoEntryObj = UnityEngine.GameObject.Find("DemoEntry");
+let demoEntry = demoEntryObj.GetComponent($typeof(DemoEntry)) as DemoEntry;
+let testPrefab = demoEntry.testPrefab;
 UnityEngine.Object.Instantiate(testPrefab);

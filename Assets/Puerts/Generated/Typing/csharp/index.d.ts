@@ -16,6 +16,7 @@ declare module 'csharp' {
             class DemoEntry extends UnityEngine.MonoBehaviour
             {
                 protected [__keep_incompatibility]: never;
+                public testPrefab : UnityEngine.GameObject
                 public constructor ()
             }
             namespace UnityEngine {
@@ -307,6 +308,142 @@ declare module 'csharp' {
                 public static op_Equality ($x: UnityEngine.Object, $y: UnityEngine.Object) : boolean
                 public static op_Inequality ($x: UnityEngine.Object, $y: UnityEngine.Object) : boolean
                 public constructor ()
+            }
+            /** Base class for all entities in Unity Scenes. */
+            class GameObject extends UnityEngine.Object
+            {
+                protected [__keep_incompatibility]: never;
+                /** The Transform attached to this GameObject. */
+                public get transform(): UnityEngine.Transform;
+                /** The layer the GameObject is in. */
+                public get layer(): number;
+                public set layer(value: number);
+                /** The local active state of this GameObject. (Read Only) */
+                public get activeSelf(): boolean;
+                /** Defines whether the GameObject is active in the Scene. */
+                public get activeInHierarchy(): boolean;
+                /** Gets and sets the GameObject's StaticEditorFlags. */
+                public get isStatic(): boolean;
+                public set isStatic(value: boolean);
+                /** The tag of this game object. */
+                public get tag(): string;
+                public set tag(value: string);
+                /** Scene that the GameObject is part of. */
+                public get scene(): UnityEngine.SceneManagement.Scene;
+                /** Scene culling mask Unity uses to determine which scene to render the GameObject in. */
+                public get sceneCullingMask(): bigint;
+                public get gameObject(): UnityEngine.GameObject;
+                /** Creates a game object with a primitive mesh renderer and appropriate collider. * @param type The type of primitive object to create.
+                */
+                public static CreatePrimitive ($type: UnityEngine.PrimitiveType) : UnityEngine.GameObject
+                /** Returns the component of Type type if the game object has one attached, null if it doesn't. * @param type The type of Component to retrieve.
+                */
+                public GetComponent ($type: System.Type) : UnityEngine.Component
+                /** Returns the component with name type if the GameObject has one attached, null if it doesn't. * @param type The type of Component to retrieve.
+                */
+                public GetComponent ($type: string) : UnityEngine.Component
+                /** Returns the component of Type type in the GameObject or any of its children using depth first search.
+                * @param type The type of Component to retrieve.
+                * @returns A component of the matching type, if found. 
+                */
+                public GetComponentInChildren ($type: System.Type, $includeInactive: boolean) : UnityEngine.Component
+                /** Returns the component of Type type in the GameObject or any of its children using depth first search.
+                * @param type The type of Component to retrieve.
+                * @returns A component of the matching type, if found. 
+                */
+                public GetComponentInChildren ($type: System.Type) : UnityEngine.Component
+                /** Retrieves the component of Type type in the GameObject or any of its parents.
+                * @param type Type of component to find.
+                * @returns Returns a component if a component matching the type is found. Returns null otherwise. 
+                */
+                public GetComponentInParent ($type: System.Type, $includeInactive: boolean) : UnityEngine.Component
+                /** Retrieves the component of Type type in the GameObject or any of its parents.
+                * @param type Type of component to find.
+                * @returns Returns a component if a component matching the type is found. Returns null otherwise. 
+                */
+                public GetComponentInParent ($type: System.Type) : UnityEngine.Component
+                /** Returns all components of Type type in the GameObject. * @param type The type of component to retrieve.
+                */
+                public GetComponents ($type: System.Type) : System.Array$1<UnityEngine.Component>
+                public GetComponents ($type: System.Type, $results: System.Collections.Generic.List$1<UnityEngine.Component>) : void
+                /** Returns all components of Type type in the GameObject or any of its children children using depth first search. Works recursively. * @param type The type of Component to retrieve.
+                * @param includeInactive Should Components on inactive GameObjects be included in the found set?
+                */
+                public GetComponentsInChildren ($type: System.Type) : System.Array$1<UnityEngine.Component>
+                /** Returns all components of Type type in the GameObject or any of its children children using depth first search. Works recursively. * @param type The type of Component to retrieve.
+                * @param includeInactive Should Components on inactive GameObjects be included in the found set?
+                */
+                public GetComponentsInChildren ($type: System.Type, $includeInactive: boolean) : System.Array$1<UnityEngine.Component>
+                public GetComponentsInParent ($type: System.Type) : System.Array$1<UnityEngine.Component>
+                /** Returns all components of Type type in the GameObject or any of its parents. * @param type The type of Component to retrieve.
+                * @param includeInactive Should inactive Components be included in the found set?
+                */
+                public GetComponentsInParent ($type: System.Type, $includeInactive: boolean) : System.Array$1<UnityEngine.Component>
+                /** Gets the component of the specified type, if it exists.
+                * @param type The type of component to retrieve.
+                * @param component The output argument that will contain the component or null.
+                * @returns Returns true if the component is found, false otherwise. 
+                */
+                public TryGetComponent ($type: System.Type, $component: $Ref<UnityEngine.Component>) : boolean
+                /** Returns one active GameObject tagged tag. Returns null if no GameObject was found. * @param tag The tag to search for.
+                */
+                public static FindWithTag ($tag: string) : UnityEngine.GameObject
+                public SendMessageUpwards ($methodName: string, $options: UnityEngine.SendMessageOptions) : void
+                public SendMessage ($methodName: string, $options: UnityEngine.SendMessageOptions) : void
+                public BroadcastMessage ($methodName: string, $options: UnityEngine.SendMessageOptions) : void
+                /** Adds a component class of type componentType to the game object. C# Users can use a generic version. */
+                public AddComponent ($componentType: System.Type) : UnityEngine.Component
+                /** ActivatesDeactivates the GameObject, depending on the given true or false/ value. * @param value Activate or deactivate the object, where true activates the GameObject and false deactivates the GameObject.
+                */
+                public SetActive ($value: boolean) : void
+                /** Is this game object tagged with tag ? * @param tag The tag to compare.
+                */
+                public CompareTag ($tag: string) : boolean
+                public static FindGameObjectWithTag ($tag: string) : UnityEngine.GameObject
+                /** Returns an array of active GameObjects tagged tag. Returns empty array if no GameObject was found. * @param tag The name of the tag to search GameObjects for.
+                */
+                public static FindGameObjectsWithTag ($tag: string) : System.Array$1<UnityEngine.GameObject>
+                /** Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour. * @param methodName The name of the method to call.
+                * @param value An optional parameter value to pass to the called method.
+                * @param options Should an error be raised if the method doesn't exist on the target object?
+                */
+                public SendMessageUpwards ($methodName: string, $value: any, $options: UnityEngine.SendMessageOptions) : void
+                /** Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour. * @param methodName The name of the method to call.
+                * @param value An optional parameter value to pass to the called method.
+                * @param options Should an error be raised if the method doesn't exist on the target object?
+                */
+                public SendMessageUpwards ($methodName: string, $value: any) : void
+                /** Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour. * @param methodName The name of the method to call.
+                * @param value An optional parameter value to pass to the called method.
+                * @param options Should an error be raised if the method doesn't exist on the target object?
+                */
+                public SendMessageUpwards ($methodName: string) : void
+                /** Calls the method named methodName on every MonoBehaviour in this game object. * @param methodName The name of the method to call.
+                * @param value An optional parameter value to pass to the called method.
+                * @param options Should an error be raised if the method doesn't exist on the target object?
+                */
+                public SendMessage ($methodName: string, $value: any, $options: UnityEngine.SendMessageOptions) : void
+                /** Calls the method named methodName on every MonoBehaviour in this game object. * @param methodName The name of the method to call.
+                * @param value An optional parameter value to pass to the called method.
+                * @param options Should an error be raised if the method doesn't exist on the target object?
+                */
+                public SendMessage ($methodName: string, $value: any) : void
+                /** Calls the method named methodName on every MonoBehaviour in this game object. * @param methodName The name of the method to call.
+                * @param value An optional parameter value to pass to the called method.
+                * @param options Should an error be raised if the method doesn't exist on the target object?
+                */
+                public SendMessage ($methodName: string) : void
+                /** Calls the method named methodName on every MonoBehaviour in this game object or any of its children. */
+                public BroadcastMessage ($methodName: string, $parameter: any, $options: UnityEngine.SendMessageOptions) : void
+                /** Calls the method named methodName on every MonoBehaviour in this game object or any of its children. */
+                public BroadcastMessage ($methodName: string, $parameter: any) : void
+                /** Calls the method named methodName on every MonoBehaviour in this game object or any of its children. */
+                public BroadcastMessage ($methodName: string) : void
+                /** Finds a GameObject by name and returns it. */
+                public static Find ($name: string) : UnityEngine.GameObject
+                public constructor ($name: string)
+                public constructor ()
+                public constructor ($name: string, ...components: System.Type[])
             }
             /** Representation of RGBA colors. */
             class Color extends System.ValueType implements System.IEquatable$1<UnityEngine.Color>, System.IFormattable
@@ -696,6 +833,11 @@ declare module 'csharp' {
                 public Equals ($obj: any) : boolean
                 public static Equals ($objA: any, $objB: any) : boolean
                 public constructor ()
+            }
+            /** A class you can derive from if you want to create objects that don't need to be attached to game objects. */
+            class ScriptableObject extends UnityEngine.Object
+            {
+                protected [__keep_incompatibility]: never;
             }
             /** A Camera is a device through which the player views the world. */
             class Camera extends UnityEngine.Behaviour
@@ -2723,142 +2865,6 @@ declare module 'csharp' {
             /** Key codes returned by Event.keyCode. These map directly to a physical key on the keyboard. */
             enum KeyCode
             { None = 0, Backspace = 8, Delete = 127, Tab = 9, Clear = 12, Return = 13, Pause = 19, Escape = 27, Space = 32, Keypad0 = 256, Keypad1 = 257, Keypad2 = 258, Keypad3 = 259, Keypad4 = 260, Keypad5 = 261, Keypad6 = 262, Keypad7 = 263, Keypad8 = 264, Keypad9 = 265, KeypadPeriod = 266, KeypadDivide = 267, KeypadMultiply = 268, KeypadMinus = 269, KeypadPlus = 270, KeypadEnter = 271, KeypadEquals = 272, UpArrow = 273, DownArrow = 274, RightArrow = 275, LeftArrow = 276, Insert = 277, Home = 278, End = 279, PageUp = 280, PageDown = 281, F1 = 282, F2 = 283, F3 = 284, F4 = 285, F5 = 286, F6 = 287, F7 = 288, F8 = 289, F9 = 290, F10 = 291, F11 = 292, F12 = 293, F13 = 294, F14 = 295, F15 = 296, Alpha0 = 48, Alpha1 = 49, Alpha2 = 50, Alpha3 = 51, Alpha4 = 52, Alpha5 = 53, Alpha6 = 54, Alpha7 = 55, Alpha8 = 56, Alpha9 = 57, Exclaim = 33, DoubleQuote = 34, Hash = 35, Dollar = 36, Percent = 37, Ampersand = 38, Quote = 39, LeftParen = 40, RightParen = 41, Asterisk = 42, Plus = 43, Comma = 44, Minus = 45, Period = 46, Slash = 47, Colon = 58, Semicolon = 59, Less = 60, Equals = 61, Greater = 62, Question = 63, At = 64, LeftBracket = 91, Backslash = 92, RightBracket = 93, Caret = 94, Underscore = 95, BackQuote = 96, A = 97, B = 98, C = 99, D = 100, E = 101, F = 102, G = 103, H = 104, I = 105, J = 106, K = 107, L = 108, M = 109, N = 110, O = 111, P = 112, Q = 113, R = 114, S = 115, T = 116, U = 117, V = 118, W = 119, X = 120, Y = 121, Z = 122, LeftCurlyBracket = 123, Pipe = 124, RightCurlyBracket = 125, Tilde = 126, Numlock = 300, CapsLock = 301, ScrollLock = 302, RightShift = 303, LeftShift = 304, RightControl = 305, LeftControl = 306, RightAlt = 307, LeftAlt = 308, LeftMeta = 310, LeftCommand = 310, LeftApple = 310, LeftWindows = 311, RightMeta = 309, RightCommand = 309, RightApple = 309, RightWindows = 312, AltGr = 313, Help = 315, Print = 316, SysReq = 317, Break = 318, Menu = 319, Mouse0 = 323, Mouse1 = 324, Mouse2 = 325, Mouse3 = 326, Mouse4 = 327, Mouse5 = 328, Mouse6 = 329, JoystickButton0 = 330, JoystickButton1 = 331, JoystickButton2 = 332, JoystickButton3 = 333, JoystickButton4 = 334, JoystickButton5 = 335, JoystickButton6 = 336, JoystickButton7 = 337, JoystickButton8 = 338, JoystickButton9 = 339, JoystickButton10 = 340, JoystickButton11 = 341, JoystickButton12 = 342, JoystickButton13 = 343, JoystickButton14 = 344, JoystickButton15 = 345, JoystickButton16 = 346, JoystickButton17 = 347, JoystickButton18 = 348, JoystickButton19 = 349, Joystick1Button0 = 350, Joystick1Button1 = 351, Joystick1Button2 = 352, Joystick1Button3 = 353, Joystick1Button4 = 354, Joystick1Button5 = 355, Joystick1Button6 = 356, Joystick1Button7 = 357, Joystick1Button8 = 358, Joystick1Button9 = 359, Joystick1Button10 = 360, Joystick1Button11 = 361, Joystick1Button12 = 362, Joystick1Button13 = 363, Joystick1Button14 = 364, Joystick1Button15 = 365, Joystick1Button16 = 366, Joystick1Button17 = 367, Joystick1Button18 = 368, Joystick1Button19 = 369, Joystick2Button0 = 370, Joystick2Button1 = 371, Joystick2Button2 = 372, Joystick2Button3 = 373, Joystick2Button4 = 374, Joystick2Button5 = 375, Joystick2Button6 = 376, Joystick2Button7 = 377, Joystick2Button8 = 378, Joystick2Button9 = 379, Joystick2Button10 = 380, Joystick2Button11 = 381, Joystick2Button12 = 382, Joystick2Button13 = 383, Joystick2Button14 = 384, Joystick2Button15 = 385, Joystick2Button16 = 386, Joystick2Button17 = 387, Joystick2Button18 = 388, Joystick2Button19 = 389, Joystick3Button0 = 390, Joystick3Button1 = 391, Joystick3Button2 = 392, Joystick3Button3 = 393, Joystick3Button4 = 394, Joystick3Button5 = 395, Joystick3Button6 = 396, Joystick3Button7 = 397, Joystick3Button8 = 398, Joystick3Button9 = 399, Joystick3Button10 = 400, Joystick3Button11 = 401, Joystick3Button12 = 402, Joystick3Button13 = 403, Joystick3Button14 = 404, Joystick3Button15 = 405, Joystick3Button16 = 406, Joystick3Button17 = 407, Joystick3Button18 = 408, Joystick3Button19 = 409, Joystick4Button0 = 410, Joystick4Button1 = 411, Joystick4Button2 = 412, Joystick4Button3 = 413, Joystick4Button4 = 414, Joystick4Button5 = 415, Joystick4Button6 = 416, Joystick4Button7 = 417, Joystick4Button8 = 418, Joystick4Button9 = 419, Joystick4Button10 = 420, Joystick4Button11 = 421, Joystick4Button12 = 422, Joystick4Button13 = 423, Joystick4Button14 = 424, Joystick4Button15 = 425, Joystick4Button16 = 426, Joystick4Button17 = 427, Joystick4Button18 = 428, Joystick4Button19 = 429, Joystick5Button0 = 430, Joystick5Button1 = 431, Joystick5Button2 = 432, Joystick5Button3 = 433, Joystick5Button4 = 434, Joystick5Button5 = 435, Joystick5Button6 = 436, Joystick5Button7 = 437, Joystick5Button8 = 438, Joystick5Button9 = 439, Joystick5Button10 = 440, Joystick5Button11 = 441, Joystick5Button12 = 442, Joystick5Button13 = 443, Joystick5Button14 = 444, Joystick5Button15 = 445, Joystick5Button16 = 446, Joystick5Button17 = 447, Joystick5Button18 = 448, Joystick5Button19 = 449, Joystick6Button0 = 450, Joystick6Button1 = 451, Joystick6Button2 = 452, Joystick6Button3 = 453, Joystick6Button4 = 454, Joystick6Button5 = 455, Joystick6Button6 = 456, Joystick6Button7 = 457, Joystick6Button8 = 458, Joystick6Button9 = 459, Joystick6Button10 = 460, Joystick6Button11 = 461, Joystick6Button12 = 462, Joystick6Button13 = 463, Joystick6Button14 = 464, Joystick6Button15 = 465, Joystick6Button16 = 466, Joystick6Button17 = 467, Joystick6Button18 = 468, Joystick6Button19 = 469, Joystick7Button0 = 470, Joystick7Button1 = 471, Joystick7Button2 = 472, Joystick7Button3 = 473, Joystick7Button4 = 474, Joystick7Button5 = 475, Joystick7Button6 = 476, Joystick7Button7 = 477, Joystick7Button8 = 478, Joystick7Button9 = 479, Joystick7Button10 = 480, Joystick7Button11 = 481, Joystick7Button12 = 482, Joystick7Button13 = 483, Joystick7Button14 = 484, Joystick7Button15 = 485, Joystick7Button16 = 486, Joystick7Button17 = 487, Joystick7Button18 = 488, Joystick7Button19 = 489, Joystick8Button0 = 490, Joystick8Button1 = 491, Joystick8Button2 = 492, Joystick8Button3 = 493, Joystick8Button4 = 494, Joystick8Button5 = 495, Joystick8Button6 = 496, Joystick8Button7 = 497, Joystick8Button8 = 498, Joystick8Button9 = 499, Joystick8Button10 = 500, Joystick8Button11 = 501, Joystick8Button12 = 502, Joystick8Button13 = 503, Joystick8Button14 = 504, Joystick8Button15 = 505, Joystick8Button16 = 506, Joystick8Button17 = 507, Joystick8Button18 = 508, Joystick8Button19 = 509 }
-            /** Base class for all entities in Unity Scenes. */
-            class GameObject extends UnityEngine.Object
-            {
-                protected [__keep_incompatibility]: never;
-                /** The Transform attached to this GameObject. */
-                public get transform(): UnityEngine.Transform;
-                /** The layer the GameObject is in. */
-                public get layer(): number;
-                public set layer(value: number);
-                /** The local active state of this GameObject. (Read Only) */
-                public get activeSelf(): boolean;
-                /** Defines whether the GameObject is active in the Scene. */
-                public get activeInHierarchy(): boolean;
-                /** Gets and sets the GameObject's StaticEditorFlags. */
-                public get isStatic(): boolean;
-                public set isStatic(value: boolean);
-                /** The tag of this game object. */
-                public get tag(): string;
-                public set tag(value: string);
-                /** Scene that the GameObject is part of. */
-                public get scene(): UnityEngine.SceneManagement.Scene;
-                /** Scene culling mask Unity uses to determine which scene to render the GameObject in. */
-                public get sceneCullingMask(): bigint;
-                public get gameObject(): UnityEngine.GameObject;
-                /** Creates a game object with a primitive mesh renderer and appropriate collider. * @param type The type of primitive object to create.
-                */
-                public static CreatePrimitive ($type: UnityEngine.PrimitiveType) : UnityEngine.GameObject
-                /** Returns the component of Type type if the game object has one attached, null if it doesn't. * @param type The type of Component to retrieve.
-                */
-                public GetComponent ($type: System.Type) : UnityEngine.Component
-                /** Returns the component with name type if the GameObject has one attached, null if it doesn't. * @param type The type of Component to retrieve.
-                */
-                public GetComponent ($type: string) : UnityEngine.Component
-                /** Returns the component of Type type in the GameObject or any of its children using depth first search.
-                * @param type The type of Component to retrieve.
-                * @returns A component of the matching type, if found. 
-                */
-                public GetComponentInChildren ($type: System.Type, $includeInactive: boolean) : UnityEngine.Component
-                /** Returns the component of Type type in the GameObject or any of its children using depth first search.
-                * @param type The type of Component to retrieve.
-                * @returns A component of the matching type, if found. 
-                */
-                public GetComponentInChildren ($type: System.Type) : UnityEngine.Component
-                /** Retrieves the component of Type type in the GameObject or any of its parents.
-                * @param type Type of component to find.
-                * @returns Returns a component if a component matching the type is found. Returns null otherwise. 
-                */
-                public GetComponentInParent ($type: System.Type, $includeInactive: boolean) : UnityEngine.Component
-                /** Retrieves the component of Type type in the GameObject or any of its parents.
-                * @param type Type of component to find.
-                * @returns Returns a component if a component matching the type is found. Returns null otherwise. 
-                */
-                public GetComponentInParent ($type: System.Type) : UnityEngine.Component
-                /** Returns all components of Type type in the GameObject. * @param type The type of component to retrieve.
-                */
-                public GetComponents ($type: System.Type) : System.Array$1<UnityEngine.Component>
-                public GetComponents ($type: System.Type, $results: System.Collections.Generic.List$1<UnityEngine.Component>) : void
-                /** Returns all components of Type type in the GameObject or any of its children children using depth first search. Works recursively. * @param type The type of Component to retrieve.
-                * @param includeInactive Should Components on inactive GameObjects be included in the found set?
-                */
-                public GetComponentsInChildren ($type: System.Type) : System.Array$1<UnityEngine.Component>
-                /** Returns all components of Type type in the GameObject or any of its children children using depth first search. Works recursively. * @param type The type of Component to retrieve.
-                * @param includeInactive Should Components on inactive GameObjects be included in the found set?
-                */
-                public GetComponentsInChildren ($type: System.Type, $includeInactive: boolean) : System.Array$1<UnityEngine.Component>
-                public GetComponentsInParent ($type: System.Type) : System.Array$1<UnityEngine.Component>
-                /** Returns all components of Type type in the GameObject or any of its parents. * @param type The type of Component to retrieve.
-                * @param includeInactive Should inactive Components be included in the found set?
-                */
-                public GetComponentsInParent ($type: System.Type, $includeInactive: boolean) : System.Array$1<UnityEngine.Component>
-                /** Gets the component of the specified type, if it exists.
-                * @param type The type of component to retrieve.
-                * @param component The output argument that will contain the component or null.
-                * @returns Returns true if the component is found, false otherwise. 
-                */
-                public TryGetComponent ($type: System.Type, $component: $Ref<UnityEngine.Component>) : boolean
-                /** Returns one active GameObject tagged tag. Returns null if no GameObject was found. * @param tag The tag to search for.
-                */
-                public static FindWithTag ($tag: string) : UnityEngine.GameObject
-                public SendMessageUpwards ($methodName: string, $options: UnityEngine.SendMessageOptions) : void
-                public SendMessage ($methodName: string, $options: UnityEngine.SendMessageOptions) : void
-                public BroadcastMessage ($methodName: string, $options: UnityEngine.SendMessageOptions) : void
-                /** Adds a component class of type componentType to the game object. C# Users can use a generic version. */
-                public AddComponent ($componentType: System.Type) : UnityEngine.Component
-                /** ActivatesDeactivates the GameObject, depending on the given true or false/ value. * @param value Activate or deactivate the object, where true activates the GameObject and false deactivates the GameObject.
-                */
-                public SetActive ($value: boolean) : void
-                /** Is this game object tagged with tag ? * @param tag The tag to compare.
-                */
-                public CompareTag ($tag: string) : boolean
-                public static FindGameObjectWithTag ($tag: string) : UnityEngine.GameObject
-                /** Returns an array of active GameObjects tagged tag. Returns empty array if no GameObject was found. * @param tag The name of the tag to search GameObjects for.
-                */
-                public static FindGameObjectsWithTag ($tag: string) : System.Array$1<UnityEngine.GameObject>
-                /** Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour. * @param methodName The name of the method to call.
-                * @param value An optional parameter value to pass to the called method.
-                * @param options Should an error be raised if the method doesn't exist on the target object?
-                */
-                public SendMessageUpwards ($methodName: string, $value: any, $options: UnityEngine.SendMessageOptions) : void
-                /** Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour. * @param methodName The name of the method to call.
-                * @param value An optional parameter value to pass to the called method.
-                * @param options Should an error be raised if the method doesn't exist on the target object?
-                */
-                public SendMessageUpwards ($methodName: string, $value: any) : void
-                /** Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour. * @param methodName The name of the method to call.
-                * @param value An optional parameter value to pass to the called method.
-                * @param options Should an error be raised if the method doesn't exist on the target object?
-                */
-                public SendMessageUpwards ($methodName: string) : void
-                /** Calls the method named methodName on every MonoBehaviour in this game object. * @param methodName The name of the method to call.
-                * @param value An optional parameter value to pass to the called method.
-                * @param options Should an error be raised if the method doesn't exist on the target object?
-                */
-                public SendMessage ($methodName: string, $value: any, $options: UnityEngine.SendMessageOptions) : void
-                /** Calls the method named methodName on every MonoBehaviour in this game object. * @param methodName The name of the method to call.
-                * @param value An optional parameter value to pass to the called method.
-                * @param options Should an error be raised if the method doesn't exist on the target object?
-                */
-                public SendMessage ($methodName: string, $value: any) : void
-                /** Calls the method named methodName on every MonoBehaviour in this game object. * @param methodName The name of the method to call.
-                * @param value An optional parameter value to pass to the called method.
-                * @param options Should an error be raised if the method doesn't exist on the target object?
-                */
-                public SendMessage ($methodName: string) : void
-                /** Calls the method named methodName on every MonoBehaviour in this game object or any of its children. */
-                public BroadcastMessage ($methodName: string, $parameter: any, $options: UnityEngine.SendMessageOptions) : void
-                /** Calls the method named methodName on every MonoBehaviour in this game object or any of its children. */
-                public BroadcastMessage ($methodName: string, $parameter: any) : void
-                /** Calls the method named methodName on every MonoBehaviour in this game object or any of its children. */
-                public BroadcastMessage ($methodName: string) : void
-                /** Finds a GameObject by name and returns it. */
-                public static Find ($name: string) : UnityEngine.GameObject
-                public constructor ($name: string)
-                public constructor ()
-                public constructor ($name: string, ...components: System.Type[])
-            }
             /** Interface into the Input system. */
             class Input extends System.Object
             {
@@ -3308,11 +3314,6 @@ declare module 'csharp' {
             {
                 protected [__keep_incompatibility]: never;
             }
-            /** A class you can derive from if you want to create objects that don't need to be attached to game objects. */
-            class ScriptableObject extends UnityEngine.Object
-            {
-                protected [__keep_incompatibility]: never;
-            }
             /** Representation of RGBA colors in 32 bit format. */
             class Color32 extends System.ValueType implements System.IFormattable
             {
@@ -3557,6 +3558,33 @@ declare module 'csharp' {
                 public constructor ($width: number, $height: number, $textureFormat: UnityEngine.TextureFormat, $mipChain: boolean)
                 public constructor ($width: number, $height: number)
                 public constructor ()
+            }
+            /** Class that represents textures in C# code. */
+            interface Texture2D {
+                /** Encodes the specified texture in TGA format. * @param tex The texture to encode.
+                */
+                EncodeToTGA () : System.Array$1<number>;
+                /** Encodes this texture into PNG format. * @param tex The texture to convert.
+                */
+                EncodeToPNG () : System.Array$1<number>;
+                /** Encodes this texture into JPG format. * @param tex Text texture to convert.
+                * @param quality JPG quality to encode with, 1..100 (default 75).
+                */
+                EncodeToJPG ($quality: number) : System.Array$1<number>;
+                /** Encodes this texture into JPG format. * @param tex Text texture to convert.
+                * @param quality JPG quality to encode with, 1..100 (default 75).
+                */
+                EncodeToJPG () : System.Array$1<number>;
+                EncodeToEXR ($flags: UnityEngine.Texture2D.EXRFlags) : System.Array$1<number>;
+                EncodeToEXR () : System.Array$1<number>;
+                /** Loads PNG/JPG (or supported format) image byte array into a texture.
+                * @param data The byte array containing the image data to load.
+                * @param markNonReadable Set to false by default, pass true to optionally mark the texture as non-readable.
+                * @param tex The texture to load the image into.
+                * @returns Returns true if the data can be loaded, false otherwise. 
+                */
+                LoadImage ($data: System.Array$1<number>, $markNonReadable: boolean) : boolean;
+                LoadImage ($data: System.Array$1<number>) : boolean;
             }
             /** Sprite packing modes for the Sprite Packer. */
             enum SpritePackingMode
@@ -5764,9 +5792,20 @@ declare module 'csharp' {
             {
                 protected [__keep_incompatibility]: never;
             }
-            class Type extends System.Reflection.MemberInfo implements System.Reflection.ICustomAttributeProvider, System.Reflection.IReflect, System.Runtime.InteropServices._MemberInfo, System.Runtime.InteropServices._Type
+            class Enum extends System.ValueType implements System.IFormattable, System.IComparable, System.IConvertible
             {
                 protected [__keep_incompatibility]: never;
+            }
+            class Tuple$2<T1, T2> extends System.Object implements System.Collections.IStructuralComparable, System.ITupleInternal, System.Collections.IStructuralEquatable, System.IComparable, System.Runtime.CompilerServices.ITuple
+            {
+                protected [__keep_incompatibility]: never;
+                public get Item1(): T1;
+                public get Item2(): T2;
+                public constructor ($item1: T1, $item2: T2)
+                public constructor ()
+            }
+            interface ITupleInternal extends System.Runtime.CompilerServices.ITuple
+            {
             }
             class Boolean extends System.ValueType implements System.IEquatable$1<boolean>, System.IComparable, System.IComparable$1<boolean>, System.IConvertible
             {
@@ -5781,6 +5820,10 @@ declare module 'csharp' {
                 protected [__keep_incompatibility]: never;
             }
             class Int64 extends System.ValueType implements System.IEquatable$1<bigint>, System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<bigint>, System.IConvertible
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            class Type extends System.Reflection.MemberInfo implements System.Reflection.ICustomAttributeProvider, System.Reflection.IReflect, System.Runtime.InteropServices._MemberInfo, System.Runtime.InteropServices._Type
             {
                 protected [__keep_incompatibility]: never;
             }
@@ -5820,18 +5863,10 @@ declare module 'csharp' {
                 public static op_Equality ($d1: Function, $d2: Function) : boolean
                 public static op_Inequality ($d1: Function, $d2: Function) : boolean
             }
-            class Tuple$2<T1, T2> extends System.Object implements System.Collections.IStructuralComparable, System.ITupleInternal, System.Collections.IStructuralEquatable, System.IComparable, System.Runtime.CompilerServices.ITuple
-            {
-                protected [__keep_incompatibility]: never;
-                public get Item1(): T1;
-                public get Item2(): T2;
-                public constructor ($item1: T1, $item2: T2)
-                public constructor ()
-            }
-            interface ITupleInternal extends System.Runtime.CompilerServices.ITuple
+            interface IDisposable
             {
             }
-            class Enum extends System.ValueType implements System.IFormattable, System.IComparable, System.IConvertible
+            class Exception extends System.Object implements System.Runtime.InteropServices._Exception, System.Runtime.Serialization.ISerializable
             {
                 protected [__keep_incompatibility]: never;
             }
@@ -5845,24 +5880,6 @@ declare module 'csharp' {
             }
             var AsyncCallback: { new (func: (ar: System.IAsyncResult) => void): AsyncCallback; }
             class IntPtr extends System.ValueType implements System.IEquatable$1<System.IntPtr>, System.Runtime.Serialization.ISerializable
-            {
-                protected [__keep_incompatibility]: never;
-            }
-            class UInt64 extends System.ValueType implements System.IEquatable$1<bigint>, System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<bigint>, System.IConvertible
-            {
-                protected [__keep_incompatibility]: never;
-            }
-            interface IDisposable
-            {
-            }
-            interface IFormatProvider
-            {
-            }
-            class Exception extends System.Object implements System.Runtime.InteropServices._Exception, System.Runtime.Serialization.ISerializable
-            {
-                protected [__keep_incompatibility]: never;
-            }
-            class Byte extends System.ValueType implements System.IEquatable$1<number>, System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<number>, System.IConvertible
             {
                 protected [__keep_incompatibility]: never;
             }
@@ -5933,6 +5950,28 @@ declare module 'csharp' {
                 public static Copy ($sourceArray: System.Array, $sourceIndex: number, $destinationArray: System.Array, $destinationIndex: number, $length: number) : void
                 public static ConstrainedCopy ($sourceArray: System.Array, $sourceIndex: number, $destinationArray: System.Array, $destinationIndex: number, $length: number) : void
                 public Initialize () : void
+            }
+            class MarshalByRefObject extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            interface IAsyncDisposable
+            {
+            }
+            class Decimal extends System.ValueType implements System.IEquatable$1<System.Decimal>, System.IFormattable, System.ISpanFormattable, System.IComparable, System.Runtime.Serialization.IDeserializationCallback, System.IComparable$1<System.Decimal>, System.IConvertible
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            class UInt64 extends System.ValueType implements System.IEquatable$1<bigint>, System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<bigint>, System.IConvertible
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            interface IFormatProvider
+            {
+            }
+            class Byte extends System.ValueType implements System.IEquatable$1<number>, System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<number>, System.IConvertible
+            {
+                protected [__keep_incompatibility]: never;
             }
             class DateTime extends System.ValueType implements System.IEquatable$1<Date>, System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<Date>, System.IConvertible, System.Runtime.Serialization.ISerializable
             {
@@ -6118,89 +6157,131 @@ declare module 'csharp' {
                 public value : Puerts.Component.PropertyValue
                 public constructor ()
             }
-            class PropertyOptions extends System.Object
+            enum PropertyValueType
+            { NONE = 1, OBJECT = 2, LIST = 4 }
+            interface ITsPropertyHolder
+            {
+                Properties : System.Collections.Generic.List$1<Puerts.Component.Property>
+            }
+            interface ITsPropertyHolder {
+                ConvertPropertiesValue () : System.Collections.Generic.List$1<System.Tuple$2<string, any>>;
+            }
+            class TsPropertyHolderExtension extends System.Object
             {
                 protected [__keep_incompatibility]: never;
-                public name : string
-                public type : System.Type
-                public constructor ()
+                public static ConvertPropertiesValue ($holder: Puerts.Component.ITsPropertyHolder) : System.Collections.Generic.List$1<System.Tuple$2<string, any>>
             }
             class BoolPropertySerializer extends Puerts.Component.PrimitivePropertySerializer$1<boolean> implements Puerts.Component.IPrimitivePropertySerializer
             {
                 protected [__keep_incompatibility]: never;
                 public get ValueTypeId(): number;
                 public get Type(): System.Type;
+                public get Priority(): number;
                 public constructor ()
                 public InternalValueToString ($value: any) : string
                 public InternalStringToValue ($str: string) : any
                 public InternalRenderEditorGUIField ($propName: string, $propValue: any) : any
+                public OptionsFilter ($propertyOptions: System.Collections.Generic.Dictionary$2<string, any>) : boolean
             }
             class PrimitivePropertySerializer$1<T> extends System.Object implements Puerts.Component.IPrimitivePropertySerializer
             {
                 protected [__keep_incompatibility]: never;
                 public get Type(): System.Type;
                 public get ValueTypeId(): number;
+                public get Priority(): number;
                 public InternalValueToString ($value: any) : string
                 public InternalStringToValue ($str: string) : any
                 public InternalRenderEditorGUIField ($propName: string, $propValue: any) : any
+                public OptionsFilter ($propertyOptions: System.Collections.Generic.Dictionary$2<string, any>) : boolean
             }
             interface IPrimitivePropertySerializer
             {
                 Type : System.Type
                 ValueTypeId : number
+                Priority : number
                 InternalValueToString ($value: any) : string
                 InternalStringToValue ($str: string) : any
                 InternalRenderEditorGUIField ($propName: string, $propValue: any) : any
+                OptionsFilter ($propertyOptions: System.Collections.Generic.Dictionary$2<string, any>) : boolean
             }
             class ColorPropertySerializer extends Puerts.Component.PrimitivePropertySerializer$1<UnityEngine.Color> implements Puerts.Component.IPrimitivePropertySerializer
             {
                 protected [__keep_incompatibility]: never;
                 public get ValueTypeId(): number;
                 public get Type(): System.Type;
+                public get Priority(): number;
                 public constructor ()
                 public InternalValueToString ($value: any) : string
                 public InternalStringToValue ($str: string) : any
                 public InternalRenderEditorGUIField ($propName: string, $propValue: any) : any
+                public OptionsFilter ($propertyOptions: System.Collections.Generic.Dictionary$2<string, any>) : boolean
             }
             class DoublePropertySerializer extends Puerts.Component.PrimitivePropertySerializer$1<number> implements Puerts.Component.IPrimitivePropertySerializer
             {
                 protected [__keep_incompatibility]: never;
                 public get ValueTypeId(): number;
                 public get Type(): System.Type;
+                public get Priority(): number;
                 public constructor ()
                 public InternalValueToString ($value: any) : string
                 public InternalStringToValue ($str: string) : any
                 public InternalRenderEditorGUIField ($propName: string, $propValue: any) : any
+                public OptionsFilter ($propertyOptions: System.Collections.Generic.Dictionary$2<string, any>) : boolean
             }
             class FloatPropertySerializer extends Puerts.Component.PrimitivePropertySerializer$1<number> implements Puerts.Component.IPrimitivePropertySerializer
             {
                 protected [__keep_incompatibility]: never;
                 public get ValueTypeId(): number;
                 public get Type(): System.Type;
+                public get Priority(): number;
                 public constructor ()
                 public InternalValueToString ($value: any) : string
                 public InternalStringToValue ($str: string) : any
                 public InternalRenderEditorGUIField ($propName: string, $propValue: any) : any
+                public OptionsFilter ($propertyOptions: System.Collections.Generic.Dictionary$2<string, any>) : boolean
             }
             class IntPropertySerializer extends Puerts.Component.PrimitivePropertySerializer$1<number> implements Puerts.Component.IPrimitivePropertySerializer
             {
                 protected [__keep_incompatibility]: never;
                 public get ValueTypeId(): number;
                 public get Type(): System.Type;
+                public get Priority(): number;
                 public constructor ()
                 public InternalValueToString ($value: any) : string
                 public InternalStringToValue ($str: string) : any
                 public InternalRenderEditorGUIField ($propName: string, $propValue: any) : any
+                public OptionsFilter ($propertyOptions: System.Collections.Generic.Dictionary$2<string, any>) : boolean
             }
             class LongPropertySerializer extends Puerts.Component.PrimitivePropertySerializer$1<bigint> implements Puerts.Component.IPrimitivePropertySerializer
             {
                 protected [__keep_incompatibility]: never;
                 public get ValueTypeId(): number;
                 public get Type(): System.Type;
+                public get Priority(): number;
                 public constructor ()
                 public InternalValueToString ($value: any) : string
                 public InternalStringToValue ($str: string) : any
                 public InternalRenderEditorGUIField ($propName: string, $propValue: any) : any
+                public OptionsFilter ($propertyOptions: System.Collections.Generic.Dictionary$2<string, any>) : boolean
+            }
+            class PasswordPropertySerializer extends Puerts.Component.StringPropertySerializer implements Puerts.Component.IPrimitivePropertySerializer
+            {
+                protected [__keep_incompatibility]: never;
+                public get ValueTypeId(): number;
+                public get Priority(): number;
+                public constructor ()
+            }
+            class StringPropertySerializer extends Puerts.Component.PrimitivePropertySerializer$1<string> implements Puerts.Component.IPrimitivePropertySerializer
+            {
+                protected [__keep_incompatibility]: never;
+                public get ValueTypeId(): number;
+                public get Type(): System.Type;
+                public get Priority(): number;
+                public constructor ()
+                public InternalValueToString ($value: any) : string
+                public InternalStringToValue ($str: string) : any
+                public InternalRenderEditorGUIField ($propName: string, $propValue: any) : any
+                public OptionsFilter ($propertyOptions: System.Collections.Generic.Dictionary$2<string, any>) : boolean
             }
             class PrimitivePropertySerializerCollector extends System.Object
             {
@@ -6213,31 +6294,35 @@ declare module 'csharp' {
                 protected [__keep_incompatibility]: never;
                 public get ValueTypeId(): number;
                 public get Type(): System.Type;
+                public get Priority(): number;
                 public constructor ()
                 public InternalValueToString ($value: any) : string
                 public InternalStringToValue ($str: string) : any
                 public InternalRenderEditorGUIField ($propName: string, $propValue: any) : any
+                public OptionsFilter ($propertyOptions: System.Collections.Generic.Dictionary$2<string, any>) : boolean
             }
             class Vector3PropertySerializer extends Puerts.Component.PrimitivePropertySerializer$1<UnityEngine.Vector3> implements Puerts.Component.IPrimitivePropertySerializer
             {
                 protected [__keep_incompatibility]: never;
                 public get ValueTypeId(): number;
                 public get Type(): System.Type;
+                public get Priority(): number;
                 public constructor ()
                 public InternalValueToString ($value: any) : string
                 public InternalStringToValue ($str: string) : any
                 public InternalRenderEditorGUIField ($propName: string, $propValue: any) : any
+                public OptionsFilter ($propertyOptions: System.Collections.Generic.Dictionary$2<string, any>) : boolean
             }
-            class TsComponent extends UnityEngine.MonoBehaviour implements Puerts.Component.ITsTransporterHolder
+            class TsAsset extends UnityEngine.ScriptableObject implements Puerts.Component.ITsTransporterHolder, Puerts.Component.ITsPropertyHolder
             {
                 protected [__keep_incompatibility]: never;
                 public properties : System.Collections.Generic.List$1<Puerts.Component.Property>
                 public tsModulePath : string
-                public hookNames : System.Collections.Generic.List$1<string>
                 public get Transporter(): Puerts.Component.TsTransporter;
-                public Init ($pTsModulePath: string) : void
+                public get Properties(): System.Collections.Generic.List$1<Puerts.Component.Property>;
                 public Init () : void
                 public constructor ()
+                public ConvertPropertiesValue () : System.Collections.Generic.List$1<System.Tuple$2<string, any>>
             }
             interface ITsTransporterHolder
             {
@@ -6253,6 +6338,19 @@ declare module 'csharp' {
                 public Clear () : void
                 public constructor ($tsModulePath: string, $args: System.Collections.Generic.List$1<System.Tuple$2<string, any>>, $jsEnvIdx?: number)
                 public constructor ()
+            }
+            class TsComponent extends UnityEngine.MonoBehaviour implements Puerts.Component.ITsTransporterHolder, Puerts.Component.ITsPropertyHolder
+            {
+                protected [__keep_incompatibility]: never;
+                public properties : System.Collections.Generic.List$1<Puerts.Component.Property>
+                public tsModulePath : string
+                public hookNames : System.Collections.Generic.List$1<string>
+                public get Transporter(): Puerts.Component.TsTransporter;
+                public get Properties(): System.Collections.Generic.List$1<Puerts.Component.Property>;
+                public Init ($pTsModulePath: string) : void
+                public Init () : void
+                public constructor ()
+                public ConvertPropertiesValue () : System.Collections.Generic.List$1<System.Tuple$2<string, any>>
             }
         }
         namespace System.Collections.Generic {
@@ -6328,12 +6426,6 @@ declare module 'csharp' {
             interface ICollection$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable
             {
             }
-            interface IComparer$1<T>
-            {
-            }
-            interface IEnumerator$1<T> extends System.Collections.IEnumerator, System.IDisposable
-            {
-            }
             class Dictionary$2<TKey, TValue> extends System.Object implements System.Collections.Generic.IReadOnlyDictionary$2<TKey, TValue>, System.Collections.Generic.IDictionary$2<TKey, TValue>, System.Collections.ICollection, System.Collections.IDictionary, System.Collections.Generic.IEnumerable$1<System.Collections.Generic.KeyValuePair$2<TKey, TValue>>, System.Runtime.Serialization.IDeserializationCallback, System.Collections.IEnumerable, System.Runtime.Serialization.ISerializable, System.Collections.Generic.IReadOnlyCollection$1<System.Collections.Generic.KeyValuePair$2<TKey, TValue>>, System.Collections.Generic.ICollection$1<System.Collections.Generic.KeyValuePair$2<TKey, TValue>>
             {
                 protected [__keep_incompatibility]: never;
@@ -6374,6 +6466,12 @@ declare module 'csharp' {
             interface IDictionary$2<TKey, TValue> extends System.Collections.Generic.IEnumerable$1<System.Collections.Generic.KeyValuePair$2<TKey, TValue>>, System.Collections.IEnumerable, System.Collections.Generic.ICollection$1<System.Collections.Generic.KeyValuePair$2<TKey, TValue>>
             {
             }
+            interface IComparer$1<T>
+            {
+            }
+            interface IEnumerator$1<T> extends System.Collections.IEnumerator, System.IDisposable
+            {
+            }
             interface IEqualityComparer$1<T>
             {
             }
@@ -6392,6 +6490,15 @@ declare module 'csharp' {
             {
             }
             interface IStructuralEquatable
+            {
+            }
+            interface IDictionary extends System.Collections.ICollection, System.Collections.IEnumerable
+            {
+            }
+            interface IDictionaryEnumerator extends System.Collections.IEnumerator
+            {
+            }
+            interface IEnumerator
             {
             }
             class Hashtable extends System.Object implements System.Collections.ICollection, System.ICloneable, System.Collections.IDictionary, System.Runtime.Serialization.IDeserializationCallback, System.Collections.IEnumerable, System.Runtime.Serialization.ISerializable
@@ -6429,15 +6536,6 @@ declare module 'csharp' {
                 public constructor ($d: System.Collections.IDictionary, $equalityComparer: System.Collections.IEqualityComparer)
                 public constructor ($d: System.Collections.IDictionary, $loadFactor: number, $equalityComparer: System.Collections.IEqualityComparer)
             }
-            interface IDictionary extends System.Collections.ICollection, System.Collections.IEnumerable
-            {
-            }
-            interface IDictionaryEnumerator extends System.Collections.IEnumerator
-            {
-            }
-            interface IEnumerator
-            {
-            }
             interface IEqualityComparer
             {
             }
@@ -6446,6 +6544,27 @@ declare module 'csharp' {
             }
             interface IComparer
             {
+            }
+        }
+        namespace System.Runtime.CompilerServices {
+            interface ITuple
+            {
+            }
+        }
+        namespace System.Runtime.Serialization {
+            interface IDeserializationCallback
+            {
+            }
+            interface ISerializable
+            {
+            }
+            class SerializationInfo extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            class StreamingContext extends System.ValueType
+            {
+                protected [__keep_incompatibility]: never;
             }
         }
         namespace System.Reflection {
@@ -6458,6 +6577,10 @@ declare module 'csharp' {
             }
             interface IReflect
             {
+            }
+            class PropertyInfo extends System.Reflection.MemberInfo implements System.Reflection.ICustomAttributeProvider, System.Runtime.InteropServices._PropertyInfo, System.Runtime.InteropServices._MemberInfo
+            {
+                protected [__keep_incompatibility]: never;
             }
             class MethodInfo extends System.Reflection.MethodBase implements System.Runtime.InteropServices._MethodInfo, System.Reflection.ICustomAttributeProvider, System.Runtime.InteropServices._MemberInfo, System.Runtime.InteropServices._MethodBase
             {
@@ -6493,30 +6616,585 @@ declare module 'csharp' {
             }
             var Hook: { new (func: (args: System.Array$1<any>) => any): Hook; }
         }
-        namespace System.Runtime.Serialization {
-            interface ISerializable
+        namespace PuertsStaticWrap {
+            class AutoStaticCodeRegister extends System.Object
             {
+                protected [__keep_incompatibility]: never;
+                public static Register ($jsEnv: Puerts.JsEnv) : void
             }
-            interface IDeserializationCallback
+            class Puerts_Component_TsComponent_Wrap extends System.Object
             {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
             }
-            class SerializationInfo extends System.Object
+            class Puerts_Component_TsTransporter_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class System_Array_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class System_Collections_Generic_Dictionary_2_System_String_System_String__Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class System_Collections_Generic_List_1_System_String__Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class System_Delegate_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class System_Object_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_AnimatorStateInfo_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_Animator_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_Application_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_Behaviour_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_BoxCollider_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_Canvas_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_Collider_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_Component_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_Debug_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_EventSystems_UIBehaviour_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_Events_UnityEvent_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_GameObject_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_MonoBehaviour_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_Networking_DownloadHandlerBuffer_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_Networking_DownloadHandlerTexture_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_Networking_DownloadHandler_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_Networking_UnityWebRequestAsyncOperation_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_Networking_UnityWebRequestTexture_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_Networking_UnityWebRequest_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_Networking_UploadHandlerRaw_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_Object_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_ParticleSystem_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_PlayerPrefs_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_Quaternion_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+                public static InitBlittableCopy ($jsEnv: Puerts.JsEnv) : void
+            }
+            class UnityEngine_RectTransform_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_Resources_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_SpriteRenderer_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_Time_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_Transform_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_UI_Button_ButtonClickedEvent_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_UI_Button_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_UI_Image_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_UI_InputField_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_UI_Selectable_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_UI_Text_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_UI_Toggle_ToggleEvent_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_UI_Toggle_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+            class UnityEngine_Vector2_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+                public static InitBlittableCopy ($jsEnv: Puerts.JsEnv) : void
+            }
+            class UnityEngine_Vector3_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+                public static InitBlittableCopy ($jsEnv: Puerts.JsEnv) : void
+            }
+            class UnityEngine_WWWForm_Wrap extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
+            }
+        }
+        namespace Puerts {
+            class JsEnv extends System.Object implements System.IDisposable
             {
                 protected [__keep_incompatibility]: never;
             }
-            class StreamingContext extends System.ValueType
+            class TypeRegisterInfo extends System.Object
             {
                 protected [__keep_incompatibility]: never;
             }
         }
-        namespace System.Runtime.CompilerServices {
-            interface ITuple
+        namespace LitJson {
+            enum JsonType
+            { None = 0, Object = 1, Array = 2, String = 3, Int = 4, Long = 5, Double = 6, Boolean = 7 }
+            interface IOrderedDictionary extends System.Collections.ICollection, System.Collections.IDictionary, System.Collections.IEnumerable
             {
+                GetEnumerator () : System.Collections.IDictionaryEnumerator
+                Insert ($index: number, $key: any, $value: any) : void
+                RemoveAt ($index: number) : void
+                get_Item ($index: number) : any
+                set_Item ($index: number, $value: any) : void
+            }
+            interface IJsonWrapper extends System.Collections.ICollection, System.Collections.IDictionary, LitJson.IOrderedDictionary, System.Collections.IEnumerable, System.Collections.IList
+            {
+                IsArray : boolean
+                IsBoolean : boolean
+                IsDouble : boolean
+                IsInt : boolean
+                IsLong : boolean
+                IsObject : boolean
+                IsString : boolean
+                GetBoolean () : boolean
+                GetDouble () : number
+                GetInt () : number
+                GetJsonType () : LitJson.JsonType
+                GetLong () : bigint
+                GetString () : string
+                SetBoolean ($val: boolean) : void
+                SetDouble ($val: number) : void
+                SetInt ($val: number) : void
+                SetJsonType ($type: LitJson.JsonType) : void
+                SetLong ($val: bigint) : void
+                SetString ($val: string) : void
+                ToJson () : string
+                ToJson ($writer: LitJson.JsonWriter) : void
+                GetEnumerator () : System.Collections.IDictionaryEnumerator
+                Insert ($index: number, $key: any, $value: any) : void
+                RemoveAt ($index: number) : void
+                get_Item ($index: number) : any
+                set_Item ($index: number, $value: any) : void
+            }
+            class JsonWriter extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public get IndentValue(): number;
+                public set IndentValue(value: number);
+                public get PrettyPrint(): boolean;
+                public set PrettyPrint(value: boolean);
+                public get TextWriter(): System.IO.TextWriter;
+                public get Validate(): boolean;
+                public set Validate(value: boolean);
+                public get LowerCaseProperties(): boolean;
+                public set LowerCaseProperties(value: boolean);
+                public Reset () : void
+                public Write ($boolean: boolean) : void
+                public Write ($number: System.Decimal) : void
+                public Write ($number: number) : void
+                public Write ($number: bigint) : void
+                public Write ($str: string) : void
+                public WriteArrayEnd () : void
+                public WriteArrayStart () : void
+                public WriteObjectEnd () : void
+                public WriteObjectStart () : void
+                public WritePropertyName ($property_name: string) : void
+                public constructor ()
+                public constructor ($sb: System.Text.StringBuilder)
+                public constructor ($writer: System.IO.TextWriter)
+            }
+            class JsonData extends System.Object implements System.IEquatable$1<LitJson.JsonData>, System.Collections.ICollection, System.Collections.IDictionary, LitJson.IOrderedDictionary, System.Collections.IEnumerable, LitJson.IJsonWrapper, System.Collections.IList
+            {
+                protected [__keep_incompatibility]: never;
+                public get Count(): number;
+                public get IsArray(): boolean;
+                public get IsBoolean(): boolean;
+                public get IsDouble(): boolean;
+                public get IsInt(): boolean;
+                public get IsLong(): boolean;
+                public get IsObject(): boolean;
+                public get IsString(): boolean;
+                public get Keys(): System.Collections.Generic.ICollection$1<string>;
+                public ContainsKey ($key: string) : boolean
+                public get_Item ($prop_name: string) : LitJson.JsonData
+                public set_Item ($prop_name: string, $value: LitJson.JsonData) : void
+                public get_Item ($index: number) : LitJson.JsonData
+                public set_Item ($index: number, $value: LitJson.JsonData) : void
+                public static op_Implicit ($data: boolean) : LitJson.JsonData
+                public static op_Implicit ($data: number) : LitJson.JsonData
+                public static op_Implicit ($data: bigint) : LitJson.JsonData
+                public static op_Implicit ($data: string) : LitJson.JsonData
+                public static op_Explicit ($data: LitJson.JsonData) : boolean
+                public static op_Explicit ($data: LitJson.JsonData) : number
+                public static op_Explicit ($data: LitJson.JsonData) : bigint
+                public static op_Explicit ($data: LitJson.JsonData) : string
+                public Add ($value: any) : number
+                public Remove ($obj: any) : boolean
+                public Clear () : void
+                public Equals ($x: LitJson.JsonData) : boolean
+                public GetJsonType () : LitJson.JsonType
+                public SetJsonType ($type: LitJson.JsonType) : void
+                public ToJson () : string
+                public ToJson ($writer: LitJson.JsonWriter) : void
+                public constructor ()
+                public constructor ($boolean: boolean)
+                public constructor ($number: number)
+                public constructor ($number: bigint)
+                public constructor ($obj: any)
+                public constructor ($str: string)
+                public GetEnumerator () : System.Collections.IDictionaryEnumerator
+                public Insert ($index: number, $key: any, $value: any) : void
+                public RemoveAt ($index: number) : void
+                public get_Item ($index: number) : any
+                public set_Item ($index: number, $value: any) : void
+                public GetBoolean () : boolean
+                public GetDouble () : number
+                public GetInt () : number
+                public GetLong () : bigint
+                public GetString () : string
+                public SetBoolean ($val: boolean) : void
+                public SetDouble ($val: number) : void
+                public SetInt ($val: number) : void
+                public SetLong ($val: bigint) : void
+                public SetString ($val: string) : void
+                public Equals ($obj: any) : boolean
+                public static Equals ($objA: any, $objB: any) : boolean
+            }
+            class JsonException extends System.Exception implements System.Runtime.InteropServices._Exception, System.Runtime.Serialization.ISerializable
+            {
+                protected [__keep_incompatibility]: never;
+                public constructor ()
+                public constructor ($message: string)
+                public constructor ($message: string, $inner_exception: System.Exception)
+            }
+            interface WrapperFactory
+            { 
+            () : LitJson.IJsonWrapper; 
+            Invoke?: () => LitJson.IJsonWrapper;
+            }
+            var WrapperFactory: { new (func: () => LitJson.IJsonWrapper): WrapperFactory; }
+            class JsonMapper extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetPublicInstanceProperties ($type: System.Type) : System.Array$1<System.Reflection.PropertyInfo>
+                public static ToJson ($obj: any) : string
+                public static ToJson ($obj: any, $writer: LitJson.JsonWriter) : void
+                public static ToObject ($reader: LitJson.JsonReader) : LitJson.JsonData
+                public static ToObject ($reader: System.IO.TextReader) : LitJson.JsonData
+                public static ToObject ($json: string) : LitJson.JsonData
+                public static ToObject ($toType: System.Type, $json: string) : any
+                public static ToWrapper ($factory: LitJson.WrapperFactory, $reader: LitJson.JsonReader) : LitJson.IJsonWrapper
+                public static ToWrapper ($factory: LitJson.WrapperFactory, $json: string) : LitJson.IJsonWrapper
+                public static UnregisterExporters () : void
+                public static UnregisterImporters () : void
+                public constructor ()
+            }
+            class JsonReader extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public get AllowComments(): boolean;
+                public set AllowComments(value: boolean);
+                public get AllowSingleQuotedStrings(): boolean;
+                public set AllowSingleQuotedStrings(value: boolean);
+                public get SkipNonMembers(): boolean;
+                public set SkipNonMembers(value: boolean);
+                public get EndOfInput(): boolean;
+                public get EndOfJson(): boolean;
+                public get Token(): LitJson.JsonToken;
+                public get Value(): any;
+                public Close () : void
+                public Read () : boolean
+                public constructor ($json_text: string)
+                public constructor ($reader: System.IO.TextReader)
+                public constructor ()
+            }
+            interface ExporterFunc$1<T>
+            { 
+            (obj: T, writer: LitJson.JsonWriter) : void; 
+            Invoke?: (obj: T, writer: LitJson.JsonWriter) => void;
+            }
+            interface ImporterFunc$2<TJson, TValue>
+            { 
+            (input: TJson) : TValue; 
+            Invoke?: (input: TJson) => TValue;
+            }
+            class JsonMockWrapper extends System.Object implements System.Collections.ICollection, System.Collections.IDictionary, LitJson.IOrderedDictionary, System.Collections.IEnumerable, LitJson.IJsonWrapper, System.Collections.IList
+            {
+                protected [__keep_incompatibility]: never;
+                public get IsArray(): boolean;
+                public get IsBoolean(): boolean;
+                public get IsDouble(): boolean;
+                public get IsInt(): boolean;
+                public get IsLong(): boolean;
+                public get IsObject(): boolean;
+                public get IsString(): boolean;
+                public GetBoolean () : boolean
+                public GetDouble () : number
+                public GetInt () : number
+                public GetJsonType () : LitJson.JsonType
+                public GetLong () : bigint
+                public GetString () : string
+                public SetBoolean ($val: boolean) : void
+                public SetDouble ($val: number) : void
+                public SetInt ($val: number) : void
+                public SetJsonType ($type: LitJson.JsonType) : void
+                public SetLong ($val: bigint) : void
+                public SetString ($val: string) : void
+                public ToJson () : string
+                public ToJson ($writer: LitJson.JsonWriter) : void
+                public constructor ()
+                public GetEnumerator () : System.Collections.IDictionaryEnumerator
+                public Insert ($index: number, $key: any, $value: any) : void
+                public RemoveAt ($index: number) : void
+                public get_Item ($index: number) : any
+                public set_Item ($index: number, $value: any) : void
+            }
+            enum JsonToken
+            { None = 0, ObjectStart = 1, PropertyName = 2, ObjectEnd = 3, ArrayStart = 4, ArrayEnd = 5, Int = 6, Long = 7, Double = 8, String = 9, Boolean = 10, Null = 11 }
+        }
+        namespace System.IO {
+            class TextReader extends System.MarshalByRefObject implements System.IDisposable
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            class TextWriter extends System.MarshalByRefObject implements System.IAsyncDisposable, System.IDisposable
+            {
+                protected [__keep_incompatibility]: never;
             }
         }
-        namespace Puerts.Component.TsComponent {
-            enum PropertyValueType
-            { NONE = 1, OBJECT = 2, STRING = 3, LIST = 4 }
+        namespace System.Text {
+            class StringBuilder extends System.Object implements System.Runtime.Serialization.ISerializable
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            class UTF8Encoding extends System.Text.Encoding implements System.ICloneable
+            {
+                protected [__keep_incompatibility]: never;
+                public constructor ()
+                public constructor ($encoderShouldEmitUTF8Identifier: boolean)
+                public constructor ($encoderShouldEmitUTF8Identifier: boolean, $throwOnInvalidBytes: boolean)
+            }
+            class Encoding extends System.Object implements System.ICloneable
+            {
+                protected [__keep_incompatibility]: never;
+                public get BodyName(): string;
+                public get EncodingName(): string;
+                public get HeaderName(): string;
+                public get WebName(): string;
+                public get WindowsCodePage(): number;
+                public get IsBrowserDisplay(): boolean;
+                public get IsBrowserSave(): boolean;
+                public get IsMailNewsDisplay(): boolean;
+                public get IsMailNewsSave(): boolean;
+                public get IsSingleByte(): boolean;
+                public get EncoderFallback(): System.Text.EncoderFallback;
+                public set EncoderFallback(value: System.Text.EncoderFallback);
+                public get DecoderFallback(): System.Text.DecoderFallback;
+                public set DecoderFallback(value: System.Text.DecoderFallback);
+                public get IsReadOnly(): boolean;
+                public static get ASCII(): System.Text.Encoding;
+                public get CodePage(): number;
+                public static get Default(): System.Text.Encoding;
+                public static get Unicode(): System.Text.Encoding;
+                public static get BigEndianUnicode(): System.Text.Encoding;
+                public static get UTF7(): System.Text.Encoding;
+                public static get UTF8(): System.Text.Encoding;
+                public static get UTF32(): System.Text.Encoding;
+                public static Convert ($srcEncoding: System.Text.Encoding, $dstEncoding: System.Text.Encoding, $bytes: System.Array$1<number>) : System.Array$1<number>
+                public static Convert ($srcEncoding: System.Text.Encoding, $dstEncoding: System.Text.Encoding, $bytes: System.Array$1<number>, $index: number, $count: number) : System.Array$1<number>
+                public static RegisterProvider ($provider: System.Text.EncodingProvider) : void
+                public static GetEncoding ($codepage: number) : System.Text.Encoding
+                public static GetEncoding ($codepage: number, $encoderFallback: System.Text.EncoderFallback, $decoderFallback: System.Text.DecoderFallback) : System.Text.Encoding
+                public static GetEncoding ($name: string) : System.Text.Encoding
+                public static GetEncoding ($name: string, $encoderFallback: System.Text.EncoderFallback, $decoderFallback: System.Text.DecoderFallback) : System.Text.Encoding
+                public static GetEncodings () : System.Array$1<System.Text.EncodingInfo>
+                public GetPreamble () : System.Array$1<number>
+                public Clone () : any
+                public GetByteCount ($chars: System.Array$1<number>) : number
+                public GetByteCount ($s: string) : number
+                public GetByteCount ($chars: System.Array$1<number>, $index: number, $count: number) : number
+                public GetByteCount ($str: string, $index: number, $count: number) : number
+                public GetBytes ($chars: System.Array$1<number>) : System.Array$1<number>
+                public GetBytes ($chars: System.Array$1<number>, $index: number, $count: number) : System.Array$1<number>
+                public GetBytes ($chars: System.Array$1<number>, $charIndex: number, $charCount: number, $bytes: System.Array$1<number>, $byteIndex: number) : number
+                public GetBytes ($s: string) : System.Array$1<number>
+                public GetBytes ($s: string, $charIndex: number, $charCount: number, $bytes: System.Array$1<number>, $byteIndex: number) : number
+                public GetCharCount ($bytes: System.Array$1<number>) : number
+                public GetCharCount ($bytes: System.Array$1<number>, $index: number, $count: number) : number
+                public GetChars ($bytes: System.Array$1<number>) : System.Array$1<number>
+                public GetChars ($bytes: System.Array$1<number>, $index: number, $count: number) : System.Array$1<number>
+                public GetChars ($bytes: System.Array$1<number>, $byteIndex: number, $byteCount: number, $chars: System.Array$1<number>, $charIndex: number) : number
+                public IsAlwaysNormalized () : boolean
+                public IsAlwaysNormalized ($form: System.Text.NormalizationForm) : boolean
+                public GetDecoder () : System.Text.Decoder
+                public GetEncoder () : System.Text.Encoder
+                public GetMaxByteCount ($charCount: number) : number
+                public GetMaxCharCount ($byteCount: number) : number
+                public GetString ($bytes: System.Array$1<number>) : string
+                public GetString ($bytes: System.Array$1<number>, $index: number, $count: number) : string
+                public GetBytes ($s: string, $index: number, $count: number) : System.Array$1<number>
+            }
+            class Decoder extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            class Encoder extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            class EncodingProvider extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            class EncoderFallback extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            class DecoderFallback extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            class EncodingInfo extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            enum NormalizationForm
+            { FormC = 1, FormD = 2, FormKC = 5, FormKD = 6 }
         }
         namespace UnityEngine.Camera {
             interface CameraCallback
@@ -7498,105 +8176,6 @@ declare module 'csharp' {
             { DontRender = 0, Render = 255 }
             enum VertexSortingOrder
             { Normal = 0, Reverse = 1 }
-        }
-        namespace System.Text {
-            class StringBuilder extends System.Object implements System.Runtime.Serialization.ISerializable
-            {
-                protected [__keep_incompatibility]: never;
-            }
-            class UTF8Encoding extends System.Text.Encoding implements System.ICloneable
-            {
-                protected [__keep_incompatibility]: never;
-                public constructor ()
-                public constructor ($encoderShouldEmitUTF8Identifier: boolean)
-                public constructor ($encoderShouldEmitUTF8Identifier: boolean, $throwOnInvalidBytes: boolean)
-            }
-            class Encoding extends System.Object implements System.ICloneable
-            {
-                protected [__keep_incompatibility]: never;
-                public get BodyName(): string;
-                public get EncodingName(): string;
-                public get HeaderName(): string;
-                public get WebName(): string;
-                public get WindowsCodePage(): number;
-                public get IsBrowserDisplay(): boolean;
-                public get IsBrowserSave(): boolean;
-                public get IsMailNewsDisplay(): boolean;
-                public get IsMailNewsSave(): boolean;
-                public get IsSingleByte(): boolean;
-                public get EncoderFallback(): System.Text.EncoderFallback;
-                public set EncoderFallback(value: System.Text.EncoderFallback);
-                public get DecoderFallback(): System.Text.DecoderFallback;
-                public set DecoderFallback(value: System.Text.DecoderFallback);
-                public get IsReadOnly(): boolean;
-                public static get ASCII(): System.Text.Encoding;
-                public get CodePage(): number;
-                public static get Default(): System.Text.Encoding;
-                public static get Unicode(): System.Text.Encoding;
-                public static get BigEndianUnicode(): System.Text.Encoding;
-                public static get UTF7(): System.Text.Encoding;
-                public static get UTF8(): System.Text.Encoding;
-                public static get UTF32(): System.Text.Encoding;
-                public static Convert ($srcEncoding: System.Text.Encoding, $dstEncoding: System.Text.Encoding, $bytes: System.Array$1<number>) : System.Array$1<number>
-                public static Convert ($srcEncoding: System.Text.Encoding, $dstEncoding: System.Text.Encoding, $bytes: System.Array$1<number>, $index: number, $count: number) : System.Array$1<number>
-                public static RegisterProvider ($provider: System.Text.EncodingProvider) : void
-                public static GetEncoding ($codepage: number) : System.Text.Encoding
-                public static GetEncoding ($codepage: number, $encoderFallback: System.Text.EncoderFallback, $decoderFallback: System.Text.DecoderFallback) : System.Text.Encoding
-                public static GetEncoding ($name: string) : System.Text.Encoding
-                public static GetEncoding ($name: string, $encoderFallback: System.Text.EncoderFallback, $decoderFallback: System.Text.DecoderFallback) : System.Text.Encoding
-                public static GetEncodings () : System.Array$1<System.Text.EncodingInfo>
-                public GetPreamble () : System.Array$1<number>
-                public Clone () : any
-                public GetByteCount ($chars: System.Array$1<number>) : number
-                public GetByteCount ($s: string) : number
-                public GetByteCount ($chars: System.Array$1<number>, $index: number, $count: number) : number
-                public GetByteCount ($str: string, $index: number, $count: number) : number
-                public GetBytes ($chars: System.Array$1<number>) : System.Array$1<number>
-                public GetBytes ($chars: System.Array$1<number>, $index: number, $count: number) : System.Array$1<number>
-                public GetBytes ($chars: System.Array$1<number>, $charIndex: number, $charCount: number, $bytes: System.Array$1<number>, $byteIndex: number) : number
-                public GetBytes ($s: string) : System.Array$1<number>
-                public GetBytes ($s: string, $charIndex: number, $charCount: number, $bytes: System.Array$1<number>, $byteIndex: number) : number
-                public GetCharCount ($bytes: System.Array$1<number>) : number
-                public GetCharCount ($bytes: System.Array$1<number>, $index: number, $count: number) : number
-                public GetChars ($bytes: System.Array$1<number>) : System.Array$1<number>
-                public GetChars ($bytes: System.Array$1<number>, $index: number, $count: number) : System.Array$1<number>
-                public GetChars ($bytes: System.Array$1<number>, $byteIndex: number, $byteCount: number, $chars: System.Array$1<number>, $charIndex: number) : number
-                public IsAlwaysNormalized () : boolean
-                public IsAlwaysNormalized ($form: System.Text.NormalizationForm) : boolean
-                public GetDecoder () : System.Text.Decoder
-                public GetEncoder () : System.Text.Encoder
-                public GetMaxByteCount ($charCount: number) : number
-                public GetMaxCharCount ($byteCount: number) : number
-                public GetString ($bytes: System.Array$1<number>) : string
-                public GetString ($bytes: System.Array$1<number>, $index: number, $count: number) : string
-                public GetBytes ($s: string, $index: number, $count: number) : System.Array$1<number>
-            }
-            class Decoder extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-            }
-            class Encoder extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-            }
-            class EncodingProvider extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-            }
-            class EncoderFallback extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-            }
-            class DecoderFallback extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-            }
-            class EncodingInfo extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-            }
-            enum NormalizationForm
-            { FormC = 1, FormD = 2, FormKC = 5, FormKD = 6 }
         }
         namespace UnityEngine.Experimental.Rendering {
             /** Use this format to create either Textures or RenderTextures from scripts. */

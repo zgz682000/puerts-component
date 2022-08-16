@@ -7,6 +7,8 @@ public class DemoEntry : MonoBehaviour
 {
 
     private JsEnv _jsEnv;
+    
+    public GameObject testPrefab;
 
     // Start is called before the first frame update
     void Start()

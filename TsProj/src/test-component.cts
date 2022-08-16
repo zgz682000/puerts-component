@@ -3,6 +3,7 @@ import {Component} from "./puerts-component/component.cjs";
 import { ListProperty, Property } from "./puerts-component/property.deco.cjs";
 import { Puerts, System, UnityEngine } from "csharp";
 import TestComponent2 from "./test-component2.cjs";
+import TestAsset from "./test-asset.cjs";
 
 @Transporter()
 export default class TestComponent extends Component {
@@ -26,6 +27,10 @@ export default class TestComponent extends Component {
     test7Prop: TestComponent2;
 
 
+    @Property(Puerts.Component.TsAsset)
+    test8Prop: TestAsset;
+
+
     Start(){
         console.log("TestComponent Start");
         console.log(this.gameObject);
@@ -35,5 +40,6 @@ export default class TestComponent extends Component {
         console.log(this.test6Prop);
         console.log(this.test7Prop.testNumber);
         console.log(this.test7Prop.testPassword);
+        console.log(this.test8Prop.testProp1);
     }
 }
