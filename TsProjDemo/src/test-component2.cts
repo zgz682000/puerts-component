@@ -1,7 +1,7 @@
 import { System } from "csharp";
-import { Component } from "./puerts-component/component.cjs";
-import { Property } from "./puerts-component/property.deco.cjs";
-import { Transporter } from "./puerts-component/transporter.deco.cjs";
+import { Component } from "puerts-component/component.cjs";
+import { Property } from "puerts-component/property.deco.cjs";
+import { Transporter } from "puerts-component/transporter.deco.cjs";
 
 
 @Transporter()

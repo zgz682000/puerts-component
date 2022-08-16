@@ -8,11 +8,14 @@ using UnityEditor;
 namespace Puerts.Component {
 
     public class TsEditorBase : UnityEditor.Editor {
+        
+        public static ILoader JsEnvLoader;
+        
         private static int _editorJsEnvIdx = -1;
         protected static JsEnv EditorJsEnv {
             get {
                 if (_editorJsEnvIdx == -1){
-                    var jsEnv = new JsEnv();
+                    var jsEnv = new JsEnv(JsEnvLoader == null ? new DefaultLoader() : JsEnvLoader);
                     _editorJsEnvIdx = jsEnv.Index;
                     return jsEnv;
                 }

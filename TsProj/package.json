@@ -1,13 +1,10 @@
 {
     "name": "ts-proj",
     "scripts": {
-        "dev": "tsc --watch",
-        "build": "tsc",
-        "build-depends": "webpack -c build-depends.js"
+        "build": "tsc"
     },
     "devDependencies": {
-        "source-map-support": "^0.5.21",
-        "typescript": "^4.4.4",
-        "webpack-cli": "^4.10.0"
+        "@types/node": "^18.7.5",
+        "typescript": "^4.4.4"
     }
 }

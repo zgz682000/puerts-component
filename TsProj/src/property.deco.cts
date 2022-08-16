@@ -7,7 +7,18 @@ export interface PropertyOptions {
     [key: string]: any;
 }
 
-export function ListProperty(type: typeof System.Object, dimension: number = 1, options?: PropertyOptions){
+type PropertyType = typeof UnityEngine.Object 
+    | typeof UnityEngine.Color 
+    | typeof UnityEngine.Vector2 
+    | typeof UnityEngine.Vector3 
+    | typeof System.Int32 
+    | typeof System.String 
+    | typeof System.Boolean 
+    | typeof System.Double 
+    | typeof System.Single 
+    | typeof System.Int64 
+
+export function ListProperty(type: PropertyType | typeof System.Object, dimension: number = 1, options?: PropertyOptions){
     return !UnityEngine.Application.isEditor ? 
     (target: any, propertyKey: string)=>{
         let name = options && options.name ? options.name : propertyKey;
@@ -34,7 +45,7 @@ export function ListProperty(type: typeof System.Object, dimension: number = 1, 
     }
 }
 
-export function Property(type: typeof System.Object, options?: PropertyOptions){
+export function Property(type: PropertyType | typeof System.Object, options?: PropertyOptions){
     return !UnityEngine.Application.isEditor ? 
     (target: any, propertyKey: string)=>{
         let name = options && options.name ? options.name : propertyKey;

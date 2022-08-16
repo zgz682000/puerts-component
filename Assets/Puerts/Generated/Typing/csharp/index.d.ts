@@ -6578,7 +6578,7 @@ declare module 'csharp' {
             interface IReflect
             {
             }
-            class PropertyInfo extends System.Reflection.MemberInfo implements System.Reflection.ICustomAttributeProvider, System.Runtime.InteropServices._PropertyInfo, System.Runtime.InteropServices._MemberInfo
+            class PropertyInfo extends System.Reflection.MemberInfo implements System.Reflection.ICustomAttributeProvider, System.Runtime.InteropServices._MemberInfo
             {
                 protected [__keep_incompatibility]: never;
             }

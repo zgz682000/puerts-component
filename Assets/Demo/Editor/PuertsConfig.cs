@@ -75,9 +75,6 @@ public class PuertsConfig
                 typeof(BoxCollider),
                 typeof(Collider),
                 typeof(AnimatorStateInfo),
-
-                typeof(Puerts.Component.TsTransporter),
-                typeof(Puerts.Component.TsComponent)
             };
         }
     }

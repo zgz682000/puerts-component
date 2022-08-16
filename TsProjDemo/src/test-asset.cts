@@ -1,6 +1,6 @@
 import { System, UnityEngine } from "csharp";
-import { Property } from "./puerts-component/property.deco.cjs";
-import { Transporter } from "./puerts-component/transporter.deco.cjs";
+import { Property } from "puerts-component/property.deco.cjs";
+import { Transporter } from "puerts-component/transporter.deco.cjs";
 
 
 @Transporter()

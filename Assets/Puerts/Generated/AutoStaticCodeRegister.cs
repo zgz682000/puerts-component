@@ -141,12 +141,6 @@ namespace PuertsStaticWrap
             jsEnv.AddLazyStaticWrapLoader(typeof(UnityEngine.AnimatorStateInfo), UnityEngine_AnimatorStateInfo_Wrap.GetRegisterInfo);
                 
                 
-            jsEnv.AddLazyStaticWrapLoader(typeof(Puerts.Component.TsTransporter), Puerts_Component_TsTransporter_Wrap.GetRegisterInfo);
-                
-                
-            jsEnv.AddLazyStaticWrapLoader(typeof(Puerts.Component.TsComponent), Puerts_Component_TsComponent_Wrap.GetRegisterInfo);
-                
-                
         }
     }
 }
