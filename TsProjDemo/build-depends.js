@@ -13,7 +13,7 @@ module.exports = {
     },
     output: {
         filename: '[name]',
-        path: path.resolve(__dirname, '../Assets/Resources/'),
+        path: path.resolve(__dirname, '../Assets/Demo/Resources/'),
         libraryTarget: "commonjs"
     },
     devtool: 'source-map',
