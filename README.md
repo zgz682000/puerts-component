@@ -47,13 +47,13 @@
     * 同时确保运行时 `JsEnv.ILoader` 可以通过 `Resources.Load` 加载 `puerts-component/`开头的文件
 
 * 使用注意
-    * 被 `@Transport()` 装饰器修饰的类必须是其所在文件的默认导出类 `export default class`
-    * 被 `@ListProperty()` 装饰器的第二个参数表示列表的维度，默认为1，表示一维数组
-    * demo中和插件中使用cts和cjs作为ts和js文件的后缀单纯是为了方便，因为Resources.Load无法加载js后缀的文件
-    * 每次修改完ts组件的属性，需要点击Inspector面板上的Reload按钮才能刷新
+    * 被 `@Transporter()` 装饰器修饰的类必须是其所在文件的默认导出类 `export default class`
+    * `@ListProperty()` 装饰器的第二个参数表示列表的维度，默认为1，表示一维数组
+    * demo中和插件中使用cts和cjs作为后缀单纯是为了方便，因为Resources.Load无法加载js后缀的文件
+    * 每次修改完ts组件中的属性（例如增加属性，修改属性名，修改属性装饰器类型等行为）后，需要点击Inspector面板上的Reload按钮才能刷新出对应的变化
 
 * 已知缺陷
-    * 报警告 `Serialization depth limit 10 exceeded at ...` 意思是序列化组件时出现了递归。这是因为属性中使用了嵌套结构来表示数组。但从实际序列化出来的yml格式的文本来看并没有出现递归。所以暂时没有去解决，也没想出什么办法能代替目前的嵌套结构。
+    * 报警告 `Serialization depth limit 10 exceeded at ...` 意思是序列化组件时出现了递归。这是因为属性中使用了嵌套结构来表示数组。但从实际序列化出来的yml格式的文本来看并没有因此影响序列化结果的大小。所以暂时没有去解决，也没想出什么办法能代替目前的嵌套结构。
     * 需要确保TsComponent和TsAsset所在的物体都在JsEnv创建之后才被加载。
     * 如果项目中存在多个JsEnv同时运行的情况，则TsComponent和TsAsset需要一定的修改才能支持。另外由于挂TsAsset的资源文件在整个运行时生命周期中`OnEnable`只在此资源被首次加载时执行一次，需要额外的处理才能使该资源文件被后创建的JsEnv引用到。
 
