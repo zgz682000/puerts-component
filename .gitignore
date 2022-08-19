@@ -17,3 +17,4 @@ Assets/Resources/**/*.cjs
 Assets/Resources/**/*.cjs.meta
 Assets/Resources/**/*.cjs.map
 Assets/Resources/**/*.cjs.map.meta
+node_modules

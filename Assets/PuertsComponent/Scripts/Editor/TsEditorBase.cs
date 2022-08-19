@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using LitJson;
 using UnityEditor;
 
 namespace Puerts.Component {
@@ -32,7 +31,7 @@ namespace Puerts.Component {
         }
 
 
-        protected class Property {
+        public class Property {
             public string name;
             public Type type;
             public Dictionary<string, object> options;
@@ -41,26 +40,8 @@ namespace Puerts.Component {
         protected static List<Property> PickProperties(string tsModulePath){
             try
             {
-                var propertiesPickFunc = EditorJsEnv.ExecuteModule<Func<string, Dictionary<string, Tuple<Type, string>>>>("puerts-component/properties-pick", "default");
-                var propertiesDict = propertiesPickFunc(tsModulePath);
-                var ret = new List<Property>();
-                foreach(var pair in propertiesDict){
-                    Property property = new Property();
-                    if (pair.Value.Item2 != null){
-                        property.options = JsonMapper.ToObject<Dictionary<string, object>>(pair.Value.Item2);
-                        if (property.options.ContainsKey("name")){
-                            property.name = (string)property.options["name"];
-                            property.options.Remove("name");
-                        }else{
-                            property.name = pair.Key;
-                        }
-                    }else{
-                        property.name = pair.Key;
-                    }
-                    property.type = pair.Value.Item1;
-                    ret.Add(property);
-                }
-                return ret;
+                var propertiesPickFunc = EditorJsEnv.ExecuteModule<Func<string, List<Property>>>("puerts-component/properties-pick", "default");
+                return propertiesPickFunc(tsModulePath);
             }
             catch (Exception e){
                 Debug.LogException(e);
