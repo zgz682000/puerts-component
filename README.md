@@ -33,7 +33,6 @@
 * 如何将插件集成到自己项目中
     * 首先确保项目中已经集成了[puerts框架](https://github.com/Tencent/puerts)
     * 将 `Assets/PuertsComponent` 文件夹放入项目任意位置
-    * 此插件依赖LitJson，如果项目中没有LitJson插件，则将`Assets/LitJson` 文件夹放入项目任意位置
     * 在项目的tsconfig.json中加入如下配置，其中的PATH/TO替换为PuertsComponent所在的文件夹相对与tsconfig.json的路径
         ```
         "paths": {
