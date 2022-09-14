@@ -3559,33 +3559,6 @@ declare module 'csharp' {
                 public constructor ($width: number, $height: number)
                 public constructor ()
             }
-            /** Class that represents textures in C# code. */
-            interface Texture2D {
-                /** Encodes the specified texture in TGA format. * @param tex The texture to encode.
-                */
-                EncodeToTGA () : System.Array$1<number>;
-                /** Encodes this texture into PNG format. * @param tex The texture to convert.
-                */
-                EncodeToPNG () : System.Array$1<number>;
-                /** Encodes this texture into JPG format. * @param tex Text texture to convert.
-                * @param quality JPG quality to encode with, 1..100 (default 75).
-                */
-                EncodeToJPG ($quality: number) : System.Array$1<number>;
-                /** Encodes this texture into JPG format. * @param tex Text texture to convert.
-                * @param quality JPG quality to encode with, 1..100 (default 75).
-                */
-                EncodeToJPG () : System.Array$1<number>;
-                EncodeToEXR ($flags: UnityEngine.Texture2D.EXRFlags) : System.Array$1<number>;
-                EncodeToEXR () : System.Array$1<number>;
-                /** Loads PNG/JPG (or supported format) image byte array into a texture.
-                * @param data The byte array containing the image data to load.
-                * @param markNonReadable Set to false by default, pass true to optionally mark the texture as non-readable.
-                * @param tex The texture to load the image into.
-                * @returns Returns true if the data can be loaded, false otherwise. 
-                */
-                LoadImage ($data: System.Array$1<number>, $markNonReadable: boolean) : boolean;
-                LoadImage ($data: System.Array$1<number>) : boolean;
-            }
             /** Sprite packing modes for the Sprite Packer. */
             enum SpritePackingMode
             { Tight = 0, Rectangle = 1 }
@@ -5866,10 +5839,6 @@ declare module 'csharp' {
             interface IDisposable
             {
             }
-            class Exception extends System.Object implements System.Runtime.InteropServices._Exception, System.Runtime.Serialization.ISerializable
-            {
-                protected [__keep_incompatibility]: never;
-            }
             interface IAsyncResult
             {
             }
@@ -5880,6 +5849,21 @@ declare module 'csharp' {
             }
             var AsyncCallback: { new (func: (ar: System.IAsyncResult) => void): AsyncCallback; }
             class IntPtr extends System.ValueType implements System.IEquatable$1<System.IntPtr>, System.Runtime.Serialization.ISerializable
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            class UInt64 extends System.ValueType implements System.IEquatable$1<bigint>, System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<bigint>, System.IConvertible
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            interface IFormatProvider
+            {
+            }
+            class Exception extends System.Object implements System.Runtime.InteropServices._Exception, System.Runtime.Serialization.ISerializable
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            class Byte extends System.ValueType implements System.IEquatable$1<number>, System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<number>, System.IConvertible
             {
                 protected [__keep_incompatibility]: never;
             }
@@ -5950,28 +5934,6 @@ declare module 'csharp' {
                 public static Copy ($sourceArray: System.Array, $sourceIndex: number, $destinationArray: System.Array, $destinationIndex: number, $length: number) : void
                 public static ConstrainedCopy ($sourceArray: System.Array, $sourceIndex: number, $destinationArray: System.Array, $destinationIndex: number, $length: number) : void
                 public Initialize () : void
-            }
-            class MarshalByRefObject extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-            }
-            interface IAsyncDisposable
-            {
-            }
-            class Decimal extends System.ValueType implements System.IEquatable$1<System.Decimal>, System.IFormattable, System.ISpanFormattable, System.IComparable, System.Runtime.Serialization.IDeserializationCallback, System.IComparable$1<System.Decimal>, System.IConvertible
-            {
-                protected [__keep_incompatibility]: never;
-            }
-            class UInt64 extends System.ValueType implements System.IEquatable$1<bigint>, System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<bigint>, System.IConvertible
-            {
-                protected [__keep_incompatibility]: never;
-            }
-            interface IFormatProvider
-            {
-            }
-            class Byte extends System.ValueType implements System.IEquatable$1<number>, System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<number>, System.IConvertible
-            {
-                protected [__keep_incompatibility]: never;
             }
             class DateTime extends System.ValueType implements System.IEquatable$1<Date>, System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<Date>, System.IConvertible, System.Runtime.Serialization.ISerializable
             {
@@ -6163,9 +6125,6 @@ declare module 'csharp' {
             {
                 Properties : System.Collections.Generic.List$1<Puerts.Component.Property>
             }
-            interface ITsPropertyHolder {
-                ConvertPropertiesValue () : System.Collections.Generic.List$1<System.Tuple$2<string, any>>;
-            }
             class TsPropertyHolderExtension extends System.Object
             {
                 protected [__keep_incompatibility]: never;
@@ -6176,112 +6135,109 @@ declare module 'csharp' {
                 protected [__keep_incompatibility]: never;
                 public get ValueTypeId(): number;
                 public get Type(): System.Type;
-                public get Priority(): number;
                 public constructor ()
                 public InternalValueToString ($value: any) : string
                 public InternalStringToValue ($str: string) : any
-                public InternalRenderEditorGUIField ($propName: string, $propValue: any) : any
-                public OptionsFilter ($propertyOptions: System.Collections.Generic.Dictionary$2<string, any>) : boolean
+                public InternalRenderEditorGUIField ($propName: string, $propValue: any, $options: System.Collections.Generic.Dictionary$2<string, any>) : any
             }
             class PrimitivePropertySerializer$1<T> extends System.Object implements Puerts.Component.IPrimitivePropertySerializer
             {
                 protected [__keep_incompatibility]: never;
                 public get Type(): System.Type;
                 public get ValueTypeId(): number;
-                public get Priority(): number;
                 public InternalValueToString ($value: any) : string
                 public InternalStringToValue ($str: string) : any
-                public InternalRenderEditorGUIField ($propName: string, $propValue: any) : any
-                public OptionsFilter ($propertyOptions: System.Collections.Generic.Dictionary$2<string, any>) : boolean
+                public InternalRenderEditorGUIField ($propName: string, $propValue: any, $options: System.Collections.Generic.Dictionary$2<string, any>) : any
             }
             interface IPrimitivePropertySerializer
             {
                 Type : System.Type
                 ValueTypeId : number
-                Priority : number
                 InternalValueToString ($value: any) : string
                 InternalStringToValue ($str: string) : any
-                InternalRenderEditorGUIField ($propName: string, $propValue: any) : any
-                OptionsFilter ($propertyOptions: System.Collections.Generic.Dictionary$2<string, any>) : boolean
+                InternalRenderEditorGUIField ($propName: string, $propValue: any, $options: System.Collections.Generic.Dictionary$2<string, any>) : any
             }
             class ColorPropertySerializer extends Puerts.Component.PrimitivePropertySerializer$1<UnityEngine.Color> implements Puerts.Component.IPrimitivePropertySerializer
             {
                 protected [__keep_incompatibility]: never;
                 public get ValueTypeId(): number;
                 public get Type(): System.Type;
-                public get Priority(): number;
                 public constructor ()
                 public InternalValueToString ($value: any) : string
                 public InternalStringToValue ($str: string) : any
-                public InternalRenderEditorGUIField ($propName: string, $propValue: any) : any
-                public OptionsFilter ($propertyOptions: System.Collections.Generic.Dictionary$2<string, any>) : boolean
+                public InternalRenderEditorGUIField ($propName: string, $propValue: any, $options: System.Collections.Generic.Dictionary$2<string, any>) : any
             }
             class DoublePropertySerializer extends Puerts.Component.PrimitivePropertySerializer$1<number> implements Puerts.Component.IPrimitivePropertySerializer
             {
                 protected [__keep_incompatibility]: never;
                 public get ValueTypeId(): number;
                 public get Type(): System.Type;
-                public get Priority(): number;
                 public constructor ()
                 public InternalValueToString ($value: any) : string
                 public InternalStringToValue ($str: string) : any
-                public InternalRenderEditorGUIField ($propName: string, $propValue: any) : any
-                public OptionsFilter ($propertyOptions: System.Collections.Generic.Dictionary$2<string, any>) : boolean
+                public InternalRenderEditorGUIField ($propName: string, $propValue: any, $options: System.Collections.Generic.Dictionary$2<string, any>) : any
             }
             class FloatPropertySerializer extends Puerts.Component.PrimitivePropertySerializer$1<number> implements Puerts.Component.IPrimitivePropertySerializer
             {
                 protected [__keep_incompatibility]: never;
                 public get ValueTypeId(): number;
                 public get Type(): System.Type;
-                public get Priority(): number;
                 public constructor ()
                 public InternalValueToString ($value: any) : string
                 public InternalStringToValue ($str: string) : any
-                public InternalRenderEditorGUIField ($propName: string, $propValue: any) : any
-                public OptionsFilter ($propertyOptions: System.Collections.Generic.Dictionary$2<string, any>) : boolean
+                public InternalRenderEditorGUIField ($propName: string, $propValue: any, $options: System.Collections.Generic.Dictionary$2<string, any>) : any
             }
             class IntPropertySerializer extends Puerts.Component.PrimitivePropertySerializer$1<number> implements Puerts.Component.IPrimitivePropertySerializer
             {
                 protected [__keep_incompatibility]: never;
                 public get ValueTypeId(): number;
                 public get Type(): System.Type;
-                public get Priority(): number;
                 public constructor ()
                 public InternalValueToString ($value: any) : string
                 public InternalStringToValue ($str: string) : any
-                public InternalRenderEditorGUIField ($propName: string, $propValue: any) : any
-                public OptionsFilter ($propertyOptions: System.Collections.Generic.Dictionary$2<string, any>) : boolean
+                public InternalRenderEditorGUIField ($propName: string, $propValue: any, $options: System.Collections.Generic.Dictionary$2<string, any>) : any
+            }
+            class JsonProperty extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public json : string
+                public constructor ()
+            }
+            class JsonPropertySerializer extends Puerts.Component.PrimitivePropertySerializer$1<Puerts.Component.JsonProperty> implements Puerts.Component.IPrimitivePropertySerializer
+            {
+                protected [__keep_incompatibility]: never;
+                public get ValueTypeId(): number;
+                public get Type(): System.Type;
+                public constructor ()
+                public InternalValueToString ($value: any) : string
+                public InternalStringToValue ($str: string) : any
+                public InternalRenderEditorGUIField ($propName: string, $propValue: any, $options: System.Collections.Generic.Dictionary$2<string, any>) : any
             }
             class LongPropertySerializer extends Puerts.Component.PrimitivePropertySerializer$1<bigint> implements Puerts.Component.IPrimitivePropertySerializer
             {
                 protected [__keep_incompatibility]: never;
                 public get ValueTypeId(): number;
                 public get Type(): System.Type;
-                public get Priority(): number;
                 public constructor ()
                 public InternalValueToString ($value: any) : string
                 public InternalStringToValue ($str: string) : any
-                public InternalRenderEditorGUIField ($propName: string, $propValue: any) : any
-                public OptionsFilter ($propertyOptions: System.Collections.Generic.Dictionary$2<string, any>) : boolean
+                public InternalRenderEditorGUIField ($propName: string, $propValue: any, $options: System.Collections.Generic.Dictionary$2<string, any>) : any
             }
-            class PasswordPropertySerializer extends Puerts.Component.StringPropertySerializer implements Puerts.Component.IPrimitivePropertySerializer
+            class PasswordProperty extends System.Object
             {
                 protected [__keep_incompatibility]: never;
-                public get ValueTypeId(): number;
-                public get Priority(): number;
+                public value : string
                 public constructor ()
             }
-            class StringPropertySerializer extends Puerts.Component.PrimitivePropertySerializer$1<string> implements Puerts.Component.IPrimitivePropertySerializer
+            class PasswordPropertySerializer extends Puerts.Component.PrimitivePropertySerializer$1<Puerts.Component.PasswordProperty> implements Puerts.Component.IPrimitivePropertySerializer
             {
                 protected [__keep_incompatibility]: never;
                 public get ValueTypeId(): number;
                 public get Type(): System.Type;
-                public get Priority(): number;
                 public constructor ()
                 public InternalValueToString ($value: any) : string
                 public InternalStringToValue ($str: string) : any
-                public InternalRenderEditorGUIField ($propName: string, $propValue: any) : any
-                public OptionsFilter ($propertyOptions: System.Collections.Generic.Dictionary$2<string, any>) : boolean
+                public InternalRenderEditorGUIField ($propName: string, $propValue: any, $options: System.Collections.Generic.Dictionary$2<string, any>) : any
             }
             class PrimitivePropertySerializerCollector extends System.Object
             {
@@ -6289,29 +6245,35 @@ declare module 'csharp' {
                 public static get PropertySerializers(): System.Collections.Generic.List$1<Puerts.Component.IPrimitivePropertySerializer>;
                 public constructor ()
             }
+            class StringPropertySerializer extends Puerts.Component.PrimitivePropertySerializer$1<string> implements Puerts.Component.IPrimitivePropertySerializer
+            {
+                protected [__keep_incompatibility]: never;
+                public get ValueTypeId(): number;
+                public get Type(): System.Type;
+                public constructor ()
+                public InternalValueToString ($value: any) : string
+                public InternalStringToValue ($str: string) : any
+                public InternalRenderEditorGUIField ($propName: string, $propValue: any, $options: System.Collections.Generic.Dictionary$2<string, any>) : any
+            }
             class Vector2PropertySerializer extends Puerts.Component.PrimitivePropertySerializer$1<UnityEngine.Vector2> implements Puerts.Component.IPrimitivePropertySerializer
             {
                 protected [__keep_incompatibility]: never;
                 public get ValueTypeId(): number;
                 public get Type(): System.Type;
-                public get Priority(): number;
                 public constructor ()
                 public InternalValueToString ($value: any) : string
                 public InternalStringToValue ($str: string) : any
-                public InternalRenderEditorGUIField ($propName: string, $propValue: any) : any
-                public OptionsFilter ($propertyOptions: System.Collections.Generic.Dictionary$2<string, any>) : boolean
+                public InternalRenderEditorGUIField ($propName: string, $propValue: any, $options: System.Collections.Generic.Dictionary$2<string, any>) : any
             }
             class Vector3PropertySerializer extends Puerts.Component.PrimitivePropertySerializer$1<UnityEngine.Vector3> implements Puerts.Component.IPrimitivePropertySerializer
             {
                 protected [__keep_incompatibility]: never;
                 public get ValueTypeId(): number;
                 public get Type(): System.Type;
-                public get Priority(): number;
                 public constructor ()
                 public InternalValueToString ($value: any) : string
                 public InternalStringToValue ($str: string) : any
-                public InternalRenderEditorGUIField ($propName: string, $propValue: any) : any
-                public OptionsFilter ($propertyOptions: System.Collections.Generic.Dictionary$2<string, any>) : boolean
+                public InternalRenderEditorGUIField ($propName: string, $propValue: any, $options: System.Collections.Generic.Dictionary$2<string, any>) : any
             }
             class TsAsset extends UnityEngine.ScriptableObject implements Puerts.Component.ITsTransporterHolder, Puerts.Component.ITsPropertyHolder
             {
@@ -6322,7 +6284,6 @@ declare module 'csharp' {
                 public get Properties(): System.Collections.Generic.List$1<Puerts.Component.Property>;
                 public Init () : void
                 public constructor ()
-                public ConvertPropertiesValue () : System.Collections.Generic.List$1<System.Tuple$2<string, any>>
             }
             interface ITsTransporterHolder
             {
@@ -6350,7 +6311,6 @@ declare module 'csharp' {
                 public Init ($pTsModulePath: string) : void
                 public Init () : void
                 public constructor ()
-                public ConvertPropertiesValue () : System.Collections.Generic.List$1<System.Tuple$2<string, any>>
             }
         }
         namespace System.Collections.Generic {
@@ -6495,12 +6455,6 @@ declare module 'csharp' {
             interface IDictionary extends System.Collections.ICollection, System.Collections.IEnumerable
             {
             }
-            interface IDictionaryEnumerator extends System.Collections.IEnumerator
-            {
-            }
-            interface IEnumerator
-            {
-            }
             class Hashtable extends System.Object implements System.Collections.ICollection, System.ICloneable, System.Collections.IDictionary, System.Runtime.Serialization.IDeserializationCallback, System.Collections.IEnumerable, System.Runtime.Serialization.ISerializable
             {
                 protected [__keep_incompatibility]: never;
@@ -6535,6 +6489,12 @@ declare module 'csharp' {
                 public constructor ($d: System.Collections.IDictionary, $loadFactor: number)
                 public constructor ($d: System.Collections.IDictionary, $equalityComparer: System.Collections.IEqualityComparer)
                 public constructor ($d: System.Collections.IDictionary, $loadFactor: number, $equalityComparer: System.Collections.IEqualityComparer)
+            }
+            interface IDictionaryEnumerator extends System.Collections.IEnumerator
+            {
+            }
+            interface IEnumerator
+            {
             }
             interface IEqualityComparer
             {
@@ -6578,10 +6538,6 @@ declare module 'csharp' {
             interface IReflect
             {
             }
-            class PropertyInfo extends System.Reflection.MemberInfo implements System.Reflection.ICustomAttributeProvider, System.Runtime.InteropServices._MemberInfo
-            {
-                protected [__keep_incompatibility]: never;
-            }
             class MethodInfo extends System.Reflection.MethodBase implements System.Runtime.InteropServices._MethodInfo, System.Reflection.ICustomAttributeProvider, System.Runtime.InteropServices._MemberInfo, System.Runtime.InteropServices._MethodBase
             {
                 protected [__keep_incompatibility]: never;
@@ -6621,16 +6577,6 @@ declare module 'csharp' {
             {
                 protected [__keep_incompatibility]: never;
                 public static Register ($jsEnv: Puerts.JsEnv) : void
-            }
-            class Puerts_Component_TsComponent_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
-            }
-            class Puerts_Component_TsTransporter_Wrap extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetRegisterInfo () : Puerts.TypeRegisterInfo
             }
             class System_Array_Wrap extends System.Object
             {
@@ -6870,331 +6816,6 @@ declare module 'csharp' {
             {
                 protected [__keep_incompatibility]: never;
             }
-        }
-        namespace LitJson {
-            enum JsonType
-            { None = 0, Object = 1, Array = 2, String = 3, Int = 4, Long = 5, Double = 6, Boolean = 7 }
-            interface IOrderedDictionary extends System.Collections.ICollection, System.Collections.IDictionary, System.Collections.IEnumerable
-            {
-                GetEnumerator () : System.Collections.IDictionaryEnumerator
-                Insert ($index: number, $key: any, $value: any) : void
-                RemoveAt ($index: number) : void
-                get_Item ($index: number) : any
-                set_Item ($index: number, $value: any) : void
-            }
-            interface IJsonWrapper extends System.Collections.ICollection, System.Collections.IDictionary, LitJson.IOrderedDictionary, System.Collections.IEnumerable, System.Collections.IList
-            {
-                IsArray : boolean
-                IsBoolean : boolean
-                IsDouble : boolean
-                IsInt : boolean
-                IsLong : boolean
-                IsObject : boolean
-                IsString : boolean
-                GetBoolean () : boolean
-                GetDouble () : number
-                GetInt () : number
-                GetJsonType () : LitJson.JsonType
-                GetLong () : bigint
-                GetString () : string
-                SetBoolean ($val: boolean) : void
-                SetDouble ($val: number) : void
-                SetInt ($val: number) : void
-                SetJsonType ($type: LitJson.JsonType) : void
-                SetLong ($val: bigint) : void
-                SetString ($val: string) : void
-                ToJson () : string
-                ToJson ($writer: LitJson.JsonWriter) : void
-                GetEnumerator () : System.Collections.IDictionaryEnumerator
-                Insert ($index: number, $key: any, $value: any) : void
-                RemoveAt ($index: number) : void
-                get_Item ($index: number) : any
-                set_Item ($index: number, $value: any) : void
-            }
-            class JsonWriter extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public get IndentValue(): number;
-                public set IndentValue(value: number);
-                public get PrettyPrint(): boolean;
-                public set PrettyPrint(value: boolean);
-                public get TextWriter(): System.IO.TextWriter;
-                public get Validate(): boolean;
-                public set Validate(value: boolean);
-                public get LowerCaseProperties(): boolean;
-                public set LowerCaseProperties(value: boolean);
-                public Reset () : void
-                public Write ($boolean: boolean) : void
-                public Write ($number: System.Decimal) : void
-                public Write ($number: number) : void
-                public Write ($number: bigint) : void
-                public Write ($str: string) : void
-                public WriteArrayEnd () : void
-                public WriteArrayStart () : void
-                public WriteObjectEnd () : void
-                public WriteObjectStart () : void
-                public WritePropertyName ($property_name: string) : void
-                public constructor ()
-                public constructor ($sb: System.Text.StringBuilder)
-                public constructor ($writer: System.IO.TextWriter)
-            }
-            class JsonData extends System.Object implements System.IEquatable$1<LitJson.JsonData>, System.Collections.ICollection, System.Collections.IDictionary, LitJson.IOrderedDictionary, System.Collections.IEnumerable, LitJson.IJsonWrapper, System.Collections.IList
-            {
-                protected [__keep_incompatibility]: never;
-                public get Count(): number;
-                public get IsArray(): boolean;
-                public get IsBoolean(): boolean;
-                public get IsDouble(): boolean;
-                public get IsInt(): boolean;
-                public get IsLong(): boolean;
-                public get IsObject(): boolean;
-                public get IsString(): boolean;
-                public get Keys(): System.Collections.Generic.ICollection$1<string>;
-                public ContainsKey ($key: string) : boolean
-                public get_Item ($prop_name: string) : LitJson.JsonData
-                public set_Item ($prop_name: string, $value: LitJson.JsonData) : void
-                public get_Item ($index: number) : LitJson.JsonData
-                public set_Item ($index: number, $value: LitJson.JsonData) : void
-                public static op_Implicit ($data: boolean) : LitJson.JsonData
-                public static op_Implicit ($data: number) : LitJson.JsonData
-                public static op_Implicit ($data: bigint) : LitJson.JsonData
-                public static op_Implicit ($data: string) : LitJson.JsonData
-                public static op_Explicit ($data: LitJson.JsonData) : boolean
-                public static op_Explicit ($data: LitJson.JsonData) : number
-                public static op_Explicit ($data: LitJson.JsonData) : bigint
-                public static op_Explicit ($data: LitJson.JsonData) : string
-                public Add ($value: any) : number
-                public Remove ($obj: any) : boolean
-                public Clear () : void
-                public Equals ($x: LitJson.JsonData) : boolean
-                public GetJsonType () : LitJson.JsonType
-                public SetJsonType ($type: LitJson.JsonType) : void
-                public ToJson () : string
-                public ToJson ($writer: LitJson.JsonWriter) : void
-                public constructor ()
-                public constructor ($boolean: boolean)
-                public constructor ($number: number)
-                public constructor ($number: bigint)
-                public constructor ($obj: any)
-                public constructor ($str: string)
-                public GetEnumerator () : System.Collections.IDictionaryEnumerator
-                public Insert ($index: number, $key: any, $value: any) : void
-                public RemoveAt ($index: number) : void
-                public get_Item ($index: number) : any
-                public set_Item ($index: number, $value: any) : void
-                public GetBoolean () : boolean
-                public GetDouble () : number
-                public GetInt () : number
-                public GetLong () : bigint
-                public GetString () : string
-                public SetBoolean ($val: boolean) : void
-                public SetDouble ($val: number) : void
-                public SetInt ($val: number) : void
-                public SetLong ($val: bigint) : void
-                public SetString ($val: string) : void
-                public Equals ($obj: any) : boolean
-                public static Equals ($objA: any, $objB: any) : boolean
-            }
-            class JsonException extends System.Exception implements System.Runtime.InteropServices._Exception, System.Runtime.Serialization.ISerializable
-            {
-                protected [__keep_incompatibility]: never;
-                public constructor ()
-                public constructor ($message: string)
-                public constructor ($message: string, $inner_exception: System.Exception)
-            }
-            interface WrapperFactory
-            { 
-            () : LitJson.IJsonWrapper; 
-            Invoke?: () => LitJson.IJsonWrapper;
-            }
-            var WrapperFactory: { new (func: () => LitJson.IJsonWrapper): WrapperFactory; }
-            class JsonMapper extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetPublicInstanceProperties ($type: System.Type) : System.Array$1<System.Reflection.PropertyInfo>
-                public static ToJson ($obj: any) : string
-                public static ToJson ($obj: any, $writer: LitJson.JsonWriter) : void
-                public static ToObject ($reader: LitJson.JsonReader) : LitJson.JsonData
-                public static ToObject ($reader: System.IO.TextReader) : LitJson.JsonData
-                public static ToObject ($json: string) : LitJson.JsonData
-                public static ToObject ($toType: System.Type, $json: string) : any
-                public static ToWrapper ($factory: LitJson.WrapperFactory, $reader: LitJson.JsonReader) : LitJson.IJsonWrapper
-                public static ToWrapper ($factory: LitJson.WrapperFactory, $json: string) : LitJson.IJsonWrapper
-                public static UnregisterExporters () : void
-                public static UnregisterImporters () : void
-                public constructor ()
-            }
-            class JsonReader extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public get AllowComments(): boolean;
-                public set AllowComments(value: boolean);
-                public get AllowSingleQuotedStrings(): boolean;
-                public set AllowSingleQuotedStrings(value: boolean);
-                public get SkipNonMembers(): boolean;
-                public set SkipNonMembers(value: boolean);
-                public get EndOfInput(): boolean;
-                public get EndOfJson(): boolean;
-                public get Token(): LitJson.JsonToken;
-                public get Value(): any;
-                public Close () : void
-                public Read () : boolean
-                public constructor ($json_text: string)
-                public constructor ($reader: System.IO.TextReader)
-                public constructor ()
-            }
-            interface ExporterFunc$1<T>
-            { 
-            (obj: T, writer: LitJson.JsonWriter) : void; 
-            Invoke?: (obj: T, writer: LitJson.JsonWriter) => void;
-            }
-            interface ImporterFunc$2<TJson, TValue>
-            { 
-            (input: TJson) : TValue; 
-            Invoke?: (input: TJson) => TValue;
-            }
-            class JsonMockWrapper extends System.Object implements System.Collections.ICollection, System.Collections.IDictionary, LitJson.IOrderedDictionary, System.Collections.IEnumerable, LitJson.IJsonWrapper, System.Collections.IList
-            {
-                protected [__keep_incompatibility]: never;
-                public get IsArray(): boolean;
-                public get IsBoolean(): boolean;
-                public get IsDouble(): boolean;
-                public get IsInt(): boolean;
-                public get IsLong(): boolean;
-                public get IsObject(): boolean;
-                public get IsString(): boolean;
-                public GetBoolean () : boolean
-                public GetDouble () : number
-                public GetInt () : number
-                public GetJsonType () : LitJson.JsonType
-                public GetLong () : bigint
-                public GetString () : string
-                public SetBoolean ($val: boolean) : void
-                public SetDouble ($val: number) : void
-                public SetInt ($val: number) : void
-                public SetJsonType ($type: LitJson.JsonType) : void
-                public SetLong ($val: bigint) : void
-                public SetString ($val: string) : void
-                public ToJson () : string
-                public ToJson ($writer: LitJson.JsonWriter) : void
-                public constructor ()
-                public GetEnumerator () : System.Collections.IDictionaryEnumerator
-                public Insert ($index: number, $key: any, $value: any) : void
-                public RemoveAt ($index: number) : void
-                public get_Item ($index: number) : any
-                public set_Item ($index: number, $value: any) : void
-            }
-            enum JsonToken
-            { None = 0, ObjectStart = 1, PropertyName = 2, ObjectEnd = 3, ArrayStart = 4, ArrayEnd = 5, Int = 6, Long = 7, Double = 8, String = 9, Boolean = 10, Null = 11 }
-        }
-        namespace System.IO {
-            class TextReader extends System.MarshalByRefObject implements System.IDisposable
-            {
-                protected [__keep_incompatibility]: never;
-            }
-            class TextWriter extends System.MarshalByRefObject implements System.IAsyncDisposable, System.IDisposable
-            {
-                protected [__keep_incompatibility]: never;
-            }
-        }
-        namespace System.Text {
-            class StringBuilder extends System.Object implements System.Runtime.Serialization.ISerializable
-            {
-                protected [__keep_incompatibility]: never;
-            }
-            class UTF8Encoding extends System.Text.Encoding implements System.ICloneable
-            {
-                protected [__keep_incompatibility]: never;
-                public constructor ()
-                public constructor ($encoderShouldEmitUTF8Identifier: boolean)
-                public constructor ($encoderShouldEmitUTF8Identifier: boolean, $throwOnInvalidBytes: boolean)
-            }
-            class Encoding extends System.Object implements System.ICloneable
-            {
-                protected [__keep_incompatibility]: never;
-                public get BodyName(): string;
-                public get EncodingName(): string;
-                public get HeaderName(): string;
-                public get WebName(): string;
-                public get WindowsCodePage(): number;
-                public get IsBrowserDisplay(): boolean;
-                public get IsBrowserSave(): boolean;
-                public get IsMailNewsDisplay(): boolean;
-                public get IsMailNewsSave(): boolean;
-                public get IsSingleByte(): boolean;
-                public get EncoderFallback(): System.Text.EncoderFallback;
-                public set EncoderFallback(value: System.Text.EncoderFallback);
-                public get DecoderFallback(): System.Text.DecoderFallback;
-                public set DecoderFallback(value: System.Text.DecoderFallback);
-                public get IsReadOnly(): boolean;
-                public static get ASCII(): System.Text.Encoding;
-                public get CodePage(): number;
-                public static get Default(): System.Text.Encoding;
-                public static get Unicode(): System.Text.Encoding;
-                public static get BigEndianUnicode(): System.Text.Encoding;
-                public static get UTF7(): System.Text.Encoding;
-                public static get UTF8(): System.Text.Encoding;
-                public static get UTF32(): System.Text.Encoding;
-                public static Convert ($srcEncoding: System.Text.Encoding, $dstEncoding: System.Text.Encoding, $bytes: System.Array$1<number>) : System.Array$1<number>
-                public static Convert ($srcEncoding: System.Text.Encoding, $dstEncoding: System.Text.Encoding, $bytes: System.Array$1<number>, $index: number, $count: number) : System.Array$1<number>
-                public static RegisterProvider ($provider: System.Text.EncodingProvider) : void
-                public static GetEncoding ($codepage: number) : System.Text.Encoding
-                public static GetEncoding ($codepage: number, $encoderFallback: System.Text.EncoderFallback, $decoderFallback: System.Text.DecoderFallback) : System.Text.Encoding
-                public static GetEncoding ($name: string) : System.Text.Encoding
-                public static GetEncoding ($name: string, $encoderFallback: System.Text.EncoderFallback, $decoderFallback: System.Text.DecoderFallback) : System.Text.Encoding
-                public static GetEncodings () : System.Array$1<System.Text.EncodingInfo>
-                public GetPreamble () : System.Array$1<number>
-                public Clone () : any
-                public GetByteCount ($chars: System.Array$1<number>) : number
-                public GetByteCount ($s: string) : number
-                public GetByteCount ($chars: System.Array$1<number>, $index: number, $count: number) : number
-                public GetByteCount ($str: string, $index: number, $count: number) : number
-                public GetBytes ($chars: System.Array$1<number>) : System.Array$1<number>
-                public GetBytes ($chars: System.Array$1<number>, $index: number, $count: number) : System.Array$1<number>
-                public GetBytes ($chars: System.Array$1<number>, $charIndex: number, $charCount: number, $bytes: System.Array$1<number>, $byteIndex: number) : number
-                public GetBytes ($s: string) : System.Array$1<number>
-                public GetBytes ($s: string, $charIndex: number, $charCount: number, $bytes: System.Array$1<number>, $byteIndex: number) : number
-                public GetCharCount ($bytes: System.Array$1<number>) : number
-                public GetCharCount ($bytes: System.Array$1<number>, $index: number, $count: number) : number
-                public GetChars ($bytes: System.Array$1<number>) : System.Array$1<number>
-                public GetChars ($bytes: System.Array$1<number>, $index: number, $count: number) : System.Array$1<number>
-                public GetChars ($bytes: System.Array$1<number>, $byteIndex: number, $byteCount: number, $chars: System.Array$1<number>, $charIndex: number) : number
-                public IsAlwaysNormalized () : boolean
-                public IsAlwaysNormalized ($form: System.Text.NormalizationForm) : boolean
-                public GetDecoder () : System.Text.Decoder
-                public GetEncoder () : System.Text.Encoder
-                public GetMaxByteCount ($charCount: number) : number
-                public GetMaxCharCount ($byteCount: number) : number
-                public GetString ($bytes: System.Array$1<number>) : string
-                public GetString ($bytes: System.Array$1<number>, $index: number, $count: number) : string
-                public GetBytes ($s: string, $index: number, $count: number) : System.Array$1<number>
-            }
-            class Decoder extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-            }
-            class Encoder extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-            }
-            class EncodingProvider extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-            }
-            class EncoderFallback extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-            }
-            class DecoderFallback extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-            }
-            class EncodingInfo extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-            }
-            enum NormalizationForm
-            { FormC = 1, FormD = 2, FormKC = 5, FormKD = 6 }
         }
         namespace UnityEngine.Camera {
             interface CameraCallback
@@ -8176,6 +7797,105 @@ declare module 'csharp' {
             { DontRender = 0, Render = 255 }
             enum VertexSortingOrder
             { Normal = 0, Reverse = 1 }
+        }
+        namespace System.Text {
+            class StringBuilder extends System.Object implements System.Runtime.Serialization.ISerializable
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            class UTF8Encoding extends System.Text.Encoding implements System.ICloneable
+            {
+                protected [__keep_incompatibility]: never;
+                public constructor ()
+                public constructor ($encoderShouldEmitUTF8Identifier: boolean)
+                public constructor ($encoderShouldEmitUTF8Identifier: boolean, $throwOnInvalidBytes: boolean)
+            }
+            class Encoding extends System.Object implements System.ICloneable
+            {
+                protected [__keep_incompatibility]: never;
+                public get BodyName(): string;
+                public get EncodingName(): string;
+                public get HeaderName(): string;
+                public get WebName(): string;
+                public get WindowsCodePage(): number;
+                public get IsBrowserDisplay(): boolean;
+                public get IsBrowserSave(): boolean;
+                public get IsMailNewsDisplay(): boolean;
+                public get IsMailNewsSave(): boolean;
+                public get IsSingleByte(): boolean;
+                public get EncoderFallback(): System.Text.EncoderFallback;
+                public set EncoderFallback(value: System.Text.EncoderFallback);
+                public get DecoderFallback(): System.Text.DecoderFallback;
+                public set DecoderFallback(value: System.Text.DecoderFallback);
+                public get IsReadOnly(): boolean;
+                public static get ASCII(): System.Text.Encoding;
+                public get CodePage(): number;
+                public static get Default(): System.Text.Encoding;
+                public static get Unicode(): System.Text.Encoding;
+                public static get BigEndianUnicode(): System.Text.Encoding;
+                public static get UTF7(): System.Text.Encoding;
+                public static get UTF8(): System.Text.Encoding;
+                public static get UTF32(): System.Text.Encoding;
+                public static Convert ($srcEncoding: System.Text.Encoding, $dstEncoding: System.Text.Encoding, $bytes: System.Array$1<number>) : System.Array$1<number>
+                public static Convert ($srcEncoding: System.Text.Encoding, $dstEncoding: System.Text.Encoding, $bytes: System.Array$1<number>, $index: number, $count: number) : System.Array$1<number>
+                public static RegisterProvider ($provider: System.Text.EncodingProvider) : void
+                public static GetEncoding ($codepage: number) : System.Text.Encoding
+                public static GetEncoding ($codepage: number, $encoderFallback: System.Text.EncoderFallback, $decoderFallback: System.Text.DecoderFallback) : System.Text.Encoding
+                public static GetEncoding ($name: string) : System.Text.Encoding
+                public static GetEncoding ($name: string, $encoderFallback: System.Text.EncoderFallback, $decoderFallback: System.Text.DecoderFallback) : System.Text.Encoding
+                public static GetEncodings () : System.Array$1<System.Text.EncodingInfo>
+                public GetPreamble () : System.Array$1<number>
+                public Clone () : any
+                public GetByteCount ($chars: System.Array$1<number>) : number
+                public GetByteCount ($s: string) : number
+                public GetByteCount ($chars: System.Array$1<number>, $index: number, $count: number) : number
+                public GetByteCount ($str: string, $index: number, $count: number) : number
+                public GetBytes ($chars: System.Array$1<number>) : System.Array$1<number>
+                public GetBytes ($chars: System.Array$1<number>, $index: number, $count: number) : System.Array$1<number>
+                public GetBytes ($chars: System.Array$1<number>, $charIndex: number, $charCount: number, $bytes: System.Array$1<number>, $byteIndex: number) : number
+                public GetBytes ($s: string) : System.Array$1<number>
+                public GetBytes ($s: string, $charIndex: number, $charCount: number, $bytes: System.Array$1<number>, $byteIndex: number) : number
+                public GetCharCount ($bytes: System.Array$1<number>) : number
+                public GetCharCount ($bytes: System.Array$1<number>, $index: number, $count: number) : number
+                public GetChars ($bytes: System.Array$1<number>) : System.Array$1<number>
+                public GetChars ($bytes: System.Array$1<number>, $index: number, $count: number) : System.Array$1<number>
+                public GetChars ($bytes: System.Array$1<number>, $byteIndex: number, $byteCount: number, $chars: System.Array$1<number>, $charIndex: number) : number
+                public IsAlwaysNormalized () : boolean
+                public IsAlwaysNormalized ($form: System.Text.NormalizationForm) : boolean
+                public GetDecoder () : System.Text.Decoder
+                public GetEncoder () : System.Text.Encoder
+                public GetMaxByteCount ($charCount: number) : number
+                public GetMaxCharCount ($byteCount: number) : number
+                public GetString ($bytes: System.Array$1<number>) : string
+                public GetString ($bytes: System.Array$1<number>, $index: number, $count: number) : string
+                public GetBytes ($s: string, $index: number, $count: number) : System.Array$1<number>
+            }
+            class Decoder extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            class Encoder extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            class EncodingProvider extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            class EncoderFallback extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            class DecoderFallback extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            class EncodingInfo extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            enum NormalizationForm
+            { FormC = 1, FormD = 2, FormKC = 5, FormKD = 6 }
         }
         namespace UnityEngine.Experimental.Rendering {
             /** Use this format to create either Textures or RenderTextures from scripts. */

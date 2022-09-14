@@ -1,6 +1,7 @@
 
 
 using System;
+using System.Collections.Generic;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -10,7 +11,7 @@ namespace Puerts.Component {
     public class FloatPropertySerializer : PrimitivePropertySerializer<float>
     {
 #if UNITY_EDITOR
-        public override float RenderEditorGUIField(string propName, float propValue)
+        public override float RenderEditorGUIField(string propName, float propValue, Dictionary<string, object> options)
         {
             return EditorGUILayout.FloatField(new GUIContent(propName), propValue);
         }

@@ -1,6 +1,7 @@
 
 
 using System;
+using System.Collections.Generic;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -10,7 +11,7 @@ namespace Puerts.Component {
     public class IntPropertySerializer : PrimitivePropertySerializer<int>
     {
 #if UNITY_EDITOR
-        public override int RenderEditorGUIField(string propName, int propValue)
+        public override int RenderEditorGUIField(string propName, int propValue, Dictionary<string, object> options)
         {
             return EditorGUILayout.IntField(new GUIContent(propName), propValue);
         }

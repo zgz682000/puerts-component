@@ -59,7 +59,6 @@ namespace Puerts.Component {
                     _propertySerializers.Add(instance);
                 }
             });
-            _propertySerializers.Sort((e1, e2)=>Comparer<int>.Default.Compare(e1.Priority, e2.Priority));
         }
     }
 }

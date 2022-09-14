@@ -1,6 +1,7 @@
 import { System, UnityEngine } from "csharp";
 export interface PropertyOptions {
     name?: string;
+    toTsValue?: (csValue: any) => any;
     [key: string]: any;
 }
 declare type PropertyType = typeof UnityEngine.Object | typeof UnityEngine.Color | typeof UnityEngine.Vector2 | typeof UnityEngine.Vector3 | typeof System.Int32 | typeof System.String | typeof System.Boolean | typeof System.Double | typeof System.Single | typeof System.Int64;

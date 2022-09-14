@@ -4,6 +4,7 @@ import { $generic, $typeof } from "puerts";
 
 export interface PropertyOptions {
     name?: string;
+    toTsValue?: (csValue: any)=>any;
     [key: string]: any;
 }
 
@@ -28,6 +29,10 @@ export function ListProperty(type: PropertyType | typeof System.Object, dimensio
         target["__properties"][name] = {
             key: propertyKey
         };
+        if (options && options.toTsValue){
+            target["__properties"][name].toTsValue = options.toTsValue;
+            delete options.toTsValue;
+        }
     }
     :(target: any, propertyKey: string)=>{
         let name = options && options.name ? options.name : propertyKey;
@@ -42,6 +47,10 @@ export function ListProperty(type: PropertyType | typeof System.Object, dimensio
             options: options,
             key: propertyKey
         }
+        if (options && options.toTsValue){
+            target["__properties"][name].toTsValue = options.toTsValue;
+            delete options.toTsValue;
+        }
     }
 }
 
@@ -55,6 +64,10 @@ export function Property(type: PropertyType | typeof System.Object, options?: Pr
         target["__properties"][name] = {
             propertyKey
         };
+        if (options && options.toTsValue){
+            target["__properties"][name].toTsValue = options.toTsValue;
+            delete options.toTsValue;
+        }
     }
     :(target: any, propertyKey: string)=>{
         let name = options && options.name ? options.name : propertyKey;
@@ -65,6 +78,10 @@ export function Property(type: PropertyType | typeof System.Object, options?: Pr
             type: $typeof(type),
             options: options,
             key: propertyKey
+        }
+        if (options && options.toTsValue){
+            target["__properties"][name].toTsValue = options.toTsValue;
+            delete options.toTsValue;
         }
     }
 }

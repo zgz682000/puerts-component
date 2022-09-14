@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -8,7 +9,7 @@ namespace Puerts.Component {
     {
         public override int ValueTypeId => 107;
 #if UNITY_EDITOR
-        public override Vector2 RenderEditorGUIField(string propName, Vector2 propValue)
+        public override Vector2 RenderEditorGUIField(string propName, Vector2 propValue, Dictionary<string, object> options)
         {
             return EditorGUILayout.Vector2Field(propName, propValue);
         }

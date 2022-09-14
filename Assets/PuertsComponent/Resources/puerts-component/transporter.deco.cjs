@@ -6,20 +6,20 @@ function getTransporterObj(transporter) {
     return transporterObjs[transporter.GetHashCode()];
 }
 exports.getTransporterObj = getTransporterObj;
-function ConvertValue(value) {
+function ConvertValue(value, toTsValue) {
     if (value && value.Transporter) {
-        return getTransporterObj(value.Transporter);
+        return toTsValue ? toTsValue(getTransporterObj(value.Transporter)) : getTransporterObj(value.Transporter);
     }
     else if (value && value.Count && value.get_Item) {
         var jsArrayValue = [];
         for (let i = 0; i < value.Count; i++) {
             let ele = value.get_Item(i);
-            let convertedEle = ConvertValue(ele);
+            let convertedEle = ConvertValue(ele, toTsValue);
             jsArrayValue.push(convertedEle);
         }
         return jsArrayValue;
     }
-    return value;
+    return toTsValue ? toTsValue(value) : value;
 }
 function Transporter() {
     return (ctor) => {
@@ -33,13 +33,15 @@ function Transporter() {
                 let property = properties.get_Item(i);
                 let value = property.Item2;
                 let key;
+                let toTsValue;
                 if (propertiesOptions && propertiesOptions[property.Item1]) {
                     key = propertiesOptions[property.Item1].key;
+                    toTsValue = propertiesOptions[property.Item1].toTsValue;
                 }
                 else {
                     key = property.Item1;
                 }
-                o[key] = ConvertValue(value);
+                o[key] = ConvertValue(value, toTsValue);
             }
             if (o.__hooks) {
                 Object.keys(o.__hooks).forEach(e => {

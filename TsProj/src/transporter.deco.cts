@@ -7,19 +7,19 @@ export function getTransporterObj<T>(transporter: Puerts.Component.TsTransporter
     return transporterObjs[transporter.GetHashCode()];
 }
 
-function ConvertValue(value: any): any{
+function ConvertValue(value: any, toTsValue?: (csValue: any)=>any): any{
     if (value && value.Transporter){
-        return getTransporterObj(value.Transporter);
+        return toTsValue ? toTsValue(getTransporterObj(value.Transporter)) : getTransporterObj(value.Transporter);
     }else if (value && value.Count && value.get_Item){
         var jsArrayValue = [];
         for(let i = 0; i < value.Count; i++){
             let ele = value.get_Item(i);
-            let convertedEle = ConvertValue(ele);
+            let convertedEle = ConvertValue(ele, toTsValue);
             jsArrayValue.push(convertedEle);
         }
         return jsArrayValue;
     }
-    return value;
+    return toTsValue ? toTsValue(value) : value;
 }
 
 export function Transporter(){
@@ -31,17 +31,20 @@ export function Transporter(){
             let o = new ctor();
             let propertiesOptions: {[key: string]: {
                 key: string
+                toTsValue?: (csValue: any)=>any
             }} = (o as any).__properties
             for(let i = 0; i < properties.Count; i++){
                 let property = properties.get_Item(i);
                 let value = property.Item2;
                 let key: string;
+                let toTsValue : (csValue: any)=>any;
                 if (propertiesOptions && propertiesOptions[property.Item1]){
                     key = propertiesOptions[property.Item1].key;
+                    toTsValue = propertiesOptions[property.Item1].toTsValue;
                 }else{
                     key = property.Item1
                 }
-                o[key] = ConvertValue(value);
+                o[key] = ConvertValue(value, toTsValue);
             }
             if (o.__hooks){
                 Object.keys(o.__hooks).forEach(e=>{

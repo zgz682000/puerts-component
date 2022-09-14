@@ -96,6 +96,7 @@ namespace Puerts.Component {
                             propertyProp = _propertiesProp.GetArrayElementAtIndex(i);
                             var propertyNameProp = propertyProp.FindPropertyRelative("name");
                             propertyNameProp.stringValue = e.name;
+                            _propIndexByName.Add(e.name, propertyProp);
                             needClear = true;
                         }
                         var propertyValueProp = propertyProp.FindPropertyRelative("value");
@@ -125,7 +126,7 @@ namespace Puerts.Component {
             if (type.IsGenericType && type.GetGenericTypeDefinition().Equals(typeof(List<>))){
                 valueTypeProp.enumValueFlag = (int)PropertyValueType.LIST;
                 var listValueProp = prop.FindPropertyRelative("listValue");
-                return RenderArrayProp(name, listValueProp, type.GetGenericArguments()[0], indent);
+                return RenderArrayProp(name, listValueProp, type.GetGenericArguments()[0], indent, property);
             }
             else if (typeof(UnityEngine.Object).IsAssignableFrom(type)){
                 valueTypeProp.intValue = (int)PropertyValueType.OBJECT;
@@ -133,22 +134,11 @@ namespace Puerts.Component {
                 return RenderObjectProp(name, objValueProp, type, indent);
             }
             else {
-                IPrimitivePropertySerializer serializer = null;
-                var serializers = PrimitivePropertySerializerCollector.PropertySerializers.FindAll(e=>e.Type == type);
-                if (property != null && property.options != null && serializers.Count > 1){
-                    var filteredSerializer = serializers.Find(e=>e.OptionsFilter(property.options));
-                    if (filteredSerializer == null){
-                        serializer = serializers[0];
-                    }else {
-                        serializer = filteredSerializer;
-                    }
-                }else if (serializers.Count != 0) {
-                    serializer = serializers[0];
-                }
+                var serializer = PrimitivePropertySerializerCollector.PropertySerializers.Find(e=>e.Type == type);
                 if (serializer != null){
                     valueTypeProp.intValue = serializer.ValueTypeId;
                     var primitiveValueProp = prop.FindPropertyRelative("primitiveValue");
-                    return RenderPrimitiveProp(serializer, name, primitiveValueProp, type, indent);
+                    return RenderPrimitiveProp(serializer, name, primitiveValueProp, type, indent, property);
                 }else{
                     return default(Rect);
                 }
@@ -159,7 +149,7 @@ namespace Puerts.Component {
             EditorGUI.indentLevel = indent;
         }
 
-        private Rect RenderPrimitiveProp(IPrimitivePropertySerializer serializer, string name, SerializedProperty prop, Type type, int indent){
+        private Rect RenderPrimitiveProp(IPrimitivePropertySerializer serializer, string name, SerializedProperty prop, Type type, int indent, Property property){
             var rect = EditorGUILayout.BeginHorizontal();
             RenderIndent(indent); 
             object originValue;
@@ -171,7 +161,7 @@ namespace Puerts.Component {
             {
                 originValue = type.IsValueType ? Activator.CreateInstance(type) : null;
             }
-            var newValue = serializer.InternalRenderEditorGUIField(name, originValue);
+            var newValue = serializer.InternalRenderEditorGUIField(name, originValue, property.options);
             if (newValue != originValue){
                 prop.stringValue = serializer.InternalValueToString(newValue);
             }
@@ -179,7 +169,7 @@ namespace Puerts.Component {
             return rect;
         }
 
-        private Rect RenderArrayProp(string name, SerializedProperty prop, Type subType, int indent){
+        private Rect RenderArrayProp(string name, SerializedProperty prop, Type subType, int indent, Property property){
             var rect = EditorGUILayout.BeginVertical();
             RenderIndent(indent);
             prop.isExpanded = EditorGUILayout.Foldout(prop.isExpanded, name);
@@ -191,7 +181,7 @@ namespace Puerts.Component {
                 }
                 for(int i = 0; i < prop.arraySize; i++){
                     var elementProp = prop.GetArrayElementAtIndex(i);
-                    var rect1 = RenderProp("Element " + i, elementProp, subType, indent + 1, null);
+                    var rect1 = RenderProp("Element " + i, elementProp, subType, indent + 1, property);
                     if (Event.current.type == EventType.ContextClick && rect1.Contains(Event.current.mousePosition)){
                         var menu = new GenericMenu ();
                         menu.AddItem (new GUIContent ("Delete Element"), false, (userData)=>{

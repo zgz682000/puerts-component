@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -8,7 +9,7 @@ namespace Puerts.Component {
     {
         public override int ValueTypeId => 108;
 #if UNITY_EDITOR
-        public override Color RenderEditorGUIField(string propName, Color propValue)
+        public override Color RenderEditorGUIField(string propName, Color propValue, Dictionary<string, object> options)
         {
             return EditorGUILayout.ColorField(propName, propValue);
         }

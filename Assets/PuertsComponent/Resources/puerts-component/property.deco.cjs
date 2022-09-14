@@ -13,6 +13,10 @@ function ListProperty(type, dimension = 1, options) {
             target["__properties"][name] = {
                 key: propertyKey
             };
+            if (options && options.toTsValue) {
+                target["__properties"][name].toTsValue = options.toTsValue;
+                delete options.toTsValue;
+            }
         }
         : (target, propertyKey) => {
             let name = options && options.name ? options.name : propertyKey;
@@ -27,6 +31,10 @@ function ListProperty(type, dimension = 1, options) {
                 options: options,
                 key: propertyKey
             };
+            if (options && options.toTsValue) {
+                target["__properties"][name].toTsValue = options.toTsValue;
+                delete options.toTsValue;
+            }
         };
 }
 exports.ListProperty = ListProperty;
@@ -40,6 +48,10 @@ function Property(type, options) {
             target["__properties"][name] = {
                 propertyKey
             };
+            if (options && options.toTsValue) {
+                target["__properties"][name].toTsValue = options.toTsValue;
+                delete options.toTsValue;
+            }
         }
         : (target, propertyKey) => {
             let name = options && options.name ? options.name : propertyKey;
@@ -51,6 +63,10 @@ function Property(type, options) {
                 options: options,
                 key: propertyKey
             };
+            if (options && options.toTsValue) {
+                target["__properties"][name].toTsValue = options.toTsValue;
+                delete options.toTsValue;
+            }
         };
 }
 exports.Property = Property;

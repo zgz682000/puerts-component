@@ -13,13 +13,24 @@ const transporter_deco_cjs_1 = require("puerts-component/transporter.deco.cjs");
 let TestComponent2 = class TestComponent2 extends component_cjs_1.Component {
     testNumber;
     testPassword;
+    testJson;
 };
 __decorate([
     (0, property_deco_cjs_1.Property)(csharp_1.System.Int32)
 ], TestComponent2.prototype, "testNumber", void 0);
 __decorate([
-    (0, property_deco_cjs_1.Property)(csharp_1.System.String, { password: true })
+    (0, property_deco_cjs_1.Property)(csharp_1.Puerts.Component.PasswordProperty, {
+        toTsValue: (csValue) => csValue.value
+    })
 ], TestComponent2.prototype, "testPassword", void 0);
+__decorate([
+    (0, property_deco_cjs_1.Property)(csharp_1.Puerts.Component.JsonProperty, {
+        toTsValue: (csValue) => {
+            console.log(csValue.json);
+            return JSON.parse(csValue.json);
+        }
+    })
+], TestComponent2.prototype, "testJson", void 0);
 TestComponent2 = __decorate([
     (0, transporter_deco_cjs_1.Transporter)()
 ], TestComponent2);

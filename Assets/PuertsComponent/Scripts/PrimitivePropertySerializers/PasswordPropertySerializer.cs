@@ -7,22 +7,29 @@ using UnityEngine;
 using System.Collections.Generic;
 
 namespace Puerts.Component {
-    public class PasswordPropertySerializer : StringPropertySerializer  {
+
+    public class PasswordProperty {
+        public string value;
+    }
+
+    public class PasswordPropertySerializer : PrimitivePropertySerializer<PasswordProperty>  {
         public override int ValueTypeId => 109;
 #if UNITY_EDITOR
-        public override bool OptionsFilter(Dictionary<string, object> propertyOptions)
+        public override PasswordProperty RenderEditorGUIField(string propName, PasswordProperty propValue, Dictionary<string, object> options)
         {
-            if (propertyOptions.ContainsKey("password") && (bool)propertyOptions["password"]) {
-                return true;
-            }
-            return false;
-        }
-        public override int Priority => 2;
-
-        public override string RenderEditorGUIField(string propName, string propValue)
-        {
-            return EditorGUILayout.PasswordField(new GUIContent(propName), propValue);
+            return new PasswordProperty(){
+                value = EditorGUILayout.PasswordField(new GUIContent(propName), propValue.value)
+            };
         }
 #endif
+        public override string ValueToString(PasswordProperty value)
+        {
+            return value.value;
+        }
+
+        public override PasswordProperty StringToValue(string str)
+        {
+            return new PasswordProperty(){value = str};
+        }
     }
 }

@@ -1,6 +1,17 @@
 import { Puerts, System } from "csharp";
 import { $generic } from "puerts";
 
+declare module 'csharp' {
+    namespace Puerts.Component.TsEditorBase {
+        class Property {
+            options: System.Collections.Generic.Dictionary$2<string, any>;
+            type: System.Type;
+            name: string;
+        }
+    }
+}
+
+
 let List = $generic(System.Collections.Generic.List$1, Puerts.Component.TsEditorBase.Property)
 let Dictionary = $generic(System.Collections.Generic.Dictionary$2, System.String, System.Object);
 
@@ -25,7 +36,7 @@ function PropertiesPick(modulePath: string): System.Collections.Generic.List$1<P
         let type = o.__properties[e].type;
         let options = o.__properties[e].options;
         if (options) {
-            const optDict = new Dictionary();
+            const optDict = new Dictionary<string, any>();
             Object.keys(options).forEach(key => {
                 optDict.Add(key, options[key]);
             });

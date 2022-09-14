@@ -1,6 +1,7 @@
 
 
 using System;
+using System.Collections.Generic;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -10,7 +11,7 @@ namespace Puerts.Component {
     public class LongPropertySerializer : PrimitivePropertySerializer<long>
     {
 #if UNITY_EDITOR
-        public override long RenderEditorGUIField(string propName, long propValue)
+        public override long RenderEditorGUIField(string propName, long propValue, Dictionary<string, object> options)
         {
             return EditorGUILayout.LongField(new GUIContent(propName), propValue);
         }

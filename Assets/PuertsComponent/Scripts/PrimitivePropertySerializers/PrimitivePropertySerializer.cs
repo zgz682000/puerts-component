@@ -15,11 +15,7 @@ namespace Puerts.Component {
         string InternalValueToString(object value);
         object InternalStringToValue(string str);
 #if UNITY_EDITOR
-        int Priority {
-            get;
-        }
-        object InternalRenderEditorGUIField(string propName, object propValue);
-        bool OptionsFilter(Dictionary<string, object> propertyOptions);
+        object InternalRenderEditorGUIField(string propName, object propValue, Dictionary<string, object> options);
 #endif
     } 
     public abstract class PrimitivePropertySerializer<T> : IPrimitivePropertySerializer {
@@ -36,7 +32,7 @@ namespace Puerts.Component {
 
         public abstract string ValueToString(T value);
         public abstract T StringToValue(string str);
-        public abstract T RenderEditorGUIField(string propName, T propValue);
+        public abstract T RenderEditorGUIField(string propName, T propValue, Dictionary<string, object> options);
         
 
         public string InternalValueToString(object value)
@@ -49,14 +45,9 @@ namespace Puerts.Component {
             return (object)StringToValue(str);
         }
 #if UNITY_EDITOR
-        public virtual int Priority => 0;
-        
-        public object InternalRenderEditorGUIField(string propName, object propValue)
+        public object InternalRenderEditorGUIField(string propName, object propValue, Dictionary<string, object> options)
         {
-            return RenderEditorGUIField(propName, (T)propValue);
-        }
-        public virtual bool OptionsFilter(Dictionary<string, object> propertyOptions) {
-            return false;
+            return RenderEditorGUIField(propName, (T)propValue, options);
         }
 #endif
     }

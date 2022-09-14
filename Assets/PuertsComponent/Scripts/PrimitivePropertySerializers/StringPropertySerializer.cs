@@ -1,5 +1,6 @@
 
 #if UNITY_EDITOR
+using System.Collections.Generic;
 using UnityEditor;
 #endif
 
@@ -10,7 +11,7 @@ namespace Puerts.Component {
     {
         public override int ValueTypeId => 3;
 
-        public override string RenderEditorGUIField(string propName, string propValue)
+        public override string RenderEditorGUIField(string propName, string propValue, Dictionary<string, object> options)
         {
             return EditorGUILayout.TextField(new GUIContent(propName), propValue);
         }

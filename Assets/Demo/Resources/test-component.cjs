@@ -40,6 +40,7 @@ let TestComponent = class TestComponent extends component_cjs_1.Component {
         console.log(this.test7Prop.testNumber);
         console.log(this.test7Prop.testPassword);
         console.log(this.test8Prop.testProp1);
+        console.log(this.test7Prop.testJson.testJsonField);
     }
 };
 __decorate([

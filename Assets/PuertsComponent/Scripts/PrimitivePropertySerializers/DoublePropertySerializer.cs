@@ -1,6 +1,7 @@
 
 
 using System;
+using System.Collections.Generic;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -10,7 +11,7 @@ namespace Puerts.Component {
     public class DoublePropertySerializer : PrimitivePropertySerializer<double>
     {
 #if UNITY_EDITOR
-        public override double RenderEditorGUIField(string propName, double propValue)
+        public override double RenderEditorGUIField(string propName, double propValue, Dictionary<string, object> options)
         {
             return EditorGUILayout.DoubleField(new GUIContent(propName), propValue);
         }
