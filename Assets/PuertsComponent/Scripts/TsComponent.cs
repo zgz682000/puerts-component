@@ -19,9 +19,12 @@ namespace Puerts.Component {
 
         private TsTransporter _transporter;
 
-        public TsTransporter Transporter => _transporter;
-
-        public List<string> hookNames;
+        public TsTransporter Transporter {
+            get {
+                Init();
+                return _transporter;
+            }
+        }
 
         protected virtual List<Tuple<string, object>> InternalProperties {
             get {

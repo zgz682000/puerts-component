@@ -14,7 +14,12 @@ namespace Puerts.Component {
 
         private TsTransporter _transporter;
 
-        public TsTransporter Transporter => _transporter;
+        public TsTransporter Transporter {
+            get {
+                Init();
+                return _transporter;
+            }
+        }
 
         public List<Property> Properties => properties;
 

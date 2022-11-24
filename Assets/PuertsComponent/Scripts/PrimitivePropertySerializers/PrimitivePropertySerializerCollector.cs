@@ -49,6 +49,7 @@ namespace Puerts.Component {
             _propertySerializers.Clear();
             var types = GetTypeNames(typeof(IPrimitivePropertySerializer), "Assembly-CSharp");
             var assembly = Assembly.Load("Assembly-CSharp");
+            types.AddRange(GetTypeNames(typeof(IPrimitivePropertySerializer), "Assembly-CSharp-firstpass"));
             types.ForEach(e=>{
                 var instance = (IPrimitivePropertySerializer)Activator.CreateInstance(e);
                 if (instance != null){

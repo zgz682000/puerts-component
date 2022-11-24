@@ -32,8 +32,9 @@ namespace Puerts.Component {
 
         public abstract string ValueToString(T value);
         public abstract T StringToValue(string str);
+#if UNITY_EDITOR
         public abstract T RenderEditorGUIField(string propName, T propValue, Dictionary<string, object> options);
-        
+#endif  
 
         public string InternalValueToString(object value)
         {
