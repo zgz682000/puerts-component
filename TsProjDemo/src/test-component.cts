@@ -1,5 +1,6 @@
 import {Transporter} from "puerts-component/transporter.deco.cjs";
 import {Component} from "puerts-component/component.cjs";
+import { Hook } from "puerts-component/hook.deco.cjs";
 import { ListProperty, Property } from "puerts-component/property.deco.cjs";
 import { Puerts, System, UnityEngine } from "csharp";
 import TestComponent2 from "./test-component2.cjs";
@@ -42,6 +43,7 @@ export default class TestComponent extends Component {
     test8Prop: TestAsset;
 
 
+    @Hook()
     Start(){
         console.log("TestComponent Start");
         console.log(this.gameObject);

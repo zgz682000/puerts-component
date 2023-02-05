@@ -46,14 +46,14 @@ export function Transporter(){
                 }
                 o[key] = ConvertValue(value, toTsValue);
             }
-            if (o.__hooks){
-                Object.keys(o.__hooks).forEach(e=>{
+            if (ctor.prototype.hasOwnProperty("__hooks")) {
+                Object.keys(ctor.prototype.__hooks).forEach(e => {
                     transporter.RegisterHook(e, (args: System.Array$1<any>) => {
                         let argsJsArr = [];
                         for(let i = 0; i < args.Length; i++){
                             argsJsArr.push(args.get_Item(i));
                         }
-                        let key: string = o.__hooks[e].key;
+                        let key = ctor.prototype.__hooks[e].key;
                         if (!o[key]){
                             throw new Error("member not exist: " + e)
                         }

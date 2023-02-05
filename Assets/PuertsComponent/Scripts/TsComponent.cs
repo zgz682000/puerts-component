@@ -56,25 +56,35 @@ namespace Puerts.Component {
                 return;
             }
             Init();
-            _transporter.InvokeHook("Awake");
+            if (_transporter.ContainsHook("Awake")){
+                _transporter.InvokeHook("Awake");
+            }
         }
 
         private void OnEnable() {
-            _transporter.InvokeHook("OnEnable");
+            if (_transporter.ContainsHook("OnEnable")){
+                _transporter.InvokeHook("OnEnable");
+            }
         }
 
         private void OnDisable() {
-            _transporter.InvokeHook("OnDisable");
+            if (_transporter.ContainsHook("OnDisable")){
+                _transporter.InvokeHook("OnDisable");
+            }
         }
 
         private void Start()
         {
-            _transporter.InvokeHook("Start");
+            if (_transporter.ContainsHook("Start")){
+                _transporter.InvokeHook("Start");
+            }
         }
 
         private void OnDestroy()
         {
-            _transporter.InvokeHook("OnDestroy");
+            if (_transporter.ContainsHook("OnDestroy")){
+                _transporter.InvokeHook("OnDestroy");
+            }
             _transporter.Clear();
             _transporter = null;
         }
