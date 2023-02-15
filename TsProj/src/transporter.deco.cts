@@ -24,6 +24,12 @@ function ConvertValue(value: any, toTsValue?: (csValue: any)=>any): any{
 
 export function Transporter(){
     return (ctor: new()=>any) => {
+        if (!ctor.prototype.hasOwnProperty("__hooks")) {
+            ctor.prototype.__hooks = Object.assign({}, ctor.prototype.__hooks);
+        }
+        if (!ctor.prototype.hasOwnProperty("__properties")) {
+            ctor.prototype.__properties = Object.assign({}, ctor.prototype.__properties);
+        }
         (ctor as any).__transporter_clear = (transporter: Puerts.Component.TsTransporter) =>{
             delete transporterObjs[transporter.GetHashCode()];
         }

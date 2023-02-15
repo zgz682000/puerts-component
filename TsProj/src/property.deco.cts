@@ -23,32 +23,32 @@ export function ListProperty(type: PropertyType | typeof System.Object, dimensio
     return !UnityEngine.Application.isEditor ? 
     (target: any, propertyKey: string)=>{
         let name = options && options.name ? options.name : propertyKey;
-        if (!target["__properties"]){
-            target["__properties"] = {};
+        if (!target.hasOwnProperty("__properties")){
+            target.__properties = Object.assign({}, target.__properties);
         }
-        target["__properties"][name] = {
+        target.__properties[name] = {
             key: propertyKey
         };
         if (options && options.toTsValue){
-            target["__properties"][name].toTsValue = options.toTsValue;
+            target.__properties[name].toTsValue = options.toTsValue;
             delete options.toTsValue;
         }
     }
     :(target: any, propertyKey: string)=>{
         let name = options && options.name ? options.name : propertyKey;
-        if (!target["__properties"]){
-            target["__properties"] = {};
+        if (!target.hasOwnProperty("__properties")){
+            target.__properties = Object.assign({}, target.__properties);
         }
         for(var i = 0; i < dimension; i++){
             type = $generic(System.Collections.Generic.List$1, type);
         }
-        target["__properties"][name] = {
+        target.__properties[name] = {
             type: $typeof(type),
             options: options,
             key: propertyKey
         }
         if (options && options.toTsValue){
-            target["__properties"][name].toTsValue = options.toTsValue;
+            target.__properties[name].toTsValue = options.toTsValue;
             delete options.toTsValue;
         }
     }
@@ -58,29 +58,29 @@ export function Property(type: PropertyType | typeof System.Object, options?: Pr
     return !UnityEngine.Application.isEditor ? 
     (target: any, propertyKey: string)=>{
         let name = options && options.name ? options.name : propertyKey;
-        if (!target["__properties"]){
-            target["__properties"] = {};
+        if (!target.hasOwnProperty("__properties")){
+            target.__properties = Object.assign({}, target.__properties);
         }
-        target["__properties"][name] = {
+        target.__properties[name] = {
             key: propertyKey
         };
         if (options && options.toTsValue){
-            target["__properties"][name].toTsValue = options.toTsValue;
+            target.__properties[name].toTsValue = options.toTsValue;
             delete options.toTsValue;
         }
     }
     :(target: any, propertyKey: string)=>{
         let name = options && options.name ? options.name : propertyKey;
-        if (!target["__properties"]){
-            target["__properties"] = {};
+        if (!target.hasOwnProperty("__properties")){
+            target.__properties = Object.assign({}, target.__properties);
         }
-        target["__properties"][name] = {
+        target.__properties[name] = {
             type: $typeof(type),
             options: options,
             key: propertyKey
         }
         if (options && options.toTsValue){
-            target["__properties"][name].toTsValue = options.toTsValue;
+            target.__properties[name].toTsValue = options.toTsValue;
             delete options.toTsValue;
         }
     }

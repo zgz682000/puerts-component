@@ -23,6 +23,12 @@ function ConvertValue(value, toTsValue) {
 }
 function Transporter() {
     return (ctor) => {
+        if (!ctor.prototype.hasOwnProperty("__hooks")) {
+            ctor.prototype.__hooks = Object.assign({}, ctor.prototype.__hooks);
+        }
+        if (!ctor.prototype.hasOwnProperty("__properties")) {
+            ctor.prototype.__properties = Object.assign({}, ctor.prototype.__properties);
+        }
         ctor.__transporter_clear = (transporter) => {
             delete transporterObjs[transporter.GetHashCode()];
         };
@@ -43,14 +49,14 @@ function Transporter() {
                 }
                 o[key] = ConvertValue(value, toTsValue);
             }
-            if (o.__hooks) {
-                Object.keys(o.__hooks).forEach(e => {
+            if (ctor.prototype.hasOwnProperty("__hooks")) {
+                Object.keys(ctor.prototype.__hooks).forEach(e => {
                     transporter.RegisterHook(e, (args) => {
                         let argsJsArr = [];
                         for (let i = 0; i < args.Length; i++) {
                             argsJsArr.push(args.get_Item(i));
                         }
-                        let key = o.__hooks[e].key;
+                        let key = ctor.prototype.__hooks[e].key;
                         if (!o[key]) {
                             throw new Error("member not exist: " + e);
                         }

@@ -1,4 +1,5 @@
 import { UnityEngine } from "csharp";
+import { Hook } from "./hook.deco.cjs";
 export abstract class Component {    
 
     private _gameObject: UnityEngine.GameObject;
@@ -11,9 +12,14 @@ export abstract class Component {
         return this._transform;
     }
 
+    @Hook()
     protected Awake(){}
+    @Hook()
     protected Start(){}
+    @Hook()
     protected OnDestroy(){}
+    @Hook()
     protected OnEnable(){}
+    @Hook()
     protected OnDisable(){}
 }
