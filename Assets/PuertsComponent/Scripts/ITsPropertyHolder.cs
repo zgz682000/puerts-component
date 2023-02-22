@@ -32,7 +32,7 @@ namespace Puerts.Component {
         public static List<Tuple<string, object>> ConvertPropertiesValue(this ITsPropertyHolder holder){
             return holder.Properties.ConvertAll(e=>{
                 return new Tuple<string, object>(e.name, ConvertValue(e.value));;
-            });
+            }).FindAll(e=>e.Item2 != null && !e.Item2.Equals(null));
         }
     }
 }
