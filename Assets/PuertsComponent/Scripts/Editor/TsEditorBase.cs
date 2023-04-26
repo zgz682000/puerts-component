@@ -73,7 +73,32 @@ namespace Puerts.Component {
             }
         }
 
-        private Dictionary<string, SerializedProperty> _propIndexByName = new Dictionary<string, SerializedProperty>();
+        private void ClearUnusedProperties(){
+            if (properties == null){
+                return;
+            }
+            if (_propertiesProp == null){
+                return;
+            }
+
+            HashSet<string> propertyNames = new HashSet<string>();
+
+            properties.ForEach(e=> propertyNames.Add(e.name));
+
+            
+            for(var j = 0; j < _propertiesProp.arraySize; j++){
+                var propertyProp = _propertiesProp.GetArrayElementAtIndex(j);
+                var propertyNameProp = propertyProp.FindPropertyRelative("name");
+                if (!propertyNames.Contains(propertyNameProp.stringValue)){
+                    _propertiesProp.DeleteArrayElementAtIndex(j);
+                    j--;
+                }
+            }
+
+            serializedObject.ApplyModifiedProperties();
+        }
+
+        protected Dictionary<string, SerializedProperty> _propIndexByName = new Dictionary<string, SerializedProperty>();
         public override void OnInspectorGUI(){
             serializedObject.Update();
             EditorGUILayout.BeginVertical();
@@ -111,6 +136,7 @@ namespace Puerts.Component {
                 }
             }
             if (GUILayout.Button("Reload")){
+                ClearUnusedProperties();
                 OnEnable();
             }
 
